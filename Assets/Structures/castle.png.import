@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhmfn6kaikbul"
-path="res://.godot/imported/mountains.png-5cfde243a1e2668f6a1650d49b859818.ctex"
+uid="uid://k6tekhf3fs3x"
+path="res://.godot/imported/castle.png-278f59122076d4bc291ff177598676a1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/terrain/mountains.png"
-dest_files=["res://.godot/imported/mountains.png-5cfde243a1e2668f6a1650d49b859818.ctex"]
+source_file="res://Assets/Structures/castle.png"
+dest_files=["res://.godot/imported/castle.png-278f59122076d4bc291ff177598676a1.ctex"]
 
 [params]
 
