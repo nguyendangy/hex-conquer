@@ -1,9 +1,9 @@
 extends Node
 
-var base = Building.new(0, preload("res://Assets/Structures/Base.png"), 0, 0, 0, 0)
-var mine = Building.new(1, preload("res://Assets/Structures/Mine.png"), 2, 1, 4, 1)
-var greenhouse = Building.new(2, preload("res://Assets/Structures/Greenhouse.png"), 1, 1, 0, 0)
-var solarpanel = Building.new(3, preload("res://Assets/Structures/SolarPanel.png"), 4, 1, 0, 0)
+#var base = Building.new(0, preload("res://Assets/Structures/Base.png"), 0, 0, 0, 0)
+#var mine = Building.new(1, preload("res://Assets/Structures/Mine.png"), 2, 1, 4, 1)
+#var greenhouse = Building.new(2, preload("res://Assets/Structures/Greenhouse.png"), 1, 1, 0, 0)
+#var solarpanel = Building.new(3, preload("res://Assets/Structures/SolarPanel.png"), 4, 1, 0, 0)
 
 # --- Building Types ---
 # base			= 0
