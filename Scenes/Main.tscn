@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dcop3dx31uunb" path="res://Assets/Terrain/trees.png" id="7_5noqj"]
 [ext_resource type="Script" path="res://Scripts/Map.gd" id="8_6ub52"]
 [ext_resource type="Texture2D" uid="uid://k6tekhf3fs3x" path="res://Assets/Structures/castle.png" id="8_ovx6e"]
-[ext_resource type="PackedScene" uid="uid://chkppvjj35r2i" path="res://Scenes/UI.tscn" id="9_teqyh"]
+[ext_resource type="PackedScene" uid="uid://bcpwm5nnjml6g" path="res://Scenes/HUD.tscn" id="9_teqyh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nilwd"]
 texture = ExtResource("4_fou5p")
@@ -83,7 +83,7 @@ sources/4 = SubResource("TileSetAtlasSource_jrgwi")
 [node name="Main" type="Node2D"]
 script = ExtResource("1_y8f4u")
 
-[node name="CanvasLayer" parent="." instance=ExtResource("9_teqyh")]
+[node name="HUD" parent="." instance=ExtResource("9_teqyh")]
 
 [node name="Map" type="TileMapLayer" parent="."]
 position = Vector2(8.00003, 0)
