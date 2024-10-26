@@ -1,5 +1,7 @@
 extends TileMapLayer
 
+@export var tile_map: TileMap
+
 var allTiles : Array
 var ownedTiles : Array
 var startingTile : Vector2
@@ -45,16 +47,13 @@ func _process(_delta: float) -> void:
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
-			var global_clicked = event.position
-			var pos_clicked = local_to_map(to_local(global_clicked))
-			var current_atlas_coords = get_cell_atlas_coords(pos_clicked)
-			var current_tile_alt = get_cell_alternative_tile(pos_clicked)
-			var main_atlas_id = get_cell_source_id(pos_clicked)
+			
+			var coordinates = get_global_transform_with_canvas().affine_inverse() * event.position
+			var pos_clicked = local_to_map(coordinates)
 			
 			print(pos_clicked)
 			
 			if pos_clicked in ownedTiles:
-				#set_cell(pos_clicked, main_atlas_id, current_atlas_coords, (current_tile_alt + 1) %  2)
 				for cell in get_surrounding_cells(pos_clicked):
 					if get_cell_tile_data(cell).terrain in [-1,0,1,4]:
 						set_cell(cell, get_cell_source_id(cell), \

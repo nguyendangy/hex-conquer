@@ -1,38 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://cabdb7q4dxgo4"]
+[gd_scene load_steps=6 format=3 uid="uid://chkppvjj35r2i"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_8ias7"]
+[sub_resource type="LabelSettings" id="LabelSettings_gobr5"]
 font_size = 32
 
-[sub_resource type="LabelSettings" id="LabelSettings_n23s7"]
+[sub_resource type="LabelSettings" id="LabelSettings_rvp2g"]
 font_size = 32
 
-[sub_resource type="LabelSettings" id="LabelSettings_fbijm"]
+[sub_resource type="LabelSettings" id="LabelSettings_pch2b"]
 font_size = 32
 
-[sub_resource type="LabelSettings" id="LabelSettings_cmgdc"]
+[sub_resource type="LabelSettings" id="LabelSettings_ovsf2"]
 font_size = 32
 
-[sub_resource type="LabelSettings" id="LabelSettings_ggyhn"]
+[sub_resource type="LabelSettings" id="LabelSettings_sh3dw"]
 font_size = 32
 
-[node name="UI" type="Control"]
-top_level = true
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1420.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="CanvasLayer" type="CanvasLayer"]
+offset = Vector2(1420, 0)
+transform = Transform2D(1, 0, 0, 1, 1420, 0)
 
 [node name="Background" type="ColorRect" parent="."]
-layout_mode = 0
 offset_right = 500.0
 offset_bottom = 1080.0
 color = Color(0.233925, 0.233925, 0.233925, 1)
 
 [node name="Label" type="Label" parent="."]
-layout_mode = 0
 offset_right = 500.0
 offset_bottom = 100.0
 theme_override_font_sizes/font_size = 50
@@ -41,7 +33,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ResourceLabel1" type="Label" parent="."]
-layout_mode = 0
 offset_left = 150.0
 offset_top = 100.0
 offset_right = 250.0
@@ -52,18 +43,16 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ResourceAmount1" type="Label" parent="."]
-layout_mode = 0
 offset_left = 250.0
 offset_top = 100.0
 offset_right = 350.0
 offset_bottom = 200.0
 text = "50"
-label_settings = SubResource("LabelSettings_8ias7")
+label_settings = SubResource("LabelSettings_gobr5")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ResourceLabel2" type="Label" parent="."]
-layout_mode = 0
 offset_left = 150.0
 offset_top = 200.0
 offset_right = 250.0
@@ -74,18 +63,16 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ResourceAmount2" type="Label" parent="."]
-layout_mode = 0
 offset_left = 250.0
 offset_top = 200.0
 offset_right = 350.0
 offset_bottom = 300.0
 text = "50"
-label_settings = SubResource("LabelSettings_n23s7")
+label_settings = SubResource("LabelSettings_rvp2g")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ResourceLabel3" type="Label" parent="."]
-layout_mode = 0
 offset_left = 150.0
 offset_top = 300.0
 offset_right = 250.0
@@ -96,18 +83,16 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ResourceAmount3" type="Label" parent="."]
-layout_mode = 0
 offset_left = 250.0
 offset_top = 300.0
 offset_right = 350.0
 offset_bottom = 400.0
 text = "50"
-label_settings = SubResource("LabelSettings_fbijm")
+label_settings = SubResource("LabelSettings_pch2b")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ResourceLabel4" type="Label" parent="."]
-layout_mode = 0
 offset_left = 150.0
 offset_top = 400.0
 offset_right = 250.0
@@ -118,18 +103,16 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ResourceAmount4" type="Label" parent="."]
-layout_mode = 0
 offset_left = 250.0
 offset_top = 400.0
 offset_right = 350.0
 offset_bottom = 500.0
 text = "50"
-label_settings = SubResource("LabelSettings_cmgdc")
+label_settings = SubResource("LabelSettings_ovsf2")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ResourceLabel5" type="Label" parent="."]
-layout_mode = 0
 offset_left = 150.0
 offset_top = 500.0
 offset_right = 250.0
@@ -140,18 +123,16 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ResourceAmount5" type="Label" parent="."]
-layout_mode = 0
 offset_left = 250.0
 offset_top = 500.0
 offset_right = 350.0
 offset_bottom = 600.0
 text = "50"
-label_settings = SubResource("LabelSettings_ggyhn")
+label_settings = SubResource("LabelSettings_sh3dw")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="EndTurn" type="Button" parent="."]
-layout_mode = 0
 offset_left = 100.0
 offset_top = 1000.0
 offset_right = 400.0
