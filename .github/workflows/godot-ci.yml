@@ -45,6 +45,10 @@ jobs:
         with:
           branch: gh-pages # The branch the action should deploy to.
           folder: build/web # The folder the action should deploy.
+      - name: Remove Artifact
+        uses: geekyeggo/delete-artifact@v5
+        with:
+          name: web
 
   # export-windows:
   #   name: Windows Export
