@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://bt4iath4evhfj"]
+
+[ext_resource type="Script" path="res://Scripts/TitleScreen.gd" id="1_cg4em"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wegtx"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_71mp4"]
+font_size = 32
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HeadlineLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 200.0
+text = "How To Play"
+label_settings = SubResource("LabelSettings_wegtx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InstructionLabel" type="Label" parent="."]
+layout_mode = 0
+offset_top = 200.0
+offset_right = 1920.0
+offset_bottom = 900.0
+text = "Instructions"
+label_settings = SubResource("LabelSettings_71mp4")
+horizontal_alignment = 1
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 760.0
+offset_top = 930.0
+offset_right = 1160.0
+offset_bottom = 1030.0
+theme_override_font_sizes/font_size = 32
+text = "Back"
+script = ExtResource("1_cg4em")
+
+[connection signal="pressed" from="BackButton" to="BackButton" method="_on_BackButton_pressed"]

@@ -1,19 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://bcpwm5nnjml6g"]
+[gd_scene load_steps=4 format=3 uid="uid://bcpwm5nnjml6g"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_gobr5"]
+[sub_resource type="LabelSettings" id="LabelSettings_0ntik"]
 font_size = 32
 
-[sub_resource type="LabelSettings" id="LabelSettings_rvp2g"]
+[sub_resource type="LabelSettings" id="LabelSettings_qfyqq"]
 font_size = 32
 
-[sub_resource type="LabelSettings" id="LabelSettings_pch2b"]
+[sub_resource type="LabelSettings" id="LabelSettings_raq0k"]
 font_size = 32
-
-[sub_resource type="LabelSettings" id="LabelSettings_ovsf2"]
-font_size = 32
-
-[sub_resource type="LabelSettings" id="LabelSettings_sh3dw"]
-font_size = 32
+font_color = Color(0, 1, 0, 1)
 
 [node name="CanvasLayer" type="CanvasLayer"]
 offset = Vector2(1420, 0)
@@ -22,61 +17,107 @@ transform = Transform2D(1, 0, 0, 1, 1420, 0)
 [node name="Background" type="ColorRect" parent="."]
 offset_right = 500.0
 offset_bottom = 1080.0
-color = Color(0.233925, 0.233925, 0.233925, 1)
+color = Color(0.235294, 0.235294, 0.235294, 1)
 
-[node name="Label" type="Label" parent="."]
+[node name="ProgressLabel" type="Label" parent="."]
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 150.0
+offset_bottom = 150.0
+text = "Player
+Bot"
+label_settings = SubResource("LabelSettings_0ntik")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBarPlayer" type="ProgressBar" parent="."]
+modulate = Color(0, 0, 1, 1)
+offset_left = 200.0
+offset_top = 60.0
+offset_right = 450.0
+offset_bottom = 90.0
+value = 60.0
+show_percentage = false
+
+[node name="ProgressBarBot" type="ProgressBar" parent="."]
+modulate = Color(1, 1, 0, 1)
+offset_left = 200.0
+offset_top = 110.0
+offset_right = 450.0
+offset_bottom = 140.0
+value = 30.0
+show_percentage = false
+
+[node name="ResourceLabel" type="Label" parent="."]
+offset_top = 150.0
 offset_right = 500.0
-offset_bottom = 100.0
+offset_bottom = 250.0
 theme_override_font_sizes/font_size = 50
 text = "Resources"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ResourceLabel1" type="Label" parent="."]
-offset_left = 150.0
-offset_top = 100.0
-offset_right = 250.0
-offset_bottom = 200.0
+offset_left = 50.0
+offset_top = 250.0
+offset_right = 150.0
+offset_bottom = 350.0
 text = "Resource
 Icon"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ResourceAmount1" type="Label" parent="."]
-offset_left = 250.0
-offset_top = 100.0
-offset_right = 350.0
-offset_bottom = 200.0
+offset_left = 50.0
+offset_top = 350.0
+offset_right = 150.0
+offset_bottom = 400.0
 text = "50"
-label_settings = SubResource("LabelSettings_gobr5")
+label_settings = SubResource("LabelSettings_qfyqq")
 horizontal_alignment = 1
-vertical_alignment = 1
+
+[node name="ResourceIncrease1" type="Label" parent="."]
+offset_left = 50.0
+offset_top = 400.0
+offset_right = 150.0
+offset_bottom = 450.0
+text = "(+5)"
+label_settings = SubResource("LabelSettings_raq0k")
+horizontal_alignment = 1
 
 [node name="ResourceLabel2" type="Label" parent="."]
 offset_left = 150.0
-offset_top = 200.0
+offset_top = 250.0
 offset_right = 250.0
-offset_bottom = 300.0
+offset_bottom = 350.0
 text = "Resource
 Icon"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ResourceAmount2" type="Label" parent="."]
-offset_left = 250.0
-offset_top = 200.0
-offset_right = 350.0
-offset_bottom = 300.0
-text = "50"
-label_settings = SubResource("LabelSettings_rvp2g")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ResourceLabel3" type="Label" parent="."]
 offset_left = 150.0
-offset_top = 300.0
+offset_top = 350.0
 offset_right = 250.0
 offset_bottom = 400.0
+text = "50"
+label_settings = SubResource("LabelSettings_qfyqq")
+horizontal_alignment = 1
+
+[node name="ResourceIncrease2" type="Label" parent="."]
+offset_left = 150.0
+offset_top = 400.0
+offset_right = 250.0
+offset_bottom = 450.0
+text = "(+5)"
+label_settings = SubResource("LabelSettings_raq0k")
+horizontal_alignment = 1
+
+[node name="ResourceLabel3" type="Label" parent="."]
+offset_left = 250.0
+offset_top = 250.0
+offset_right = 350.0
+offset_bottom = 350.0
 text = "Resource
 Icon"
 horizontal_alignment = 1
@@ -84,57 +125,99 @@ vertical_alignment = 1
 
 [node name="ResourceAmount3" type="Label" parent="."]
 offset_left = 250.0
-offset_top = 300.0
+offset_top = 350.0
 offset_right = 350.0
 offset_bottom = 400.0
 text = "50"
-label_settings = SubResource("LabelSettings_pch2b")
+label_settings = SubResource("LabelSettings_qfyqq")
 horizontal_alignment = 1
-vertical_alignment = 1
+
+[node name="ResourceIncrease3" type="Label" parent="."]
+offset_left = 250.0
+offset_top = 400.0
+offset_right = 350.0
+offset_bottom = 450.0
+text = "(+5)"
+label_settings = SubResource("LabelSettings_raq0k")
+horizontal_alignment = 1
 
 [node name="ResourceLabel4" type="Label" parent="."]
-offset_left = 150.0
-offset_top = 400.0
-offset_right = 250.0
-offset_bottom = 500.0
+offset_left = 350.0
+offset_top = 250.0
+offset_right = 450.0
+offset_bottom = 350.0
 text = "Resource
 Icon"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ResourceAmount4" type="Label" parent="."]
-offset_left = 250.0
+offset_left = 350.0
+offset_top = 350.0
+offset_right = 450.0
+offset_bottom = 400.0
+text = "50"
+label_settings = SubResource("LabelSettings_qfyqq")
+horizontal_alignment = 1
+
+[node name="ResourceIncrease4" type="Label" parent="."]
+offset_left = 350.0
 offset_top = 400.0
-offset_right = 350.0
-offset_bottom = 500.0
-text = "50"
-label_settings = SubResource("LabelSettings_ovsf2")
+offset_right = 450.0
+offset_bottom = 450.0
+text = "(+5)"
+label_settings = SubResource("LabelSettings_raq0k")
+horizontal_alignment = 1
+
+[node name="BuildingLabel" type="Label" parent="."]
+offset_top = 500.0
+offset_right = 500.0
+offset_bottom = 600.0
+theme_override_font_sizes/font_size = 50
+text = "Buildings"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ResourceLabel5" type="Label" parent="."]
-offset_left = 150.0
-offset_top = 500.0
-offset_right = 250.0
-offset_bottom = 600.0
-text = "Resource
-Icon"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Building1" type="Button" parent="."]
+visible = false
+offset_left = 50.0
+offset_top = 620.0
+offset_right = 225.0
+offset_bottom = 720.0
+text = "Tower
+4 Stone + 4 Wood"
 
-[node name="ResourceAmount5" type="Label" parent="."]
-offset_left = 250.0
-offset_top = 500.0
-offset_right = 350.0
-offset_bottom = 600.0
-text = "50"
-label_settings = SubResource("LabelSettings_sh3dw")
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Building2" type="Button" parent="."]
+visible = false
+offset_left = 275.0
+offset_top = 620.0
+offset_right = 450.0
+offset_bottom = 720.0
+text = "Village
+4 Stone + 2 Gold"
+
+[node name="Building3" type="Button" parent="."]
+visible = false
+offset_left = 50.0
+offset_top = 770.0
+offset_right = 225.0
+offset_bottom = 870.0
+text = "Tower
+4 Stone + 4 Wood"
+
+[node name="Building4" type="Button" parent="."]
+visible = false
+offset_left = 275.0
+offset_top = 770.0
+offset_right = 450.0
+offset_bottom = 870.0
+text = "Village
+4 Stone + 2 Gold"
 
 [node name="EndTurn" type="Button" parent="."]
-offset_left = 100.0
-offset_top = 1000.0
-offset_right = 400.0
-offset_bottom = 1050.0
+offset_left = 50.0
+offset_top = 930.0
+offset_right = 450.0
+offset_bottom = 1030.0
+theme_override_font_sizes/font_size = 32
 text = "End Turn"

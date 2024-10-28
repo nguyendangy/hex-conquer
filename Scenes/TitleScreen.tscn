@@ -32,25 +32,29 @@ offset_left = 760.0
 offset_top = 540.0
 offset_right = 1160.0
 offset_bottom = 640.0
+theme_override_font_sizes/font_size = 32
 text = "Start"
 script = ExtResource("1_8v2ok")
 
-[node name="OptionsButton" type="Button" parent="."]
+[node name="HelpButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 760.0
 offset_top = 680.0
 offset_right = 1160.0
 offset_bottom = 780.0
-text = "Options"
+theme_override_font_sizes/font_size = 32
+text = "How To Play"
+script = ExtResource("1_8v2ok")
 
 [node name="Version" type="Label" parent="."]
 layout_mode = 0
 offset_top = 980.0
 offset_right = 1920.0
 offset_bottom = 1080.0
-text = "version 1.0"
+text = "version 1.0.0"
 label_settings = SubResource("LabelSettings_ag28y")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="pressed" from="StartButton" to="StartButton" method="_on_StartButton_pressed"]
+[connection signal="pressed" from="HelpButton" to="HelpButton" method="_on_HelpButton_pressed"]
