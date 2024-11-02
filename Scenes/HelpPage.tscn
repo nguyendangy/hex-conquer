@@ -39,7 +39,7 @@ text = "General
 - All your tiles have to be connected to your Capital or you lose them.
 
 Resources
-- There are 4 types of resources: Stone, Lumber, Grain and Gold.
+- There are 4 types of resources: Lumber, Stone, Grain and Gold.
 
 Buildings
 - If you lose your Capital, you lose the game.
@@ -58,6 +58,7 @@ text = "Back"
 script = ExtResource("1_cg4em")
 
 [node name="VersionLabel" type="Label" parent="."]
+layout_mode = 0
 offset_left = 50.0
 offset_top = 980.0
 offset_right = 1870.0

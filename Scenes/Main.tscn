@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=4 uid="uid://lok4tkuv1ckd"]
+[gd_scene load_steps=17 format=4 uid="uid://lok4tkuv1ckd"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_y8f4u"]
 [ext_resource type="Script" path="res://Scripts/Camera.gd" id="3_bj4gd"]
+[ext_resource type="Script" path="res://Scripts/HUD.gd" id="3_p7wqc"]
 [ext_resource type="Texture2D" uid="uid://c2xckcithd7bh" path="res://Assets/Terrain/gras.png" id="4_fou5p"]
 [ext_resource type="Texture2D" uid="uid://bhmfn6kaikbul" path="res://Assets/Terrain/mountains.png" id="5_4gd1d"]
 [ext_resource type="Texture2D" uid="uid://t4uays38bovd" path="res://Assets/Terrain/river.png" id="6_6mv5s"]
@@ -84,6 +85,7 @@ sources/4 = SubResource("TileSetAtlasSource_jrgwi")
 script = ExtResource("1_y8f4u")
 
 [node name="HUD" parent="." instance=ExtResource("9_teqyh")]
+script = ExtResource("3_p7wqc")
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(960, 540)
