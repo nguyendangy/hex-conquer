@@ -6,13 +6,9 @@ var ownedTiles : Array
 var startingTile : Vector2i = Vector2i(12, 21)
 var selectedTile : Vector2i = Vector2i(-1, -1)
 
-# Buttons
-@onready var BuildingButton1 = get_node("../HUD/Building1")
-@onready var BuildingButton2 = get_node("../HUD/Building2")
-@onready var BuildingButton3 = get_node("../HUD/Building3")
-@onready var BuildingButton4 = get_node("../HUD/Building4")
-
 var rng = RandomNumberGenerator.new()
+
+@onready var HUD : Node = get_node("/root/Main/HUD")
 
 # Probabilities for different terrains
 const gras : float = 0.5
@@ -62,21 +58,20 @@ func _input(event):
 						(get_cell_alternative_tile(selectedTile) + 1) %  2
 					)
 					# show buttons
-					_set_buttons_visibility(true)
+					HUD.set_buttons_visibility(true)
 					# set selected tile
 					selectedTile = pos_clicked
+					set_cell(
+						pos_clicked, 
+						get_cell_source_id(pos_clicked),
+						get_cell_atlas_coords(pos_clicked),
+						(get_cell_alternative_tile(pos_clicked) + 1) %  2
+					)
 				else:
 					# hide buttons
-					_set_buttons_visibility(false)
+					HUD.set_buttons_visibility(false)
 					# reset tile if clicked again
-					selectedTile = Vector2i(-1, -1)
-
-				set_cell(
-					pos_clicked, 
-					get_cell_source_id(pos_clicked),
-					get_cell_atlas_coords(pos_clicked),
-					(get_cell_alternative_tile(pos_clicked) + 1) %  2
-				)
+					clear_selected_tile()
 				
 				#if pos_clicked in ownedTiles:
 					#for cell in get_surrounding_cells(pos_clicked):
@@ -84,12 +79,16 @@ func _input(event):
 							#set_cell(cell, get_cell_source_id(cell), \
 								#get_cell_atlas_coords(cell), (get_cell_alternative_tile(cell) + 1) %  2)
 
-# Set visibility of buttons
-func _set_buttons_visibility(visible: bool) -> void:
-	BuildingButton1.visible = visible
-	BuildingButton2.visible = visible
-	BuildingButton3.visible = visible
-	BuildingButton4.visible = visible
+# Clear tile selection
+func clear_selected_tile() -> void:
+	if selectedTile != Vector2i(-1, -1):
+		set_cell(
+			selectedTile, 
+			get_cell_source_id(selectedTile),
+			get_cell_atlas_coords(selectedTile),
+			(get_cell_alternative_tile(selectedTile) + 1) %  2
+		)
+		selectedTile = Vector2i(-1, -1)
 
 # Get weighted random number 
 func _get_terrain_type() -> int:
