@@ -1,14 +1,25 @@
-[gd_scene load_steps=16 format=4 uid="uid://lok4tkuv1ckd"]
+[gd_scene load_steps=38 format=4 uid="uid://lok4tkuv1ckd"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_y8f4u"]
 [ext_resource type="Script" path="res://Scripts/Camera.gd" id="3_bj4gd"]
 [ext_resource type="Texture2D" uid="uid://c2xckcithd7bh" path="res://Assets/Terrain/gras.png" id="4_fou5p"]
 [ext_resource type="Texture2D" uid="uid://bhmfn6kaikbul" path="res://Assets/Terrain/mountains.png" id="5_4gd1d"]
+[ext_resource type="Texture2D" uid="uid://cgc70fr01r5v3" path="res://Assets/Terrain/forest.png" id="5_d33bf"]
+[ext_resource type="Texture2D" uid="uid://b682u1yh6nbg2" path="res://Assets/Terrain/red-assets/red-gras.png" id="6_4kpso"]
 [ext_resource type="Texture2D" uid="uid://t4uays38bovd" path="res://Assets/Terrain/river.png" id="6_6mv5s"]
-[ext_resource type="Texture2D" uid="uid://dcop3dx31uunb" path="res://Assets/Terrain/trees.png" id="7_5noqj"]
+[ext_resource type="Texture2D" uid="uid://cqi5ago04jc43" path="res://Assets/Terrain/red-assets/red-forest.png" id="7_khfbx"]
 [ext_resource type="Script" path="res://Scripts/Map.gd" id="8_6ub52"]
-[ext_resource type="Texture2D" uid="uid://k6tekhf3fs3x" path="res://Assets/Structures/castle.png" id="8_ovx6e"]
+[ext_resource type="Texture2D" uid="uid://br787xhga2rco" path="res://Assets/Structures/Castle/blue-castle.png" id="8_y1xgj"]
+[ext_resource type="Texture2D" uid="uid://c1n8kay0uj5sk" path="res://Assets/Terrain/red-assets/red-mountains.png" id="8_ydsnw"]
+[ext_resource type="Texture2D" uid="uid://c574x44d22mrh" path="res://Assets/Terrain/red-assets/red-river.png" id="9_46lmj"]
+[ext_resource type="Texture2D" uid="uid://cqr1eim2nvmet" path="res://Assets/Terrain/blue-assets/blue-forest.png" id="9_rt2yl"]
 [ext_resource type="PackedScene" uid="uid://bcpwm5nnjml6g" path="res://Scenes/HUD.tscn" id="9_teqyh"]
+[ext_resource type="Texture2D" uid="uid://b71pyj1hxkt7q" path="res://Assets/Structures/Castle/red-castle.png" id="10_d6rhi"]
+[ext_resource type="Texture2D" uid="uid://snthsu8pipnl" path="res://Assets/Terrain/blue-assets/blue-gras.png" id="10_f0umm"]
+[ext_resource type="Texture2D" uid="uid://dgv34kjlac2dp" path="res://Assets/Terrain/blue-assets/blue-mountains.png" id="11_48smi"]
+[ext_resource type="Texture2D" uid="uid://dehraraugfurr" path="res://Assets/Structures/Camp/red-camp.png" id="11_kpqws"]
+[ext_resource type="Texture2D" uid="uid://cgrr3lhxv3tkm" path="res://Assets/Terrain/blue-assets/blue-river.png" id="12_rxphy"]
+[ext_resource type="Texture2D" uid="uid://c7ylde724w28o" path="res://Assets/Structures/Camp/blue-camp.png" id="13_1rgoq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nilwd"]
 texture = ExtResource("4_fou5p")
@@ -17,6 +28,76 @@ texture_region_size = Vector2i(182, 210)
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 0
+0:0/1 = 1
+0:0/1/modulate = Color(0, 1, 0, 1)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_22it4"]
+texture = ExtResource("5_d33bf")
+texture_region_size = Vector2i(182, 210)
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 1
+0:0/1 = 1
+0:0/1/modulate = Color(0, 1, 0, 1)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ooamj"]
+texture = ExtResource("6_4kpso")
+texture_region_size = Vector2i(182, 210)
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/0/terrain_set = 2
+0:0/0/terrain = 0
+0:0/1 = 1
+0:0/1/modulate = Color(0, 1, 0, 1)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aptnj"]
+texture = ExtResource("7_khfbx")
+texture_region_size = Vector2i(182, 210)
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/0/terrain_set = 2
+0:0/0/terrain = 1
+0:0/1 = 1
+0:0/1/modulate = Color(0, 1, 0, 1)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ivjhm"]
+texture = ExtResource("8_ydsnw")
+texture_region_size = Vector2i(182, 210)
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/0/terrain_set = 2
+0:0/0/terrain = 2
+0:0/1 = 1
+0:0/1/modulate = Color(0, 1, 0, 1)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wls2h"]
+texture = ExtResource("9_46lmj")
+texture_region_size = Vector2i(182, 210)
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/0/terrain_set = 2
+0:0/0/terrain = 3
+0:0/1 = 1
+0:0/1/modulate = Color(0, 1, 0, 1)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1fouk"]
+texture = ExtResource("10_d6rhi")
+texture_region_size = Vector2i(182, 210)
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/0/terrain_set = 2
+0:0/0/terrain = 4
+0:0/1 = 1
+0:0/1/modulate = Color(0, 1, 0, 1)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m54np"]
+texture = ExtResource("11_kpqws")
+texture_region_size = Vector2i(182, 210)
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/0/terrain_set = 2
+0:0/0/terrain = 5
 0:0/1 = 1
 0:0/1/modulate = Color(0, 1, 0, 1)
 
@@ -40,23 +121,66 @@ texture_region_size = Vector2i(182, 210)
 0:0/1 = 1
 0:0/1/modulate = Color(0, 1, 0, 1)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_22it4"]
-texture = ExtResource("7_5noqj")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jrgwi"]
+texture = ExtResource("8_y1xgj")
+texture_region_size = Vector2i(182, 209)
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/0/terrain_set = 1
+0:0/0/terrain = 4
+0:0/1 = 1
+0:0/1/modulate = Color(0, 1, 0, 1)
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n7rql"]
+texture = ExtResource("10_f0umm")
 texture_region_size = Vector2i(182, 210)
 0:0/next_alternative_id = 2
 0:0/0 = 0
-0:0/0/terrain_set = 0
+0:0/0/terrain_set = 1
+0:0/0/terrain = 0
+0:0/1 = 1
+0:0/1/modulate = Color(0, 1, 0, 1)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7mpxr"]
+texture = ExtResource("9_rt2yl")
+texture_region_size = Vector2i(182, 210)
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/0/terrain_set = 1
 0:0/0/terrain = 1
 0:0/1 = 1
 0:0/1/modulate = Color(0, 1, 0, 1)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jrgwi"]
-texture = ExtResource("8_ovx6e")
-texture_region_size = Vector2i(182, 209)
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ctuag"]
+texture = ExtResource("11_48smi")
+texture_region_size = Vector2i(182, 210)
 0:0/next_alternative_id = 2
 0:0/0 = 0
-0:0/0/terrain_set = 0
-0:0/0/terrain = 4
+0:0/0/terrain_set = 1
+0:0/0/terrain = 2
+0:0/1 = 1
+0:0/1/modulate = Color(0, 1, 0, 1)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b8mte"]
+texture = ExtResource("12_rxphy")
+texture_region_size = Vector2i(182, 210)
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/0/terrain_set = 1
+0:0/0/terrain = 3
+0:0/1 = 1
+0:0/1/modulate = Color(0, 1, 0, 1)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_05p4a"]
+texture = ExtResource("13_1rgoq")
+texture_region_size = Vector2i(182, 210)
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/0/terrain_set = 1
+0:0/0/terrain = 5
 0:0/1 = 1
 0:0/1/modulate = Color(0, 1, 0, 1)
 
@@ -66,19 +190,54 @@ tile_size = Vector2i(182, 210)
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Gras"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
-terrain_set_0/terrain_1/name = "Trees"
-terrain_set_0/terrain_1/color = Color(0.375, 0.5, 0.25, 1)
+terrain_set_0/terrain_1/name = "Forest"
+terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
 terrain_set_0/terrain_2/name = "Mountains"
-terrain_set_0/terrain_2/color = Color(0.5, 0.4375, 0.25, 1)
+terrain_set_0/terrain_2/color = Color(0.46875, 0.5, 0.25, 1)
 terrain_set_0/terrain_3/name = "River"
-terrain_set_0/terrain_3/color = Color(0.46875, 0.5, 0.25, 1)
-terrain_set_0/terrain_4/name = "Castle"
-terrain_set_0/terrain_4/color = Color(0.28125, 0.5, 0.25, 1)
+terrain_set_0/terrain_3/color = Color(0.375, 0.5, 0.25, 1)
+terrain_set_1/mode = 0
+terrain_set_1/terrain_0/name = "Gras"
+terrain_set_1/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+terrain_set_1/terrain_1/name = "Forest"
+terrain_set_1/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
+terrain_set_1/terrain_2/name = "Mountains"
+terrain_set_1/terrain_2/color = Color(0.46875, 0.5, 0.25, 1)
+terrain_set_1/terrain_3/name = "River"
+terrain_set_1/terrain_3/color = Color(0.375, 0.5, 0.25, 1)
+terrain_set_1/terrain_4/name = "Castle"
+terrain_set_1/terrain_4/color = Color(0.28125, 0.5, 0.25, 1)
+terrain_set_1/terrain_5/name = "Camp"
+terrain_set_1/terrain_5/color = Color(0.25, 0.5, 0.3125, 1)
+terrain_set_2/mode = 0
+terrain_set_2/terrain_0/name = "Gras"
+terrain_set_2/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+terrain_set_2/terrain_1/name = "Forest"
+terrain_set_2/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
+terrain_set_2/terrain_2/name = "Mountains"
+terrain_set_2/terrain_2/color = Color(0.46875, 0.5, 0.25, 1)
+terrain_set_2/terrain_3/name = "River"
+terrain_set_2/terrain_3/color = Color(0.375, 0.5, 0.25, 1)
+terrain_set_2/terrain_4/name = "Castle"
+terrain_set_2/terrain_4/color = Color(0.28125, 0.5, 0.25, 1)
+terrain_set_2/terrain_5/name = "Camp"
+terrain_set_2/terrain_5/color = Color(0.25, 0.5, 0.3125, 1)
 sources/0 = SubResource("TileSetAtlasSource_nilwd")
-sources/1 = SubResource("TileSetAtlasSource_sm2g0")
-sources/2 = SubResource("TileSetAtlasSource_oa3qd")
-sources/3 = SubResource("TileSetAtlasSource_22it4")
 sources/4 = SubResource("TileSetAtlasSource_jrgwi")
+sources/7 = SubResource("TileSetAtlasSource_ctuag")
+sources/8 = SubResource("TileSetAtlasSource_b8mte")
+sources/1 = SubResource("TileSetAtlasSource_22it4")
+sources/2 = SubResource("TileSetAtlasSource_sm2g0")
+sources/3 = SubResource("TileSetAtlasSource_oa3qd")
+sources/5 = SubResource("TileSetAtlasSource_n7rql")
+sources/6 = SubResource("TileSetAtlasSource_7mpxr")
+sources/9 = SubResource("TileSetAtlasSource_05p4a")
+sources/12 = SubResource("TileSetAtlasSource_ivjhm")
+sources/13 = SubResource("TileSetAtlasSource_wls2h")
+sources/10 = SubResource("TileSetAtlasSource_ooamj")
+sources/11 = SubResource("TileSetAtlasSource_aptnj")
+sources/14 = SubResource("TileSetAtlasSource_1fouk")
+sources/15 = SubResource("TileSetAtlasSource_m54np")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_y8f4u")
@@ -90,14 +249,16 @@ offset_right = 1420.0
 offset_bottom = 1080.0
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
 size = Vector2i(1420, 1080)
+render_target_update_mode = 4
 
 [node name="Camera" type="Camera2D" parent="SubViewportContainer/SubViewport"]
 position = Vector2(710, 540)
 script = ExtResource("3_bj4gd")
 
 [node name="Map" type="TileMapLayer" parent="SubViewportContainer/SubViewport"]
-position = Vector2(8.00003, 0)
+position = Vector2(15, 0)
 scale = Vector2(0.294, 0.294)
 tile_map_data = PackedByteArray("AAAHAAAAAAAAAAAAAAAGAAEAAAAAAAAAAAAGAAIAAAAAAAAAAAAFAAMAAAAAAAAAAAAFAAQAAAAAAAAAAAAFAAUAAAAAAAAAAAAEAAUAAAAAAAAAAAAFAAYAAAAAAAAAAAAEAAYAAAAAAAAAAAAEAAcAAAAAAAAAAAADAAcAAAAAAAAAAAAEAAgAAAAAAAAAAAADAAgAAAAAAAAAAAADAAkAAAAAAAAAAAACAAkAAAAAAAAAAAACAAoAAAAAAAAAAAABAAsAAAAAAAAAAAACAAwAAAAAAAAAAAADAAwAAAAAAAAAAAACAA0AAAAAAAAAAAADAA0AAAAAAAAAAAAEAA4AAAAAAAAAAAAEAA8AAAAAAAAAAAAFABAAAAAAAAAAAAAFABEAAAAAAAAAAAAEABAAAAAAAAAAAAADAA8AAAAAAAAAAAADAA4AAAAAAAAAAAAEABEAAAAAAAAAAAAFABIAAAAAAAAAAAAFABMAAAAAAAAAAAAGABMAAAAAAAAAAAAGABQAAAAAAAAAAAAHABQAAAAAAAAAAAAGABUAAAAAAAAAAAAHABUAAAAAAAAAAAAIABUAAAAAAAAAAAAJABUAAAAAAAAAAAAKABUAAAAAAAAAAAALABUAAAAAAAAAAAAMABUABAAAAAAAAAANABUAAAAAAAAAAAAOABUAAAAAAAAAAAAPABUAAAAAAAAAAAAQABUAAAAAAAAAAAARABUAAAAAAAAAAAASABUAAAAAAAAAAAASABYAAAAAAAAAAAARABYAAAAAAAAAAAAQABYAAAAAAAAAAAAPABYAAAAAAAAAAAAOABYAAAAAAAAAAAANABYAAAAAAAAAAAAMABYAAAAAAAAAAAALABYAAAAAAAAAAAAKABYAAAAAAAAAAAAJABYAAAAAAAAAAAAIABYAAAAAAAAAAAAHABYAAAAAAAAAAAACAAsAAAAAAAAAAAADAAsAAAAAAAAAAAAEAAsAAAAAAAAAAAAFAAsAAAAAAAAAAAAGAAsAAAAAAAAAAAAHAAsAAAAAAAAAAAAIAAsAAAAAAAAAAAAJAAsAAAAAAAAAAAAKAAsAAAAAAAAAAAALAAsAAAAAAAAAAAAMAAsAAAAAAAAAAAANAAsAAAAAAAAAAAAOAAsAAAAAAAAAAAAPAAsAAAAAAAAAAAAQAAsAAAAAAAAAAAARAAsAAAAAAAAAAAASAAsAAAAAAAAAAAATAAsAAAAAAAAAAAAUAAsAAAAAAAAAAAAVAAsAAAAAAAAAAAAWAAsAAAAAAAAAAAAXAAsAAAAAAAAAAAATABMAAAAAAAAAAAATABQAAAAAAAAAAAAUABIAAAAAAAAAAAAUABEAAAAAAAAAAAAVABAAAAAAAAAAAAAVAA8AAAAAAAAAAAAWAA4AAAAAAAAAAAAWAA0AAAAAAAAAAAAXAAwAAAAAAAAAAAAXAAoAAAAAAAAAAAAWAAkAAAAAAAAAAAAWAAgAAAAAAAAAAAAVAAcAAAAAAAAAAAAVAAYAAAAAAAAAAAAUAAUAAAAAAAAAAAAUAAQAAAAAAAAAAAATAAMAAAAAAAAAAAATAAIAAAAAAAAAAAASAAEAAAAAAAAAAAASAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAALAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAANAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAPAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAARAAAAAAAAAAAAAAAHAAEAAAAAAAAAAAAHAAIAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAQAAAAAAAAAAAAEAAoAAAAAAAAAAAAEAAwAAAAAAAAAAAAEAA0AAAAAAAAAAAAFAA4AAAAAAAAAAAADAAoAAAAAAAAAAAAGABIAAAAAAAAAAAAIABQAAAAAAAAAAAAJABQAAAAAAAAAAAAKABQAAAAAAAAAAAALABQAAAAAAAAAAAAMABQAAAAAAAAAAAANABQAAAAAAAAAAAAOABQAAAAAAAAAAAAPABQAAAAAAAAAAAAQABQAAAAAAAAAAAARABQAAAAAAAAAAAASABQAAAAAAAAAAAASABMAAAAAAAAAAAARABMAAAAAAAAAAAARABIAAAAAAAAAAAAQABIAAAAAAAAAAAAPABMAAAAAAAAAAAAOABMAAAAAAAAAAAANABMAAAAAAAAAAAAMABMAAAAAAAAAAAALABMAAAAAAAAAAAAKABMAAAAAAAAAAAAJABMAAAAAAAAAAAAIABMAAAAAAAAAAAAHABMAAAAAAAAAAAAHABIAAAAAAAAAAAAIABIAAAAAAAAAAAAJABIAAAAAAAAAAAAKABIAAAAAAAAAAAALABIAAAAAAAAAAAAMABIAAAAAAAAAAAANABIAAAAAAAAAAAAOABIAAAAAAAAAAAAPABIAAAAAAAAAAAAQABMAAAAAAAAAAAASABIAAAAAAAAAAAATABIAAAAAAAAAAAATABEAAAAAAAAAAAAUABAAAAAAAAAAAAAUAA8AAAAAAAAAAAAVAA4AAAAAAAAAAAAVAA0AAAAAAAAAAAAWAAwAAAAAAAAAAAAUAA0AAAAAAAAAAAAUAA4AAAAAAAAAAAATAA8AAAAAAAAAAAATABAAAAAAAAAAAAASABAAAAAAAAAAAAASABEAAAAAAAAAAAAVAAwAAAAAAAAAAAAWAAoAAAAAAAAAAAATAA0AAAAAAAAAAAATAA4AAAAAAAAAAAASAA8AAAAAAAAAAAARABEAAAAAAAAAAAASAA4AAAAAAAAAAAAUAAwAAAAAAAAAAAATAAwAAAAAAAAAAAASAA0AAAAAAAAAAAARAA8AAAAAAAAAAAARABAAAAAAAAAAAAAQABEAAAAAAAAAAAASAAwAAAAAAAAAAAARAA0AAAAAAAAAAAARAA4AAAAAAAAAAAAQAA8AAAAAAAAAAAAQABAAAAAAAAAAAAAPABAAAAAAAAAAAAAOABEAAAAAAAAAAAATAAoAAAAAAAAAAAARAAwAAAAAAAAAAAAQAA0AAAAAAAAAAAAQAA4AAAAAAAAAAAAPAA8AAAAAAAAAAAAPABEAAAAAAAAAAAANABEAAAAAAAAAAAAMABEAAAAAAAAAAAALABEAAAAAAAAAAAAKABEAAAAAAAAAAAAJABEAAAAAAAAAAAAIABEAAAAAAAAAAAAHABEAAAAAAAAAAAAGABEAAAAAAAAAAAAOABAAAAAAAAAAAAANABAAAAAAAAAAAAAMABAAAAAAAAAAAAALABAAAAAAAAAAAAAKABAAAAAAAAAAAAAJABAAAAAAAAAAAAAIABAAAAAAAAAAAAAHABAAAAAAAAAAAAAGABAAAAAAAAAAAAAKAA8AAAAAAAAAAAALAA8AAAAAAAAAAAAMAA8AAAAAAAAAAAANAA8AAAAAAAAAAAAOAA8AAAAAAAAAAAANAA4AAAAAAAAAAAAMAA4AAAAAAAAAAAALAA4AAAAAAAAAAAAKAA4AAAAAAAAAAAAJAA8AAAAAAAAAAAAJAA4AAAAAAAAAAAAIAA4AAAAAAAAAAAAHAA8AAAAAAAAAAAAGAA8AAAAAAAAAAAAFAA8AAAAAAAAAAAAHAA4AAAAAAAAAAAAOAA4AAAAAAAAAAAAPAA4AAAAAAAAAAAAIAA8AAAAAAAAAAAAGAA4AAAAAAAAAAAAFAA0AAAAAAAAAAAAGAA0AAAAAAAAAAAAHAA0AAAAAAAAAAAAIAA0AAAAAAAAAAAAJAA0AAAAAAAAAAAAKAA0AAAAAAAAAAAALAA0AAAAAAAAAAAAMAAwAAAAAAAAAAAANAAwAAAAAAAAAAAAOAAwAAAAAAAAAAAAPAAwAAAAAAAAAAAAQAAwAAAAAAAAAAAALAAwAAAAAAAAAAAAKAAwAAAAAAAAAAAAJAAwAAAAAAAAAAAAIAAwAAAAAAAAAAAAHAAwAAAAAAAAAAAAMAA0AAAAAAAAAAAANAA0AAAAAAAAAAAAOAA0AAAAAAAAAAAAPAA0AAAAAAAAAAAAGAAwAAAAAAAAAAAAFAAwAAAAAAAAAAAAGAAoAAAAAAAAAAAAHAAoAAAAAAAAAAAAIAAoAAAAAAAAAAAAGAAkAAAAAAAAAAAAFAAkAAAAAAAAAAAAEAAkAAAAAAAAAAAAFAAoAAAAAAAAAAAAJAAoAAAAAAAAAAAAKAAoAAAAAAAAAAAALAAoAAAAAAAAAAAAMAAoAAAAAAAAAAAANAAoAAAAAAAAAAAAOAAoAAAAAAAAAAAAPAAoAAAAAAAAAAAAHAAkAAAAAAAAAAAAIAAkAAAAAAAAAAAAJAAkAAAAAAAAAAAAKAAkAAAAAAAAAAAALAAkAAAAAAAAAAAAMAAkAAAAAAAAAAAANAAkAAAAAAAAAAAAOAAkAAAAAAAAAAAAPAAkAAAAAAAAAAAAQAAkAAAAAAAAAAAARAAkAAAAAAAAAAAASAAkAAAAAAAAAAAASAAoAAAAAAAAAAAAUAAoAAAAAAAAAAAAVAAoAAAAAAAAAAAARAAoAAAAAAAAAAAAQAAoAAAAAAAAAAAATAAkAAAAAAAAAAAAUAAkAAAAAAAAAAAAVAAkAAAAAAAAAAAAVAAgAAAAAAAAAAAAUAAcAAAAAAAAAAAAUAAYAAAAAAAAAAAATAAUAAAAAAAAAAAATAAQAAAAAAAAAAAASAAMAAAAAAAAAAAASAAIAAAAAAAAAAAASAAQAAAAAAAAAAAASAAUAAAAAAAAAAAATAAYAAAAAAAAAAAATAAcAAAAAAAAAAAAUAAgAAAAAAAAAAAATAAgAAAAAAAAAAAASAAcAAAAAAAAAAAASAAYAAAAAAAAAAAARAAMAAAAAAAAAAAARAAIAAAAAAAAAAAARAAQAAAAAAAAAAAARAAUAAAAAAAAAAAASAAgAAAAAAAAAAAARAAcAAAAAAAAAAAARAAYAAAAAAAAAAAAQAAMAAAAAAAAAAAAQAAQAAAAAAAAAAAAQAAUAAAAAAAAAAAAQAAYAAAAAAAAAAAAQAAcAAAAAAAAAAAARAAgAAAAAAAAAAAAPAAMAAAAAAAAAAAAQAAgAAAAAAAAAAAAPAAcAAAAAAAAAAAAPAAYAAAAAAAAAAAAPAAUAAAAAAAAAAAAPAAQAAAAAAAAAAAAOAAQAAAAAAAAAAAAOAAUAAAAAAAAAAAAOAAYAAAAAAAAAAAAOAAcAAAAAAAAAAAAPAAgAAAAAAAAAAAAOAAMAAAAAAAAAAAAOAAIAAAAAAAAAAAANAAMAAAAAAAAAAAANAAUAAAAAAAAAAAANAAYAAAAAAAAAAAANAAcAAAAAAAAAAAANAAgAAAAAAAAAAAANAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAALAAUAAAAAAAAAAAALAAYAAAAAAAAAAAAKAAcAAAAAAAAAAAALAAgAAAAAAAAAAAAOAAgAAAAAAAAAAAANAAIAAAAAAAAAAAAMAAIAAAAAAAAAAAALAAMAAAAAAAAAAAALAAQAAAAAAAAAAAAKAAUAAAAAAAAAAAAMAAgAAAAAAAAAAAAMAAMAAAAAAAAAAAAMAAYAAAAAAAAAAAAMAAcAAAAAAAAAAAAMAAUAAAAAAAAAAAAJAAUAAAAAAAAAAAAJAAYAAAAAAAAAAAAIAAcAAAAAAAAAAAAHAAcAAAAAAAAAAAAIAAgAAAAAAAAAAAAJAAgAAAAAAAAAAAAIAAYAAAAAAAAAAAAHAAYAAAAAAAAAAAAGAAcAAAAAAAAAAAAFAAcAAAAAAAAAAAAFAAgAAAAAAAAAAAAGAAgAAAAAAAAAAAAHAAgAAAAAAAAAAAAKAAgAAAAAAAAAAAALAAcAAAAAAAAAAAAKAAYAAAAAAAAAAAAJAAcAAAAAAAAAAAAGAAYAAAAAAAAAAAAIAAUAAAAAAAAAAAAHAAUAAAAAAAAAAAAGAAUAAAAAAAAAAAAHAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAJAAQAAAAAAAAAAAAKAAQAAAAAAAAAAAAKAAMAAAAAAAAAAAAJAAMAAAAAAAAAAAAIAAMAAAAAAAAAAAAHAAMAAAAAAAAAAAALAAIAAAAAAAAAAAAKAAIAAAAAAAAAAAAJAAIAAAAAAAAAAAAIAAEAAAAAAAAAAAAIAAIAAAAAAAAAAAAJAAEAAAAAAAAAAAAKAAEAAAAAAAAAAAALAAEAAAAAAAAAAAAMAAEAAAAAAAAAAAANAAEAAAAAAAAAAAAOAAEAAAAAAAAAAAAPAAEAAAAAAAAAAAAQAAEAAAAAAAAAAAARAAEAAAAAAAAAAAAQAAIAAAAAAAAAAAAPAAIAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_50pih")
