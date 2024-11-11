@@ -47,11 +47,11 @@ func update_hud():
 	resourceIncrease4.text = "(+" + str(main.goldPerTurn) + ")"
 	
 	# set number of turn
-	turn.text = "Turn " + str(main.currentTurn)
+	turn.text = "Turn " + str(main.currentTurn) + " / " + str(main.maxNumberOfTurns)
 	
 	# set progress bar
-	progressBarPlayer.value = len(map.ownedTiles) * 100 / 397
-	progressBarBot.value = 100 / 397
+	progressBarPlayer.value = len(map.ownedTiles) * 200 / 397
+	progressBarBot.value = len(map.opponentOwnedTiles) * 200  / 397
 	
 	# hide buildings
 	set_buttons_visibility(false)

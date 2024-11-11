@@ -37,12 +37,14 @@ offset_bottom = 980.0
 text = "General
 - You win by eliminating your opponents or by having more tiles at the end of the game.
 - All your tiles have to be connected to your Capital or you lose them.
+- You can conquer 5 tiles each turn.
 
 Resources
 - There are 4 types of resources: Lumber, Stone, Grain and Gold.
 
 Buildings
 - If you lose your Capital, you lose the game.
+- You can build camps to protect your territory.
 
 Tips"
 label_settings = SubResource("LabelSettings_71mp4")

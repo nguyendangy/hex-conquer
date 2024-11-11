@@ -5,6 +5,8 @@ var allTiles : Array
 var ownedTiles : Array
 var startingTile : Vector2i = Vector2i(12, 21)
 var selectedTile : Vector2i = Vector2i(-1, -1)
+var opponentOwnedTiles : Array
+var opponentStartingTile : Vector2i = Vector2i(12, 1)
 
 var tilesPerTurn : int = 0
 
@@ -35,7 +37,8 @@ func _ready() -> void:
 	ownedTiles.append(startingTile)
 	set_cells_terrain_connect([startingTile], 1, 4)
 	
-	set_cells_terrain_connect([Vector2i(12, 1)], 2, 4)
+	opponentOwnedTiles.append(opponentStartingTile)
+	set_cells_terrain_connect([opponentStartingTile], 2, 4)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -68,6 +71,7 @@ func _input(event):
 					# surrounding tile clicked
 					if get_cell_alternative_tile(pos_clicked) == 1:
 						clear_all_tiles()
+						opponentOwnedTiles.erase(pos_clicked)
 						ownedTiles.append(pos_clicked)
 						tilesPerTurn += 1
 						set_cells_terrain_connect([pos_clicked], 1, \
@@ -118,8 +122,23 @@ func place_camp() -> void:
 func end_turn() -> void:
 	
 	clear_all_tiles()
-	
 	tilesPerTurn = 0
+	
+func conquer_random_tile() -> void:
+	var possibleTiles : Array = []
+	for tile in opponentOwnedTiles:
+		var surroundingTiles = get_surrounding_cells(tile)
+		for t in surroundingTiles:
+			if t in allTiles and t not in opponentOwnedTiles and get_cell_tile_data(t).terrain < 4:
+				possibleTiles.append(t)
+	
+	var choosen = possibleTiles.pick_random()
+	
+	ownedTiles.erase(choosen)
+	opponentOwnedTiles.append(choosen)
+	
+	set_cells_terrain_connect([choosen], 2, get_cell_tile_data(choosen).terrain)
+
 
 # Get weighted random number 
 func _get_terrain_type() -> int:

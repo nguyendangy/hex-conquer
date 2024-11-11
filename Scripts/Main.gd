@@ -13,12 +13,14 @@ var grainPerTurn : int = 1
 var goldPerTurn : int = 1
 
 var currentTurn : int = 1
-
+var maxNumberOfTurns : int = 50
 var maxTilesPerTurn : int = 5
 
 # components
 @onready var hud : Node = get_node("HUD")
 @onready var map : Node = get_node("SubViewportContainer/SubViewport/Map")
+
+@onready var outcomeLabel : Node = get_node("/root/End/Label")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -32,6 +34,11 @@ func _process(_delta: float) -> void:
 
 # called when the player ends the turn
 func end_turn ():
+	
+	if currentTurn >= maxNumberOfTurns:
+		outcomeLabel.text = "LOL"
+		get_tree().change_scene_to_file("res://Scenes/End.tscn")
+		
 	
 	# update our current resource amounts
 	lumber += lumberPerTurn
@@ -51,4 +58,15 @@ func end_turn ():
 	
 	# update map
 	map.end_turn()
+	
+	# Opponents turn
+	opponent()
+	
+
+func opponent() -> void:
+	# Simple opponent
+	
+	for i in range(0, maxTilesPerTurn):
+		map.conquer_random_tile()
+	
 	
