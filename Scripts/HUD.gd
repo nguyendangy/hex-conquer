@@ -4,8 +4,16 @@ extends CanvasLayer
 # main node to access functions and values
 @onready var main : Node = get_node("/root/Main")
 
+# map node to get progress
+@onready var map : Node = get_node("/root/Main/SubViewportContainer/SubViewport/Map")
+
+
 # text displaying the current turn
 @onready var turn : Label = get_node("TurnLabel")
+
+# progress bar displaying the relative amount of conquered territory
+@onready var progressBarPlayer : ProgressBar = get_node("Progress/ProgressBarPlayer")
+@onready var progressBarBot : ProgressBar = get_node("Progress/ProgressBarBot")
 
 # text displaying the resources
 @onready var resourceAmount1 : Label = get_node("Resources/Amounts/Label1")
@@ -21,6 +29,9 @@ extends CanvasLayer
 
 # container holding the building buttons
 @onready var buildings : Node = get_node("Buildings")
+
+# button to end current turn
+@onready var endTurnButton : Node = get_node("EndTurnButton")
 
 
 # updates the hud to show the current values
@@ -39,18 +50,33 @@ func update_hud():
 	resourceIncrease4.text = "(+" + str(main.goldPerTurn) + ")"
 	
 	# set number of turn
-	turn.text = "Turn " + str(main.currentTurn)
+	turn.text = "Turn " + str(main.currentTurn) + " / " + str(main.maxNumberOfTurns)
+	
+	# set progress bar
+	progressBarPlayer.value = len(map.ownedTiles) * 200 / 397
+	progressBarBot.value = len(map.opponentOwnedTiles) * 200  / 397
 	
 	# hide buildings
 	set_buttons_visibility(false)
 
-# called when the "End Turn" button is pressed
-func _on_EndTurnButton_pressed ():
-	
-	main.end_turn()
 
 # Set visibility of buttons
 func set_buttons_visibility(visible: bool) -> void:
 	
 	# TODO: Check if building can be placed here
 	buildings.visible = visible
+
+# called when the "End Turn" button is pressed
+func _on_EndTurnButton_pressed() -> void:
+	
+	main.end_turn()
+
+# place camp
+func _on_button_1_pressed() -> void:
+	
+	map.place_camp()
+	
+	set_buttons_visibility(false)
+	
+	update_hud()
+	
