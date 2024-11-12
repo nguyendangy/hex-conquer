@@ -30,6 +30,9 @@ extends CanvasLayer
 # container holding the building buttons
 @onready var buildings : Node = get_node("Buildings")
 
+# button to end current turn
+@onready var endTurnButton : Node = get_node("EndTurnButton")
+
 
 # updates the hud to show the current values
 func update_hud():
@@ -64,7 +67,7 @@ func set_buttons_visibility(visible: bool) -> void:
 	buildings.visible = visible
 
 # called when the "End Turn" button is pressed
-func _on_EndTurnButton_pressed () -> void:
+func _on_EndTurnButton_pressed() -> void:
 	
 	main.end_turn()
 

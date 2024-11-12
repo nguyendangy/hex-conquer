@@ -15,6 +15,7 @@ var rng = RandomNumberGenerator.new()
 @onready var main : Node = get_node("/root/Main")
 @onready var HUD : Node = get_node("/root/Main/HUD")
 
+
 # Probabilities for different terrains
 const gras : float = 0.5
 const forest : float = 0.3
@@ -37,6 +38,7 @@ func _ready() -> void:
 	ownedTiles.append(startingTile)
 	set_cells_terrain_connect([startingTile], 1, 4)
 	
+	# set castle for opponent
 	opponentOwnedTiles.append(opponentStartingTile)
 	set_cells_terrain_connect([opponentStartingTile], 2, 4)
 
@@ -80,9 +82,8 @@ func _input(event):
 					HUD.set_buttons_visibility(false)
 					selectedTile = Vector2i(-1,-1)
 
-			return null
-			
-			
+
+
 # Mark tiles that can be conquered
 func mark_possible_tiles(pos_clicked: Vector2i) -> void:
 	# Surrounding tiles
@@ -97,6 +98,7 @@ func clear_all_tiles() -> void:
 	for cell in allTiles:
 		set_cell(cell, get_cell_source_id(cell), get_cell_atlas_coords(cell), 0)
 
+
 # Get amount of owned tiles of this type
 func get_number_of_owned_tiles_by_terrain(terrain: int) -> int:
 	return len(ownedTiles.filter(func(x): return get_cell_tile_data(x).terrain == terrain))
@@ -106,7 +108,7 @@ func can_place_structure(structure: int, tile: Vector2i) -> bool:
 	if tile in ownedTiles:
 		match structure:
 			# camp
-			5: return get_cell_tile_data(tile).terrain in [0,1] and main.lumber > 0
+			5: return get_cell_tile_data(tile).terrain in [0,1] and main.lumber >= 5
 		return false
 	else:
 		return false
@@ -116,7 +118,7 @@ func place_camp() -> void:
 	if can_place_structure(5, selectedTile):
 		clear_all_tiles()
 		set_cells_terrain_connect([selectedTile], 1, 5)
-		main.lumber -= 1
+		main.lumber -= 5
 
 # Things to do on the end of a turn
 func end_turn() -> void:

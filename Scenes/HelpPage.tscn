@@ -46,7 +46,8 @@ Buildings
 - If you lose your Capital, you lose the game.
 - You can build camps to protect your territory.
 
-Tips"
+Tips
+- Camps cannot be conquered by the opponent."
 label_settings = SubResource("LabelSettings_71mp4")
 
 [node name="BackButton" type="Button" parent="."]

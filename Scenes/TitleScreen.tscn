@@ -29,19 +29,28 @@ vertical_alignment = 1
 [node name="StartButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 760.0
-offset_top = 540.0
+offset_top = 500.0
 offset_right = 1160.0
-offset_bottom = 640.0
+offset_bottom = 600.0
 theme_override_font_sizes/font_size = 32
 text = "Start"
 script = ExtResource("1_8v2ok")
 
+[node name="ModeButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 760.0
+offset_top = 640.0
+offset_right = 1160.0
+offset_bottom = 740.0
+theme_override_font_sizes/font_size = 32
+text = "Territory Control"
+
 [node name="HelpButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 760.0
-offset_top = 680.0
+offset_top = 780.0
 offset_right = 1160.0
-offset_bottom = 780.0
+offset_bottom = 880.0
 theme_override_font_sizes/font_size = 32
 text = "How To Play"
 script = ExtResource("1_8v2ok")
