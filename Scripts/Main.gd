@@ -57,6 +57,9 @@ func end_turn() -> void:
 			get_tree().change_scene_to_file("res://Scenes/TitleScreen.tscn")
 		end_game()
 		return
+		
+	# Opponents turn
+	opponent()
 	
 	# update our current resource amounts
 	lumber += lumberPerTurn
@@ -76,9 +79,6 @@ func end_turn() -> void:
 	
 	# update map
 	map.end_turn()
-	
-	# Opponents turn
-	opponent()
 	
 
 func opponent() -> void:
