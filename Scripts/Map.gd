@@ -56,11 +56,11 @@ func _input(event):
 			var pos_clicked = local_to_map(coordinates)
 			
 			if pos_clicked in allTiles:
-				print_debug(pos_clicked)
+				print(pos_clicked)
 				
 				selectedTile = pos_clicked
 				
-				# own tile clicked, show possible options					
+				# own tile clicked, show possible options
 				if pos_clicked in ownedTiles:
 					clear_all_tiles()
 					if can_place_structure(5, selectedTile):
@@ -78,11 +78,22 @@ func _input(event):
 						tilesPerTurn += 1
 						set_cells_terrain_connect([pos_clicked], 1, \
 							get_cell_tile_data(pos_clicked).terrain)
+						
+						# remove opponents tiles that are not connected anymore
+						remove_disconnected_tiles(opponentStartingTile, opponentOwnedTiles)
+					
 					clear_all_tiles()
 					HUD.set_buttons_visibility(false)
 					selectedTile = Vector2i(-1,-1)
 
-
+# Get weighted random number 
+func _get_terrain_type() -> int:
+	var remaining_distance = rng.randf()
+	for i in weights.size():
+		remaining_distance -= weights[i]
+		if remaining_distance < 0:
+			return i
+	return 0
 
 # Mark tiles that can be conquered
 func mark_possible_tiles(pos_clicked: Vector2i) -> void:
@@ -122,10 +133,12 @@ func place_camp() -> void:
 
 # Things to do on the end of a turn
 func end_turn() -> void:
-	
 	clear_all_tiles()
+	# remove players tiles that are not connected anymore
+	remove_disconnected_tiles(startingTile, ownedTiles)
 	tilesPerTurn = 0
-	
+
+# Conquer tile for opponent
 func conquer_random_tile() -> void:
 	var possibleTiles : Array = []
 	for tile in opponentOwnedTiles:
@@ -134,19 +147,34 @@ func conquer_random_tile() -> void:
 			if t in allTiles and t not in opponentOwnedTiles and get_cell_tile_data(t).terrain < 4:
 				possibleTiles.append(t)
 	
-	var choosen = possibleTiles.pick_random()
-	
-	ownedTiles.erase(choosen)
-	opponentOwnedTiles.append(choosen)
-	
-	set_cells_terrain_connect([choosen], 2, get_cell_tile_data(choosen).terrain)
+	if len(possibleTiles) > 0:
+		var choosen = possibleTiles.pick_random()
+
+		ownedTiles.erase(choosen)
+		opponentOwnedTiles.append(choosen)
+
+		set_cells_terrain_connect([choosen], 2, get_cell_tile_data(choosen).terrain)
 
 
-# Get weighted random number 
-func _get_terrain_type() -> int:
-	var remaining_distance = rng.randf()
-	for i in weights.size():
-		remaining_distance -= weights[i]
-		if remaining_distance < 0:
-			return i
-	return 0
+# Recursively check if tile is connected to castle
+func is_connected_to_castle(connected: Array, tile: Vector2i, owned: Array) -> Array:
+	var neighbors = get_surrounding_cells(tile).filter(func(x): return x in owned)
+	for n in neighbors:
+		if n not in connected:
+			connected.append(n)
+			connected = is_connected_to_castle(connected, n, owned)
+	return connected
+
+# Remove tiles that are no longer connected to the main castle
+func remove_disconnected_tiles(start: Vector2i, owned: Array) -> void:
+
+	var connected : Array = is_connected_to_castle([start], start, owned)
+	var lost : Array = []
+
+	for tile in owned:
+		if tile not in connected:
+			lost.append(tile)
+	
+	for tile in lost:
+		owned.erase(tile)
+		set_cells_terrain_connect([tile], 0, get_cell_tile_data(tile).terrain)
