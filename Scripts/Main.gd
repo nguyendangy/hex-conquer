@@ -46,8 +46,9 @@ func end_game() -> void:
 	
 	# make a restart possible
 	game_over = true
-	hud.endTurnButton.text = "Return To Home"
-
+	#hud.endTurnButton.text = "Return To Home"
+	# Transition to the Close Scene
+	get_tree().change_scene_to_file("res://Scenes/CloseStory.tscn")
 
 # called when the player ends the turn
 func end_turn() -> void:

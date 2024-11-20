@@ -32,6 +32,7 @@ offset_left = 760.0
 offset_top = 500.0
 offset_right = 1160.0
 offset_bottom = 600.0
+pivot_offset = Vector2(83, 346)
 theme_override_font_sizes/font_size = 32
 text = "Start"
 script = ExtResource("1_8v2ok")
@@ -66,5 +67,6 @@ label_settings = SubResource("LabelSettings_ag28y")
 horizontal_alignment = 2
 vertical_alignment = 1
 
+[connection signal="pressed" from="StartButton" to="StartButton" method="_on_pressed"]
 [connection signal="pressed" from="StartButton" to="StartButton" method="_on_StartButton_pressed"]
 [connection signal="pressed" from="HelpButton" to="HelpButton" method="_on_HelpButton_pressed"]

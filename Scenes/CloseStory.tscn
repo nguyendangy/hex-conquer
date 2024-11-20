@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddklde6gv88os"]
+
+[ext_resource type="Script" path="res://Scenes/close_story.gd" id="1_3yrre"]
+[ext_resource type="Script" path="res://Scripts/TitleScreen.gd" id="2_tf31q"]
+[ext_resource type="AudioStream" uid="uid://btpvbw72lccim" path="res://Music/the-call-of-the-wild-128-ytshorts.savetube.me.mp3" id="3_akyiv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e7c7i"]
+
+[node name="CloseStory" type="Panel"]
+script = ExtResource("1_3yrre")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_e7c7i")
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatedSprite2D"]
+position = Vector2(959.79, 532.573)
+scale = Vector2(-1918.58, 1066.15)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+top_level = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -651.0
+offset_top = -160.0
+offset_right = 652.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+
+[node name="BackMainButton" type="Button" parent="."]
+top_level = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 517.0
+offset_top = 359.0
+offset_right = 770.0
+offset_bottom = 465.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Back to Menu"
+icon_alignment = 1
+script = ExtResource("2_tf31q")
+
+[node name="NextStoryButton" type="Button" parent="."]
+offset_left = 1166.0
+offset_top = 894.0
+offset_right = 1406.0
+offset_bottom = 1005.0
+theme_override_font_sizes/font_size = 32
+text = "Next"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_akyiv")
+
+[connection signal="pressed" from="BackMainButton" to="BackMainButton" method="_on_back_main_button_pressed"]
