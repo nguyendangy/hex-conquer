@@ -27,7 +27,7 @@ tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.166667, 1.0036),
+"times": PackedFloat32Array(0.166667, 0.866667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(1, 1, 1, 0)]
@@ -35,7 +35,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_moeix"]
 resource_name = "black_out"
-length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -43,10 +42,10 @@ tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(1.03333, 1.9),
+"times": PackedFloat32Array(0.0666667, 0.966667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0.917647, 0.917647, 0.917647, 0), Color(0, 0, 0, 0.980392)]
+"values": [Color(0.917647, 0.917647, 0.917647, 0), Color(0.366595, 0.366595, 0.366595, 0.980392)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ahio3"]

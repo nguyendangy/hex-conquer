@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpuklld65wd3k"]
+[gd_scene load_steps=6 format=3 uid="uid://cpuklld65wd3k"]
 
 [ext_resource type="Script" path="res://Scripts/StartStory.gd" id="1_48xte"]
 [ext_resource type="Script" path="res://Scripts/TitleScreen.gd" id="2_gbhxn"]
+[ext_resource type="Texture2D" uid="uid://dqeh3lalkpeuw" path="res://story-background.jpeg" id="2_k6dh1"]
 [ext_resource type="AudioStream" uid="uid://btpvbw72lccim" path="res://Music/the-call-of-the-wild-128-ytshorts.savetube.me.mp3" id="3_ldy6x"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_e7c7i"]
@@ -9,12 +10,19 @@
 [node name="StartStory" type="Panel"]
 script = ExtResource("1_48xte")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_k6dh1")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_e7c7i")
 
 [node name="Sprite2D" type="Sprite2D" parent="AnimatedSprite2D"]
 position = Vector2(959.79, 532.573)
-scale = Vector2(-1918.58, 1066.15)
+rotation = 3.14159
+scale = Vector2(1918.58, -1066.15)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 top_level = true
