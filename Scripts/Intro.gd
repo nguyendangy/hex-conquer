@@ -5,12 +5,12 @@ extends Node2D
 
 func _ready():
  animation_intro.play("black_in")
- get_tree().create_timer(3).timeout.connect(black_out)
+ get_tree().create_timer(2).timeout.connect(black_out)
  
 
 func black_out():
  animation_intro.play("black_out")
- get_tree().create_timer(3).timeout.connect(start_menu_scene)
+ get_tree().create_timer(2).timeout.connect(start_menu_scene)
  
 
 func start_menu_scene():
