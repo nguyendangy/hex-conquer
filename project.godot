@@ -15,6 +15,13 @@ run/main_scene="res://Scenes/TitleScreen.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Player="*res://Scripts/Player.gd"
+Structure="*res://Scripts/Structure.gd"
+Config="*res://Scripts/Config.gd"
+TitleScreen="*res://Scenes/TitleScreen.tscn"
+
 [display]
 
 window/size/viewport_width=1920
@@ -78,3 +85,4 @@ camera_pan={
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0.627636, 0.627635, 0.627635, 1)

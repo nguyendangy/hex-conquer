@@ -1,90 +1,112 @@
 extends Node2D
 
-# current amount of each resource we have
-var lumber : int = 0
-var stone : int = 0
-var grain : int = 0
-var gold : int = 0
+var currentPlayer: Player.PlayerObject = Config.player
+var turnNumber: int = 1
 
-# amount of each resource we get each turn
-var lumberPerTurn : int = 1
-var stonePerTurn : int = 1
-var grainPerTurn : int = 1
-var goldPerTurn : int = 1
+var game_over: bool = false
 
-var currentTurn : int = 1
-var maxNumberOfTurns : int = 50
-var maxTilesPerTurn : int = 5
+# Components
+@onready var hud: Node = get_node("HUD")
+@onready var map: Node = get_node("SubViewportContainer/SubViewport/Map")
+@onready var outcome: Node = get_node("Outcome")
+@onready var outcomeLabel: Node = get_node("Outcome/Label")
 
-var game_over = false
+# Game mode
+@onready var gameMode: String = get_node("/root/TitleScreen/ModeButton").text
 
-# components
-@onready var hud : Node = get_node("HUD")
-@onready var map : Node = get_node("SubViewportContainer/SubViewport/Map")
-@onready var outcome : Node = get_node("/root/Main/Outcome")
-@onready var outcomeLabel : Node = get_node("/root/Main/Outcome/Label")
+# Multiplayer
+@onready var multiplayerSelected: bool = get_node("/root/TitleScreen/CheckButton").button_pressed
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
-	# update the HUD when the game starts
-	hud.update_hud()
+	hud.init_hud()
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
 
 
-# called when the game is over
+# Called when the game is over
 func end_game() -> void:
+	# different game modes
+	if gameMode == Config.gameModes[0]:
+		if len(map.get_owned_tiles(Config.player)) <= len(map.get_owned_tiles(Config.opponent)):
+			if multiplayerSelected:
+				outcomeLabel.text = "Player 2 won!"
+			else:
+				outcomeLabel.text = "You lost!"
+		else:
+			if multiplayerSelected:
+				outcomeLabel.text = "Player 1 won!"
+			else:
+				outcomeLabel.text = "You won!"
+	elif gameMode == Config.gameModes[1]:
+		if multiplayerSelected:
+			outcomeLabel.text = "Player " + str(currentPlayer.terrain_id) + " won!"
+		else:
+			if currentPlayer == Config.player:
+				outcomeLabel.text = "You won!"
+			else:
+				outcomeLabel.text = "You lost!"
+	
 	# show outcome
-	if len(map.ownedTiles) <= len(map.opponentOwnedTiles):
-		outcomeLabel.text = "You lost!"
-	else:
-		outcomeLabel.text = "You won!"
 	outcome.visible = true
+	
+	# reset players
+	Config.player.reset_player()
+	Config.opponent.reset_player()
 	
 	# make a restart possible
 	game_over = true
 	hud.endTurnButton.text = "Return To Home"
 
 
-# called when the player ends the turn
+# Called when the player ends the turn
 func end_turn() -> void:
 	
-	if currentTurn >= maxNumberOfTurns:
-		if game_over:
-			get_tree().change_scene_to_file("res://Scenes/TitleScreen.tscn")
-		end_game()
-		return
-		
-	# Opponents turn
-	opponent()
+	if game_over:
+		get_tree().change_scene_to_file("res://Scenes/TitleScreen.tscn")
 	
-	# update our current resource amounts
-	lumber += lumberPerTurn
-	stone += stonePerTurn
-	grain += grainPerTurn
-	gold += goldPerTurn
+	# different game modes
+	if gameMode == Config.gameModes[0]:
+		# check if game has ended
+		if turnNumber >= Config.maxNumberOfTurns:
+			end_game()
+			return
+	elif gameMode == Config.gameModes[1]:
+		if currentPlayer.gold >= Config.maxNumberOfResource:
+			end_game()
+			return
 	
-	# update how many resources the player gets
-	lumberPerTurn = map.get_number_of_owned_tiles_by_terrain(1) + 1
-	stonePerTurn = map.get_number_of_owned_tiles_by_terrain(2) + 1
+	# update the resources of the player
+	calculate_resources()
+	currentPlayer.update_resources()
 	
-	# increase current turn
-	currentTurn += 1
+	# change current player
+	if currentPlayer == Config.player:
+		currentPlayer = Config.opponent
+	elif currentPlayer == Config.opponent:
+		currentPlayer = Config.player
+		turnNumber += 1
 	
-	# update the HUD
-	hud.update_hud()
+	if currentPlayer == Config.opponent:
+		if not multiplayerSelected:
+			# execute the bot
+			for i in range(0, Config.maxTilesPerTurn):
+				map.conquer_random_tile(Config.opponent)
+			end_turn()
 	
 	# update map
 	map.end_turn()
-	
+	# update the HUD
+	hud.update_hud()
 
-func opponent() -> void:
-	# Simple opponent
-	
-	for i in range(0, maxTilesPerTurn):
-		map.conquer_random_tile()
-	
+func calculate_resources() -> void:
+	# calculate the amount of resources the player gets next turn
+	currentPlayer.lumberPerTurn = map.get_number_of_owned_tiles_by_terrain(1)
+	currentPlayer.stonePerTurn = map.get_number_of_owned_tiles_by_terrain(Config.mine.terrain_id)
+	currentPlayer.grainPerTurn = map.get_number_of_owned_tiles_by_terrain(Config.farm.terrain_id)
+	currentPlayer.goldPerTurn = map.get_number_of_owned_tiles_by_terrain(Config.village.terrain_id)
 	
