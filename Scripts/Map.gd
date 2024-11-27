@@ -123,7 +123,8 @@ func get_placable_structures(tile: Vector2i) -> Array:
 			main.currentPlayer.grain >= structure.grain and \
 			main.currentPlayer.gold >= structure.gold and \
 			(structure.adjacentTileType == -1 or structure.adjacentTileType in \
-			get_surrounding_cells(tile).map(func(x): return get_cell_tile_data(x).terrain)):
+			get_surrounding_cells(tile).filter(func(x): return x in allTiles).map(
+				func(x): return get_cell_tile_data(x).terrain)):
 			placeable.append(structure)
 	return placeable
 

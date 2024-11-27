@@ -1,10 +1,12 @@
 extends Node
 
 # --- Version ---
-const version: String = "0.1.1"
+const version: String = "2.0.0"
 
 # --- Game modes ---
 const gameModes: Array = ["Territory Control", "Resource Victory"]
+var gameMode: int = 0
+var multiplayerSelected: bool = false
 
 # Territory control
 const maxNumberOfTurns: int = 50
@@ -74,3 +76,7 @@ var placable_structures: Array = [camp, tower, farm, mine]
 # --- Players ---
 var player: Player.PlayerObject = Player.PlayerObject.new(1, Vector2i(12, 21))
 var opponent: Player.PlayerObject = Player.PlayerObject.new(2, Vector2i(12, 1))
+
+# --- Game ---
+var winner: Player.PlayerObject
+var gameOver: bool = false

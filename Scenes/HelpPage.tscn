@@ -1,14 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://bt4iath4evhfj"]
+[gd_scene load_steps=5 format=3 uid="uid://bt4iath4evhfj"]
 
+[ext_resource type="Texture2D" uid="uid://b20luy8vmr4ra" path="res://Assets/Images/main-menu-background.png" id="1_1qi7a"]
 [ext_resource type="Script" path="res://Scripts/TitleScreen.gd" id="1_cg4em"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wegtx"]
 font_size = 64
-font_color = Color(0, 0, 0, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_71mp4"]
 font_size = 32
-font_color = Color(0, 0, 0, 1)
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -18,11 +21,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="BackgroundImage" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_1qi7a")
+
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
-color = Color(0.627451, 0.627451, 0.627451, 1)
+color = Color(0.627451, 0.627451, 0.627451, 0.627451)
 
 [node name="HeadlineLabel" type="Label" parent="."]
 layout_mode = 0

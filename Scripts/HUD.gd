@@ -50,7 +50,7 @@ func init_hud() -> void:
 	# update the HUD when the game starts
 	update_hud()
 	
-	if main.multiplayerSelected:
+	if Config.multiplayerSelected:
 		labelPlayer2.text = "Player 2"
 
 # updates the hud to show the current values
@@ -75,7 +75,7 @@ func update_hud():
 	structureCost4.text = Config.mine.cost_string()
 	
 	# set number of turn
-	if main.gameMode == Config.gameModes[0]:
+	if Config.gameMode == 0:
 		turn.text = "Player " + str(main.currentPlayer.terrain_id) + ": Turn " + str(main.turnNumber) + " / " + str(Config.maxNumberOfTurns)
 	else:
 		turn.text = "Player " + str(main.currentPlayer.terrain_id) + ": Turn " + str(main.turnNumber)

@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bcpwm5nnjml6g"]
+[gd_scene load_steps=10 format=3 uid="uid://bcpwm5nnjml6g"]
 
 [ext_resource type="Script" path="res://Scripts/HUD.gd" id="1_ur7ax"]
 [ext_resource type="Texture2D" uid="uid://bg2r1gyi71xq" path="res://Assets/Resources/lumber.png" id="2_jmkj3"]
 [ext_resource type="Texture2D" uid="uid://fd03va1peca3" path="res://Assets/Resources/stone.png" id="3_lx8te"]
 [ext_resource type="Texture2D" uid="uid://ccmtd8s0g7lvx" path="res://Assets/Resources/grain.png" id="4_6f2n6"]
 [ext_resource type="Texture2D" uid="uid://jatrjna157y2" path="res://Assets/Resources/gold.png" id="5_uacix"]
+[ext_resource type="StyleBox" uid="uid://xp0q1vgrcetg" path="res://Assets/Themes/camp.tres" id="6_qaair"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0ntik"]
 font_size = 32
@@ -24,7 +25,7 @@ script = ExtResource("1_ur7ax")
 [node name="Background" type="ColorRect" parent="."]
 offset_right = 500.0
 offset_bottom = 1080.0
-color = Color(0.535023, 0.535023, 0.535023, 1)
+color = Color(0.164706, 0.215686, 0.254902, 1)
 
 [node name="TitleLabel" type="Label" parent="."]
 offset_right = 500.0
@@ -254,6 +255,10 @@ alignment = 1
 [node name="Button1" type="Button" parent="Buildings/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/focus = ExtResource("6_qaair")
+theme_override_styles/disabled = ExtResource("6_qaair")
+theme_override_styles/pressed = ExtResource("6_qaair")
+theme_override_styles/normal = ExtResource("6_qaair")
 disabled = true
 text = "Camp"
 
