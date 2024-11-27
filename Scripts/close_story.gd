@@ -13,7 +13,7 @@ func _ready() -> void:
 	You have risen as a conqueror, but your journey is far from over. Will you rebuild this fractured world, or will history repeat itself?
 	The decision rests in your hands. Until we meet again, farewell.
 	""".strip_edges().split("\n")
-
+ 
 	# Start the audio when the scene is ready
 	if $AudioStreamPlayer:
 		$AudioStreamPlayer.play()  # Start playing audio at the beginning of the scene
