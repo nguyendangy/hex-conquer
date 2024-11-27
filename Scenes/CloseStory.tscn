@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddklde6gv88os"]
+[gd_scene load_steps=6 format=3 uid="uid://ddklde6gv88os"]
 
 [ext_resource type="Script" path="res://Scripts/close_story.gd" id="1_fgs16"]
+[ext_resource type="Texture2D" uid="uid://cnn8bu8typr65" path="res://Assets/Story/ai-image.jpeg" id="2_je56t"]
 [ext_resource type="Script" path="res://Scripts/TitleScreen.gd" id="2_tf31q"]
 [ext_resource type="AudioStream" uid="uid://btpvbw72lccim" path="res://Music/the-call-of-the-wild-128-ytshorts.savetube.me.mp3" id="3_akyiv"]
 
@@ -8,6 +9,12 @@
 
 [node name="CloseStory" type="Panel"]
 script = ExtResource("1_fgs16")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1922.0
+offset_bottom = 1082.0
+texture = ExtResource("2_je56t")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_e7c7i")
@@ -24,13 +31,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -651.0
-offset_top = -160.0
-offset_right = 652.0
-offset_bottom = 110.0
+offset_left = -647.0
+offset_top = 4.0
+offset_right = 656.0
+offset_bottom = 274.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 
 [node name="BackMainButton" type="Button" parent="."]
@@ -54,10 +61,10 @@ script = ExtResource("2_tf31q")
 
 [node name="NextStoryButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 1166.0
-offset_top = 894.0
-offset_right = 1406.0
-offset_bottom = 1005.0
+offset_left = 1179.0
+offset_top = 896.0
+offset_right = 1419.0
+offset_bottom = 1007.0
 theme_override_font_sizes/font_size = 32
 text = "Next"
 

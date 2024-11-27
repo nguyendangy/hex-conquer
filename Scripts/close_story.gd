@@ -6,7 +6,8 @@ var current_line_index = 0  # Tracks the current line index
 func _ready() -> void:
 	# Initialize the text as an array of lines
 	lines = """
-	The battle for survival has come to an end. The factions have fought valiantly, each striving for control over the scarce remnants of a broken world.
+	The battle for survival has come to an end. 
+	The factions have fought valiantly, each striving for control over the scarce remnants of a broken world.
 	Amid the chaos, alliances were forged, betrayals unfolded, and victories were hard-won.
 	Now, the land bears the scars of conflict, but also a glimmer of hope. The choices made today will shape the future of tomorrow.
 	You have risen as a conqueror, but your journey is far from over. Will you rebuild this fractured world, or will history repeat itself?
