@@ -1,10 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://bcpwm5nnjml6g"]
+[gd_scene load_steps=13 format=3 uid="uid://bcpwm5nnjml6g"]
 
 [ext_resource type="Script" path="res://Scripts/HUD.gd" id="1_ur7ax"]
 [ext_resource type="Texture2D" uid="uid://bg2r1gyi71xq" path="res://Assets/Resources/lumber.png" id="2_jmkj3"]
 [ext_resource type="Texture2D" uid="uid://fd03va1peca3" path="res://Assets/Resources/stone.png" id="3_lx8te"]
 [ext_resource type="Texture2D" uid="uid://ccmtd8s0g7lvx" path="res://Assets/Resources/grain.png" id="4_6f2n6"]
 [ext_resource type="Texture2D" uid="uid://jatrjna157y2" path="res://Assets/Resources/gold.png" id="5_uacix"]
+[ext_resource type="StyleBox" path="res://Assets/Themes/camp-button.tres" id="6_xapaj"]
+[ext_resource type="StyleBox" uid="uid://d00sqi52tc2a3" path="res://Assets/Themes/tower-button.tres" id="7_q4wco"]
+[ext_resource type="StyleBox" uid="uid://223sg5slir3a" path="res://Assets/Themes/farm-button.tres" id="8_cqy0v"]
+[ext_resource type="StyleBox" uid="uid://wxyxxr8ioyve" path="res://Assets/Themes/mine-button.tres" id="9_crh2b"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0ntik"]
 font_size = 32
@@ -24,7 +28,7 @@ script = ExtResource("1_ur7ax")
 [node name="Background" type="ColorRect" parent="."]
 offset_right = 500.0
 offset_bottom = 1080.0
-color = Color(0.235294, 0.235294, 0.235294, 1)
+color = Color(0.164706, 0.215686, 0.254902, 1)
 
 [node name="TitleLabel" type="Label" parent="."]
 offset_right = 500.0
@@ -50,18 +54,28 @@ offset_top = 150.0
 offset_right = 500.0
 offset_bottom = 250.0
 
-[node name="Label" type="Label" parent="Progress"]
+[node name="LabelPlayer1" type="Label" parent="Progress"]
 layout_mode = 0
 offset_left = 50.0
-offset_right = 150.0
-offset_bottom = 100.0
-text = "Player
-Bot"
+offset_right = 173.0
+offset_bottom = 50.0
+text = "Player 1"
 label_settings = SubResource("LabelSettings_0ntik")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ProgressBarPlayer" type="ProgressBar" parent="Progress"]
+[node name="LabelPlayer2" type="Label" parent="Progress"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 173.0
+offset_bottom = 100.0
+text = "Bot"
+label_settings = SubResource("LabelSettings_0ntik")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBarPlayer1" type="ProgressBar" parent="Progress"]
 modulate = Color(0, 0, 1, 1)
 layout_mode = 0
 offset_left = 200.0
@@ -71,7 +85,7 @@ offset_bottom = 40.0
 value = 60.0
 show_percentage = false
 
-[node name="ProgressBarBot" type="ProgressBar" parent="Progress"]
+[node name="ProgressBarPlayer2" type="ProgressBar" parent="Progress"]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 0
 offset_left = 200.0
@@ -80,6 +94,15 @@ offset_right = 450.0
 offset_bottom = 90.0
 value = 30.0
 show_percentage = false
+
+[node name="TileLabel" type="Label" parent="."]
+offset_top = 250.0
+offset_right = 500.0
+offset_bottom = 300.0
+theme_override_font_sizes/font_size = 25
+text = "1 / 5 Tiles"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Resources" type="Control" parent="."]
 layout_mode = 3
@@ -209,7 +232,6 @@ label_settings = SubResource("LabelSettings_raq0k")
 horizontal_alignment = 1
 
 [node name="Buildings" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_top = 600.0
@@ -236,25 +258,50 @@ alignment = 1
 [node name="Button1" type="Button" parent="Buildings/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/focus = ExtResource("6_xapaj")
+theme_override_styles/disabled = ExtResource("6_xapaj")
+theme_override_styles/hover_pressed = ExtResource("6_xapaj")
+theme_override_styles/hover = ExtResource("6_xapaj")
+theme_override_styles/pressed = ExtResource("6_xapaj")
+theme_override_styles/normal = ExtResource("6_xapaj")
+disabled = true
 text = "Camp"
 
 [node name="Button2" type="Button" parent="Buildings/Buttons"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/focus = ExtResource("7_q4wco")
+theme_override_styles/disabled = ExtResource("7_q4wco")
+theme_override_styles/hover_pressed = ExtResource("7_q4wco")
+theme_override_styles/hover = ExtResource("7_q4wco")
+theme_override_styles/pressed = ExtResource("7_q4wco")
+theme_override_styles/normal = ExtResource("7_q4wco")
+disabled = true
 text = "Tower"
 
 [node name="Button3" type="Button" parent="Buildings/Buttons"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Tower"
+theme_override_styles/focus = ExtResource("8_cqy0v")
+theme_override_styles/disabled = ExtResource("8_cqy0v")
+theme_override_styles/hover_pressed = ExtResource("8_cqy0v")
+theme_override_styles/hover = ExtResource("8_cqy0v")
+theme_override_styles/pressed = ExtResource("8_cqy0v")
+theme_override_styles/normal = ExtResource("8_cqy0v")
+disabled = true
+text = "Farm"
 
 [node name="Button4" type="Button" parent="Buildings/Buttons"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Tower"
+theme_override_styles/focus = ExtResource("9_crh2b")
+theme_override_styles/disabled = ExtResource("9_crh2b")
+theme_override_styles/hover_pressed = ExtResource("9_crh2b")
+theme_override_styles/hover = ExtResource("9_crh2b")
+theme_override_styles/pressed = ExtResource("9_crh2b")
+theme_override_styles/normal = ExtResource("9_crh2b")
+disabled = true
+text = "Mine"
 
 [node name="Labels" type="Control" parent="Buildings"]
 layout_mode = 3
@@ -269,40 +316,33 @@ offset_left = 50.0
 offset_right = 150.0
 offset_bottom = 100.0
 text = "5 Lumber"
-horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="Buildings/Labels"]
-visible = false
 layout_mode = 0
 offset_left = 150.0
 offset_right = 250.0
 offset_bottom = 100.0
 text = "Cost
 Need"
-horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label3" type="Label" parent="Buildings/Labels"]
-visible = false
 layout_mode = 0
 offset_left = 250.0
 offset_right = 350.0
 offset_bottom = 100.0
 text = "Cost
 Need"
-horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label4" type="Label" parent="Buildings/Labels"]
-visible = false
 layout_mode = 0
 offset_left = 350.0
 offset_right = 450.0
 offset_bottom = 100.0
 text = "Cost
 Need"
-horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="EndTurnButton" type="Button" parent="."]
@@ -314,4 +354,7 @@ theme_override_font_sizes/font_size = 32
 text = "End Turn"
 
 [connection signal="pressed" from="Buildings/Buttons/Button1" to="." method="_on_button_1_pressed"]
+[connection signal="pressed" from="Buildings/Buttons/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Buildings/Buttons/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="Buildings/Buttons/Button4" to="." method="_on_button_4_pressed"]
 [connection signal="pressed" from="EndTurnButton" to="." method="_on_EndTurnButton_pressed"]

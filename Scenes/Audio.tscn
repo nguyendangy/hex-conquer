@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://8l8rt77f3nhg"]
+
+[ext_resource type="AudioStream" uid="uid://3mwjl7f05pjs" path="res://Assets/Music/psy2_8.mp3" id="1_m8h80"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_m8h80")
+autoplay = true
+parameters/looping = true

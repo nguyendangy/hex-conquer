@@ -1,15 +1,17 @@
 [gd_scene load_steps=5 format=3 uid="uid://bt4iath4evhfj"]
 
+[ext_resource type="Texture2D" uid="uid://c2i4jiy0y6p6l" path="res://Assets/Images/main-menu-background.jpg" id="1_1qi7a"]
 [ext_resource type="Script" path="res://Scripts/TitleScreen.gd" id="1_cg4em"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wegtx"]
 font_size = 64
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_71mp4"]
 font_size = 32
-
-[sub_resource type="LabelSettings" id="LabelSettings_liwrr"]
-font_size = 32
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -18,6 +20,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="BackgroundImage" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_1qi7a")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.627451, 0.627451, 0.627451, 0.627451)
 
 [node name="HeadlineLabel" type="Label" parent="."]
 layout_mode = 0
@@ -35,19 +49,21 @@ offset_top = 200.0
 offset_right = 1820.0
 offset_bottom = 980.0
 text = "General
-- You win by eliminating your opponents or by having more tiles at the end of the game.
+- You win by having more tiles or resources depending on the game mode.
 - All your tiles have to be connected to your Capital or you lose them.
-- You can conquer 5 tiles each turn.
+- You can conquer 5 tiles each turn, but only gras, forest and villages.
 
 Resources
 - There are 4 types of resources: Lumber, Stone, Grain and Gold.
+- You can use these resources to build structures.
 
-Buildings
-- If you lose your Capital, you lose the game.
-- You can build camps to protect your territory.
+Structures
+- Structures bring you more resources.
+- The more structures you build, the more costly they get.
+- Defense towers cannot be captured.
 
 Tips
-- Camps cannot be conquered by the opponent."
+- Use natural borders like mountains and rivers to your advantage."
 label_settings = SubResource("LabelSettings_71mp4")
 
 [node name="BackButton" type="Button" parent="."]
@@ -59,16 +75,5 @@ offset_bottom = 150.0
 theme_override_font_sizes/font_size = 32
 text = "Back"
 script = ExtResource("1_cg4em")
-
-[node name="VersionLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 50.0
-offset_top = 980.0
-offset_right = 1870.0
-offset_bottom = 1080.0
-text = "version 1.0.0"
-label_settings = SubResource("LabelSettings_liwrr")
-horizontal_alignment = 2
-vertical_alignment = 1
 
 [connection signal="pressed" from="BackButton" to="BackButton" method="_on_BackButton_pressed"]

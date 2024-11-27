@@ -1,27 +1,15 @@
 extends TileMapLayer
 
 # Tiles
-var allTiles : Array
-var ownedTiles : Array
-var startingTile : Vector2i = Vector2i(12, 21)
-var selectedTile : Vector2i = Vector2i(-1, -1)
-var opponentOwnedTiles : Array
-var opponentStartingTile : Vector2i = Vector2i(12, 1)
+var allTiles: Array
+var selectedTile: Vector2i = Vector2i(-1, -1)
+var tilesPerTurn: int = 0
 
-var tilesPerTurn : int = 0
+var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
-var rng = RandomNumberGenerator.new()
+@onready var main: Node = get_node("/root/Main")
+@onready var hud: Node = get_node("/root/Main/HUD")
 
-@onready var main : Node = get_node("/root/Main")
-@onready var HUD : Node = get_node("/root/Main/HUD")
-
-
-# Probabilities for different terrains
-const gras : float = 0.5
-const forest : float = 0.3
-const mountains : float = 0.1
-const river : float = 0.1
-const weights : Array = [gras, forest, mountains, river]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -33,15 +21,20 @@ func _ready() -> void:
 	# set terrain for each tile randomly according weighted distribution
 	for tile in allTiles:
 		set_cells_terrain_connect([tile], 0, _get_terrain_type())
-
-	# set castle
-	ownedTiles.append(startingTile)
-	set_cells_terrain_connect([startingTile], 1, 4)
 	
-	# set castle for opponent
-	opponentOwnedTiles.append(opponentStartingTile)
-	set_cells_terrain_connect([opponentStartingTile], 2, 4)
+	# set castles
+	set_cells_terrain_connect([Config.player.startingTile], Config.player.terrain_id, Config.castle.terrain_id)
+	set_cells_terrain_connect([Config.opponent.startingTile], Config.opponent.terrain_id, Config.castle.terrain_id)
 
+	# check that not all tiles around castle are uncapturable
+	var castle_surroundings: Array = get_surrounding_cells(Config.player.startingTile)
+	var capturable: int = len(castle_surroundings.filter(func(x): return x in Config.capturable_tiles))
+	while(capturable < 3):
+		for tile in castle_surroundings:
+			set_cells_terrain_connect([tile], 0, _get_terrain_type())
+		capturable = len(get_surrounding_cells(Config.player.startingTile).filter(
+			func(x): return get_cell_tile_data(x).terrain in Config.capturable_tiles))
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -55,52 +48,54 @@ func _input(event):
 			var coordinates = get_global_transform_with_canvas().affine_inverse() * event.position
 			var pos_clicked = local_to_map(coordinates)
 			
+			# check if clicked tile is on the map
 			if pos_clicked in allTiles:
 				print(pos_clicked)
 				
 				selectedTile = pos_clicked
 				
 				# own tile clicked, show possible options
-				if pos_clicked in ownedTiles:
+				if pos_clicked in get_owned_tiles(main.currentPlayer):
 					clear_all_tiles()
-					if can_place_structure(5, selectedTile):
-						HUD.set_buttons_visibility(true)
-					else:
-						HUD.set_buttons_visibility(false)
-					if tilesPerTurn < main.maxTilesPerTurn:
+					hud.set_buttons_visibility(get_placable_structures(pos_clicked))
+					if tilesPerTurn < Config.maxTilesPerTurn:
 						mark_possible_tiles(pos_clicked)
 				else:
 					# surrounding tile clicked
 					if get_cell_alternative_tile(pos_clicked) == 1:
 						clear_all_tiles()
-						opponentOwnedTiles.erase(pos_clicked)
-						ownedTiles.append(pos_clicked)
 						tilesPerTurn += 1
-						set_cells_terrain_connect([pos_clicked], 1, \
-							get_cell_tile_data(pos_clicked).terrain)
-						
-						# remove opponents tiles that are not connected anymore
-						remove_disconnected_tiles(opponentStartingTile, opponentOwnedTiles)
+						if get_cell_tile_data(pos_clicked).terrain == Config.camp.terrain_id:
+							set_cells_terrain_connect([pos_clicked], 0, 	0)
+						else:
+							set_cells_terrain_connect([pos_clicked], main.currentPlayer.terrain_id, \
+								get_cell_tile_data(pos_clicked).terrain)
+						# remove tiles that are not connected anymore
+						remove_disconnected_tiles()
+						# update players resource benefit
+						main.calculate_resources()
 					
 					clear_all_tiles()
-					HUD.set_buttons_visibility(false)
+					hud.update_hud()
 					selectedTile = Vector2i(-1,-1)
 
-# Get weighted random number 
+# Get terrain_id of random selected tile
 func _get_terrain_type() -> int:
 	var remaining_distance = rng.randf()
-	for i in weights.size():
-		remaining_distance -= weights[i]
+	for i in Config.tiles.size():
+		remaining_distance -= Config.tiles[i][1]
 		if remaining_distance < 0:
-			return i
+			return Config.tiles[i][0]
 	return 0
 
 # Mark tiles that can be conquered
 func mark_possible_tiles(pos_clicked: Vector2i) -> void:
+	var ownedTiles = get_owned_tiles(main.currentPlayer)
 	# Surrounding tiles
 	if pos_clicked in allTiles and pos_clicked in ownedTiles:
 		for cell in get_surrounding_cells(pos_clicked):
-			if cell in allTiles and cell not in ownedTiles and get_cell_tile_data(cell).terrain in [0,1,2,3]:
+			if cell in allTiles and cell not in ownedTiles \
+				and get_cell_tile_data(cell).terrain in Config.capturable_tiles:
 				set_cell(cell, get_cell_source_id(cell), \
 					get_cell_atlas_coords(cell), (get_cell_alternative_tile(cell) + 1) %  2)
 
@@ -109,54 +104,76 @@ func clear_all_tiles() -> void:
 	for cell in allTiles:
 		set_cell(cell, get_cell_source_id(cell), get_cell_atlas_coords(cell), 0)
 
+# Get owned tiles of player
+func get_owned_tiles(player: Player.PlayerObject) -> Array:
+	return get_used_cells().filter(func(x): return get_cell_tile_data(x).terrain_set == player.terrain_id)
 
 # Get amount of owned tiles of this type
 func get_number_of_owned_tiles_by_terrain(terrain: int) -> int:
-	return len(ownedTiles.filter(func(x): return get_cell_tile_data(x).terrain == terrain))
+	return len(get_owned_tiles(main.currentPlayer).filter(func(x): return get_cell_tile_data(x).terrain == terrain))
 
 # Check if structure can be placed on tile
-func can_place_structure(structure: int, tile: Vector2i) -> bool:
-	if tile in ownedTiles:
-		match structure:
-			# camp
-			5: return get_cell_tile_data(tile).terrain in [0,1] and main.lumber >= 5
-		return false
-	else:
-		return false
+func get_placable_structures(tile: Vector2i) -> Array:
+	var placeable: Array = []
+	for structure in Config.placable_structures:
+		if tile in get_owned_tiles(main.currentPlayer) and \
+			get_cell_tile_data(tile).terrain in structure.placedOnTiles and \
+			main.currentPlayer.lumber >= structure.lumber and \
+			main.currentPlayer.stone >= structure.stone and \
+			main.currentPlayer.grain >= structure.grain and \
+			main.currentPlayer.gold >= structure.gold and \
+			(structure.adjacentTileType == -1 or structure.adjacentTileType in \
+			get_surrounding_cells(tile).filter(func(x): return x in allTiles).map(
+				func(x): return get_cell_tile_data(x).terrain)):
+			placeable.append(structure)
+	return placeable
 
-# Place camp on currently selected tile if possible
-func place_camp() -> void:
-	if can_place_structure(5, selectedTile):
-		clear_all_tiles()
-		set_cells_terrain_connect([selectedTile], 1, 5)
-		main.lumber -= 5
+# Place strucutre on currently selected tile
+func place_structure(structure: Structure.StructureObject) -> void:
+	clear_all_tiles()
+	set_cells_terrain_connect([selectedTile], main.currentPlayer.terrain_id, structure.terrain_id)
+	main.currentPlayer.lumber -= structure.lumber
+	main.currentPlayer.stone -= structure.stone
+	main.currentPlayer.grain -= structure.grain
+	main.currentPlayer.gold -= structure.gold
+	main.calculate_resources()
+	
+	# increase the price of the structure
+	structure.lumber *= 2
+	structure.stone *= 2
+	structure.grain *= 2
+	structure.gold *= 2
+	
+	# update hud
+	hud.update_hud()
 
 # Things to do on the end of a turn
 func end_turn() -> void:
 	clear_all_tiles()
-	# remove players tiles that are not connected anymore
-	remove_disconnected_tiles(startingTile, ownedTiles)
+	# remove tiles that are not connected anymore
+	remove_disconnected_tiles()
 	tilesPerTurn = 0
 
 # Conquer tile for opponent
-func conquer_random_tile() -> void:
+func conquer_random_tile(player: Player.PlayerObject) -> void:
 	var possibleTiles : Array = []
-	for tile in opponentOwnedTiles:
+	var ownedTiles = get_owned_tiles(player)
+
+	for tile in ownedTiles:
 		var surroundingTiles = get_surrounding_cells(tile)
 		for t in surroundingTiles:
-			if t in allTiles and t not in opponentOwnedTiles and get_cell_tile_data(t).terrain < 4:
+			if t in allTiles and t not in ownedTiles and get_cell_tile_data(t).terrain in Config.capturable_tiles:
 				possibleTiles.append(t)
 	
 	if len(possibleTiles) > 0:
 		var choosen = possibleTiles.pick_random()
 
-		ownedTiles.erase(choosen)
-		opponentOwnedTiles.append(choosen)
+		if get_cell_tile_data(choosen).terrain == Config.camp.terrain_id:
+			set_cells_terrain_connect([choosen], 0, 	0)
+		else:
+			set_cells_terrain_connect([choosen], player.terrain_id, get_cell_tile_data(choosen).terrain)
 
-		set_cells_terrain_connect([choosen], 2, get_cell_tile_data(choosen).terrain)
-
-
-# Recursively check if tile is connected to castle
+# Recursively check if the tile is connected to the castle
 func is_connected_to_castle(connected: Array, tile: Vector2i, owned: Array) -> Array:
 	var neighbors = get_surrounding_cells(tile).filter(func(x): return x in owned)
 	for n in neighbors:
@@ -166,15 +183,25 @@ func is_connected_to_castle(connected: Array, tile: Vector2i, owned: Array) -> A
 	return connected
 
 # Remove tiles that are no longer connected to the main castle
-func remove_disconnected_tiles(start: Vector2i, owned: Array) -> void:
-
-	var connected : Array = is_connected_to_castle([start], start, owned)
+func remove_disconnected_tiles() -> void:
 	var lost : Array = []
-
-	for tile in owned:
+	
+	# player
+	var ownedTiles : Array = get_owned_tiles(Config.player)
+	var connected : Array = is_connected_to_castle([Config.player.startingTile], Config.player.startingTile, ownedTiles)
+	
+	for tile in ownedTiles:
 		if tile not in connected:
 			lost.append(tile)
 	
+	# opponent
+	ownedTiles = get_owned_tiles(Config.opponent)
+	connected = is_connected_to_castle([Config.opponent.startingTile], Config.opponent.startingTile, ownedTiles)
+
+	for tile in ownedTiles:
+		if tile not in connected:
+			lost.append(tile)
+	
+	# reset all disconnected tiles
 	for tile in lost:
-		owned.erase(tile)
 		set_cells_terrain_connect([tile], 0, get_cell_tile_data(tile).terrain)

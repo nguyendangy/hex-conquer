@@ -1,0 +1,84 @@
+[gd_scene load_steps=4 format=3 uid="uid://c640p4ns2sn7u"]
+
+[ext_resource type="Script" path="res://Scripts/Story.gd" id="1_bvkmk"]
+[ext_resource type="Texture2D" uid="uid://cc6ier0ba5de5" path="res://Assets/Images/start-story-background.jpg" id="2_famk1"]
+[ext_resource type="Texture2D" uid="uid://xeuueycjjs3w" path="res://Assets/Images/won-end-story-background.jpg" id="3_nqt3h"]
+
+[node name="StartStory" type="Panel"]
+script = ExtResource("1_bvkmk")
+
+[node name="Background" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StartImage" type="TextureRect" parent="Background"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_famk1")
+
+[node name="EndImage" type="TextureRect" parent="Background"]
+visible = false
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("3_nqt3h")
+
+[node name="Background" type="ColorRect" parent="Background"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.6, 0.6, 0.6, 0.501961)
+
+[node name="Text" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 300.0
+offset_top = 300.0
+offset_right = 340.0
+offset_bottom = 340.0
+
+[node name="Label" type="RichTextLabel" parent="Text"]
+top_level = true
+layout_mode = 0
+offset_left = 300.0
+offset_top = 300.0
+offset_right = 1620.0
+offset_bottom = 600.0
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+
+[node name="Buttons" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 1166.0
+offset_top = 894.0
+offset_right = 1206.0
+offset_bottom = 934.0
+
+[node name="Next" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 111.0
+theme_override_font_sizes/font_size = 32
+text = "Next"
+
+[node name="Skip" type="Button" parent="Buttons"]
+top_level = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 517.0
+offset_top = 359.0
+offset_right = 770.0
+offset_bottom = 465.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Skip"
+icon_alignment = 1
+
+[connection signal="pressed" from="Buttons/Next" to="." method="_on_NextButton_pressed"]
+[connection signal="pressed" from="Buttons/Skip" to="." method="_on_SkipButton_pressed"]

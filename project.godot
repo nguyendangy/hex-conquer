@@ -11,9 +11,16 @@ config_version=5
 [application]
 
 config/name="Hex Conquer"
-run/main_scene="res://Scenes/TitleScreen.tscn"
+run/main_scene="res://Scenes/Intro.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Player="*res://Scripts/Player.gd"
+Structure="*res://Scripts/Structure.gd"
+Config="*res://Scripts/Config.gd"
+Audio="*res://Scenes/Audio.tscn"
 
 [display]
 
@@ -78,3 +85,4 @@ camera_pan={
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0.243137, 0.282353, 0.321569, 1)

@@ -1,90 +1,87 @@
 extends Node2D
 
-# current amount of each resource we have
-var lumber : int = 0
-var stone : int = 0
-var grain : int = 0
-var gold : int = 0
+var currentPlayer: Player.PlayerObject = Config.player
+var turnNumber: int = 1
 
-# amount of each resource we get each turn
-var lumberPerTurn : int = 1
-var stonePerTurn : int = 1
-var grainPerTurn : int = 1
-var goldPerTurn : int = 1
+var game_over: bool = false
 
-var currentTurn : int = 1
-var maxNumberOfTurns : int = 50
-var maxTilesPerTurn : int = 5
+# Components
+@onready var hud: Node = get_node("HUD")
+@onready var map: Node = get_node("SubViewportContainer/SubViewport/Map")
 
-var game_over = false
-
-# components
-@onready var hud : Node = get_node("HUD")
-@onready var map : Node = get_node("SubViewportContainer/SubViewport/Map")
-@onready var outcome : Node = get_node("/root/Main/Outcome")
-@onready var outcomeLabel : Node = get_node("/root/Main/Outcome/Label")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
-	# update the HUD when the game starts
-	hud.update_hud()
+	hud.init_hud()
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
 
 
-# called when the game is over
+# Called when the game is over
 func end_game() -> void:
-	# show outcome
-	if len(map.ownedTiles) <= len(map.opponentOwnedTiles):
-		outcomeLabel.text = "You lost!"
-	else:
-		outcomeLabel.text = "You won!"
-	outcome.visible = true
+	# different game modes
+	if Config.gameMode == 0:
+		if len(map.get_owned_tiles(Config.player)) <= len(map.get_owned_tiles(Config.opponent)):
+			Config.winner = Config.opponent
+		else:
+			Config.winner = Config.player
+	elif Config.gameMode == 1:
+		Config.winner = currentPlayer
+	
+	# reset players
+	Config.player.reset_player()
+	Config.opponent.reset_player()
 	
 	# make a restart possible
-	game_over = true
-	hud.endTurnButton.text = "Return To Home"
+	Config.gameOver = true
+	
+	# change to ending story
+	get_tree().change_scene_to_file("res://Scenes/Story.tscn")
 
 
-# called when the player ends the turn
+# Called when the player ends the turn
 func end_turn() -> void:
 	
-	if currentTurn >= maxNumberOfTurns:
-		if game_over:
-			get_tree().change_scene_to_file("res://Scenes/TitleScreen.tscn")
-		end_game()
-		return
-		
-	# Opponents turn
-	opponent()
+	# different game modes
+	if Config.gameMode == 0:
+		# check if game has ended
+		if turnNumber >= Config.maxNumberOfTurns:
+			end_game()
+			return
+	elif Config.gameMode == 1:
+		if currentPlayer.gold >= Config.maxNumberOfResource:
+			end_game()
+			return
 	
-	# update our current resource amounts
-	lumber += lumberPerTurn
-	stone += stonePerTurn
-	grain += grainPerTurn
-	gold += goldPerTurn
+	# update the resources of the player
+	calculate_resources()
+	currentPlayer.update_resources()
 	
-	# update how many resources the player gets
-	lumberPerTurn = map.get_number_of_owned_tiles_by_terrain(1) + 1
-	stonePerTurn = map.get_number_of_owned_tiles_by_terrain(2) + 1
+	# change current player
+	if currentPlayer == Config.player:
+		currentPlayer = Config.opponent
+	elif currentPlayer == Config.opponent:
+		currentPlayer = Config.player
+		turnNumber += 1
 	
-	# increase current turn
-	currentTurn += 1
-	
-	# update the HUD
-	hud.update_hud()
+	if currentPlayer == Config.opponent:
+		if not Config.multiplayerSelected:
+			# execute the bot
+			for i in range(0, Config.maxTilesPerTurn):
+				map.conquer_random_tile(Config.opponent)
+			end_turn()
 	
 	# update map
 	map.end_turn()
-	
+	# update the HUD
+	hud.update_hud()
 
-func opponent() -> void:
-	# Simple opponent
-	
-	for i in range(0, maxTilesPerTurn):
-		map.conquer_random_tile()
-	
-	
+func calculate_resources() -> void:
+	# calculate the amount of resources the player gets next turn
+	currentPlayer.lumberPerTurn = map.get_number_of_owned_tiles_by_terrain(1)
+	currentPlayer.stonePerTurn = map.get_number_of_owned_tiles_by_terrain(Config.mine.terrain_id)
+	currentPlayer.grainPerTurn = map.get_number_of_owned_tiles_by_terrain(Config.farm.terrain_id)
+	currentPlayer.goldPerTurn = map.get_number_of_owned_tiles_by_terrain(Config.village.terrain_id)

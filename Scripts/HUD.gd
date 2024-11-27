@@ -2,81 +2,130 @@ extends CanvasLayer
 
 
 # main node to access functions and values
-@onready var main : Node = get_node("/root/Main")
+@onready var main: Node = get_node("/root/Main")
 
 # map node to get progress
-@onready var map : Node = get_node("/root/Main/SubViewportContainer/SubViewport/Map")
+@onready var map: Node = get_node("/root/Main/SubViewportContainer/SubViewport/Map")
 
 
 # text displaying the current turn
-@onready var turn : Label = get_node("TurnLabel")
+@onready var turn: Label = get_node("TurnLabel")
+@onready var tile: Label = get_node("TileLabel")
 
 # progress bar displaying the relative amount of conquered territory
-@onready var progressBarPlayer : ProgressBar = get_node("Progress/ProgressBarPlayer")
-@onready var progressBarBot : ProgressBar = get_node("Progress/ProgressBarBot")
+@onready var labelPlayer1: Label = get_node("Progress/LabelPlayer1")
+@onready var labelPlayer2: Label = get_node("Progress/LabelPlayer2")
+@onready var progressBarPlayer1: ProgressBar = get_node("Progress/ProgressBarPlayer1")
+@onready var progressBarPlayer2: ProgressBar = get_node("Progress/ProgressBarPlayer2")
 
 # text displaying the resources
-@onready var resourceAmount1 : Label = get_node("Resources/Amounts/Label1")
-@onready var resourceAmount2 : Label = get_node("Resources/Amounts/Label2")
-@onready var resourceAmount3 : Label = get_node("Resources/Amounts/Label3")
-@onready var resourceAmount4 : Label = get_node("Resources/Amounts/Label4")
+@onready var resourceAmount1: Label = get_node("Resources/Amounts/Label1")
+@onready var resourceAmount2: Label = get_node("Resources/Amounts/Label2")
+@onready var resourceAmount3: Label = get_node("Resources/Amounts/Label3")
+@onready var resourceAmount4: Label = get_node("Resources/Amounts/Label4")
 
 # text displaying the increase of the resources
-@onready var resourceIncrease1 : Label = get_node("Resources/Increases/Label1")
-@onready var resourceIncrease2 : Label = get_node("Resources/Increases/Label2")
-@onready var resourceIncrease3 : Label = get_node("Resources/Increases/Label3")
-@onready var resourceIncrease4 : Label = get_node("Resources/Increases/Label4")
+@onready var resourceIncrease1: Label = get_node("Resources/Increases/Label1")
+@onready var resourceIncrease2: Label = get_node("Resources/Increases/Label2")
+@onready var resourceIncrease3: Label = get_node("Resources/Increases/Label3")
+@onready var resourceIncrease4: Label = get_node("Resources/Increases/Label4")
 
-# container holding the building buttons
-@onready var buildings : Node = get_node("Buildings")
+# buttons to place structures
+@onready var structureButton1: Button = get_node("Buildings/Buttons/Button1")
+@onready var structureButton2: Button = get_node("Buildings/Buttons/Button2")
+@onready var structureButton3: Button = get_node("Buildings/Buttons/Button3")
+@onready var structureButton4: Button = get_node("Buildings/Buttons/Button4")
+
+# text displaying the cost of structures
+@onready var structureCost1: Label = get_node("Buildings/Labels/Label1")
+@onready var structureCost2: Label = get_node("Buildings/Labels/Label2")
+@onready var structureCost3: Label = get_node("Buildings/Labels/Label3")
+@onready var structureCost4: Label = get_node("Buildings/Labels/Label4")
 
 # button to end current turn
-@onready var endTurnButton : Node = get_node("EndTurnButton")
+@onready var endTurnButton: Node = get_node("EndTurnButton")
 
+
+func init_hud() -> void:
+	# update the HUD when the game starts
+	update_hud()
+	
+	if Config.multiplayerSelected:
+		labelPlayer2.text = "Player 2"
 
 # updates the hud to show the current values
 func update_hud():
 	
 	# set the amount of the resources
-	resourceAmount1.text = str(main.lumber)
-	resourceAmount2.text = str(main.stone)
-	resourceAmount3.text = str(main.grain)
-	resourceAmount4.text = str(main.gold)
+	resourceAmount1.text = str(main.currentPlayer.lumber)
+	resourceAmount2.text = str(main.currentPlayer.stone)
+	resourceAmount3.text = str(main.currentPlayer.grain)
+	resourceAmount4.text = str(main.currentPlayer.gold)
 	
 	# set the increase of the resources
-	resourceIncrease1.text = "(+" + str(main.lumberPerTurn) + ")"
-	resourceIncrease2.text = "(+" + str(main.stonePerTurn) + ")"
-	resourceIncrease3.text = "(+" + str(main.grainPerTurn) + ")"
-	resourceIncrease4.text = "(+" + str(main.goldPerTurn) + ")"
+	resourceIncrease1.text = "(+" + str(main.currentPlayer.lumberPerTurn) + ")"
+	resourceIncrease2.text = "(+" + str(main.currentPlayer.stonePerTurn) + ")"
+	resourceIncrease3.text = "(+" + str(main.currentPlayer.grainPerTurn) + ")"
+	resourceIncrease4.text = "(+" + str(main.currentPlayer.goldPerTurn) + ")"
+	
+	# set cost of structures
+	structureCost1.text = Config.camp.cost_string()
+	structureCost2.text = Config.tower.cost_string()
+	structureCost3.text = Config.farm.cost_string()
+	structureCost4.text = Config.mine.cost_string()
 	
 	# set number of turn
-	turn.text = "Turn " + str(main.currentTurn) + " / " + str(main.maxNumberOfTurns)
+	if Config.gameMode == 0:
+		turn.text = "Player " + str(main.currentPlayer.terrain_id) + ": Turn " + str(main.turnNumber) + " / " + str(Config.maxNumberOfTurns)
+	else:
+		turn.text = "Player " + str(main.currentPlayer.terrain_id) + ": Turn " + str(main.turnNumber)
+
+	tile.text = str(map.tilesPerTurn) + " / " + str(Config.maxTilesPerTurn) + " Tiles"
 	
 	# set progress bar
-	progressBarPlayer.value = len(map.ownedTiles) * 200 / 397
-	progressBarBot.value = len(map.opponentOwnedTiles) * 200  / 397
+	progressBarPlayer1.value = len(map.get_owned_tiles(Config.player)) * 200 / 397
+	progressBarPlayer2.value = len(map.get_owned_tiles(Config.opponent)) * 200  / 397
 	
 	# hide buildings
-	set_buttons_visibility(false)
+	set_buttons_visibility([])
 
+# Set state of buttons
+func set_buttons_visibility(structures: Array) -> void:
+	# reset all buttons
+	structureButton1.disabled = true
+	structureButton2.disabled = true
+	structureButton3.disabled = true
+	structureButton4.disabled = true
+	# set possible buttons
+	if Config.camp in structures:
+		structureButton1.disabled = false
+	if Config.tower in structures:
+		structureButton2.disabled = false
+	if Config.farm in structures:
+		structureButton3.disabled = false
+	if Config.mine in structures:
+		structureButton4.disabled = false
 
-# Set visibility of buttons
-func set_buttons_visibility(visible: bool) -> void:
-	
-	# TODO: Check if building can be placed here
-	buildings.visible = visible
-
-# called when the "End Turn" button is pressed
+# Called when the "End Turn" button is pressed
 func _on_EndTurnButton_pressed() -> void:
-	
 	main.end_turn()
 
-# place camp
+# Place camp
 func _on_button_1_pressed() -> void:
-	
-	map.place_camp()
-	
-	set_buttons_visibility(false)
-	
+	map.place_structure(Config.camp)
 	update_hud()
-	
+
+# Place tower
+func _on_button_2_pressed() -> void:
+	map.place_structure(Config.tower)
+	update_hud()
+
+# Place farm
+func _on_button_3_pressed() -> void:
+	map.place_structure(Config.farm)
+	update_hud()
+
+# Place mine
+func _on_button_4_pressed() -> void:
+	map.place_structure(Config.mine)
+	update_hud()
