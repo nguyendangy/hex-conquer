@@ -7,12 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://b682u1yh6nbg2" path="res://Assets/Terrain/Gras/red-gras.png" id="6_4kpso"]
 [ext_resource type="Texture2D" uid="uid://cqi5ago04jc43" path="res://Assets/Terrain/Forest/red-forest.png" id="7_khfbx"]
 [ext_resource type="Script" path="res://Scripts/Map.gd" id="8_6ub52"]
-[ext_resource type="Texture2D" uid="uid://br787xhga2rco" path="res://Assets/Structures/Castle-old/blue-castle.png" id="8_y1xgj"]
 [ext_resource type="Texture2D" uid="uid://c1n8kay0uj5sk" path="res://Assets/Terrain/Mountains/red-mountains.png" id="8_ydsnw"]
 [ext_resource type="Texture2D" uid="uid://c574x44d22mrh" path="res://Assets/Terrain/River/red-river.png" id="9_46lmj"]
 [ext_resource type="Texture2D" uid="uid://cqr1eim2nvmet" path="res://Assets/Terrain/Forest/blue-forest.png" id="9_rt2yl"]
 [ext_resource type="PackedScene" uid="uid://bcpwm5nnjml6g" path="res://Scenes/HUD.tscn" id="9_teqyh"]
-[ext_resource type="Texture2D" uid="uid://b71pyj1hxkt7q" path="res://Assets/Structures/Castle-old/red-castle.png" id="10_d6rhi"]
+[ext_resource type="Texture2D" uid="uid://de1jy058ig7yk" path="res://Assets/Structures/Castle/red-castle.png" id="10_bv7lq"]
 [ext_resource type="Texture2D" uid="uid://snthsu8pipnl" path="res://Assets/Terrain/Gras/blue-gras.png" id="10_f0umm"]
 [ext_resource type="Texture2D" uid="uid://dgv34kjlac2dp" path="res://Assets/Terrain/Mountains/blue-mountains.png" id="11_48smi"]
 [ext_resource type="Texture2D" uid="uid://dehraraugfurr" path="res://Assets/Structures/Camp/red-camp.png" id="11_kpqws"]
@@ -33,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://bitspouvkvx4l" path="res://Assets/Structures/Mine/blue-mine.png" id="24_ab0yp"]
 [ext_resource type="Texture2D" uid="uid://bnnsynm3mcowm" path="res://Assets/Structures/Mine/red-mine.png" id="25_b5uyr"]
 [ext_resource type="Texture2D" uid="uid://cqrayupqaq105" path="res://Assets/Terrain/River/black-river.png" id="26_mtsym"]
+[ext_resource type="Texture2D" uid="uid://dlkjyuhay3ayq" path="res://Assets/Structures/Castle/blue-castle.png" id="27_uajop"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nilwd"]
 texture = ExtResource("4_52ggh")
@@ -95,7 +95,7 @@ texture_region_size = Vector2i(182, 210)
 0:0/1/modulate = Color(0, 1, 0, 1)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1fouk"]
-texture = ExtResource("10_d6rhi")
+texture = ExtResource("10_bv7lq")
 texture_region_size = Vector2i(182, 210)
 0:0/next_alternative_id = 2
 0:0/0 = 0
@@ -266,7 +266,7 @@ texture_region_size = Vector2i(182, 210)
 0:0/1/modulate = Color(0, 1, 0, 1)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jrgwi"]
-texture = ExtResource("8_y1xgj")
+texture = ExtResource("27_uajop")
 texture_region_size = Vector2i(182, 209)
 0:0/next_alternative_id = 2
 0:0/0 = 0

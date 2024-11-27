@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bt4iath4evhfj"]
 
-[ext_resource type="Texture2D" uid="uid://b20luy8vmr4ra" path="res://Assets/Images/main-menu-background.png" id="1_1qi7a"]
+[ext_resource type="Texture2D" uid="uid://c2i4jiy0y6p6l" path="res://Assets/Images/main-menu-background.jpg" id="1_1qi7a"]
 [ext_resource type="Script" path="res://Scripts/TitleScreen.gd" id="1_cg4em"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wegtx"]
@@ -49,19 +49,21 @@ offset_top = 200.0
 offset_right = 1820.0
 offset_bottom = 980.0
 text = "General
-- You win by eliminating your opponents or by having more tiles at the end of the game.
+- You win by having more tiles or resources depending on the game mode.
 - All your tiles have to be connected to your Capital or you lose them.
-- You can conquer 5 tiles each turn.
+- You can conquer 5 tiles each turn, but only gras, forest and villages.
 
 Resources
 - There are 4 types of resources: Lumber, Stone, Grain and Gold.
+- You can use these resources to build structures.
 
-Buildings
-- If you lose your Capital, you lose the game.
-- You can build camps to protect your territory.
+Structures
+- Structures bring you more resources.
+- The more structures you build, the more costly they get.
+- Defense towers cannot be captured.
 
 Tips
-- Camps cannot be conquered by the opponent."
+- Use natural borders like mountains and rivers to your advantage."
 label_settings = SubResource("LabelSettings_71mp4")
 
 [node name="BackButton" type="Button" parent="."]
