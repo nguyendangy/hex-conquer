@@ -21,6 +21,8 @@ const endText: Array = [
 
 var current_line_index: int = 0
 
+@onready var animation_intro = $AnimationPlayer
+
 
 func _ready() -> void:
 	
@@ -38,10 +40,16 @@ func _ready() -> void:
 	else:
 		$Background/StartImage.visible = true
 		$Background/EndImage.visible = false
-		$Text/Label.text = "[center]" + startText[current_line_index] 
+		$Text/Label.text = "[center]" + startText[current_line_index]
+		
+	animation_intro.play("black_in")
+	
 
 
 func _on_NextButton_pressed() -> void:
+	animation_intro.play("black_out")
+	await get_tree().create_timer(0.25).timeout
+	
 	var lines: Array = []
 	if Config.gameOver:
 		lines = endText
@@ -51,6 +59,8 @@ func _on_NextButton_pressed() -> void:
 	if current_line_index < lines.size() - 1:
 		current_line_index += 1
 		$Text/Label.text = "[center]" + lines[current_line_index]
+		
+		animation_intro.play("black_in")
 	else:
 		current_line_index = 0
 		get_tree().change_scene_to_file("res://Scenes/TitleScreen.tscn")
