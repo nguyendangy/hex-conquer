@@ -48,7 +48,7 @@ class PlayerObject:
 		self.gold += self.goldPerTurn
 		
 	func reset_player():
-		self.lumber = lumber
+		self.lumber = 0
 		self.lumberPerTurn = 0
 		self.stone = 0
 		self.stonePerTurn = 0

@@ -1,14 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://bcpwm5nnjml6g"]
+[gd_scene load_steps=41 format=3 uid="uid://bcpwm5nnjml6g"]
 
 [ext_resource type="Script" path="res://Scripts/HUD.gd" id="1_ur7ax"]
 [ext_resource type="Texture2D" uid="uid://bg2r1gyi71xq" path="res://Assets/Resources/lumber.png" id="2_jmkj3"]
 [ext_resource type="Texture2D" uid="uid://fd03va1peca3" path="res://Assets/Resources/stone.png" id="3_lx8te"]
 [ext_resource type="Texture2D" uid="uid://ccmtd8s0g7lvx" path="res://Assets/Resources/grain.png" id="4_6f2n6"]
 [ext_resource type="Texture2D" uid="uid://jatrjna157y2" path="res://Assets/Resources/gold.png" id="5_uacix"]
-[ext_resource type="StyleBox" path="res://Assets/Themes/camp-button.tres" id="6_xapaj"]
-[ext_resource type="StyleBox" uid="uid://d00sqi52tc2a3" path="res://Assets/Themes/tower-button.tres" id="7_q4wco"]
-[ext_resource type="StyleBox" uid="uid://223sg5slir3a" path="res://Assets/Themes/farm-button.tres" id="8_cqy0v"]
-[ext_resource type="StyleBox" uid="uid://wxyxxr8ioyve" path="res://Assets/Themes/mine-button.tres" id="9_crh2b"]
+[ext_resource type="Texture2D" uid="uid://cvl1uobkvbilx" path="res://Assets/Structures/Camp/black-camp.png" id="6_hl73y"]
+[ext_resource type="Texture2D" uid="uid://brgbxmo3nhi8w" path="res://Assets/Structures/Tower/black-tower.png" id="7_i6bhi"]
+[ext_resource type="Texture2D" uid="uid://c4v4itcjbtijd" path="res://Assets/Structures/Farm/black-farm.png" id="8_lxia4"]
+[ext_resource type="Texture2D" uid="uid://jodmsjifpf0s" path="res://Assets/Structures/Mine/black-mine.png" id="9_h0cck"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0ntik"]
 font_size = 32
@@ -19,6 +19,122 @@ font_size = 32
 [sub_resource type="LabelSettings" id="LabelSettings_raq0k"]
 font_size = 32
 font_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vd1bg"]
+texture = ExtResource("6_hl73y")
+modulate_color = Color(0.501961, 0.501961, 0.501961, 0.501961)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_irixw"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cg834"]
+texture = ExtResource("6_hl73y")
+modulate_color = Color(0.60933, 0.60933, 0.60933, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fajtn"]
+texture = ExtResource("6_hl73y")
+modulate_color = Color(0.607843, 0.607843, 0.607843, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u0gyj"]
+texture = ExtResource("6_hl73y")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h04ki"]
+texture = ExtResource("6_hl73y")
+modulate_color = Color(0.419608, 0.419608, 0.419608, 1)
+
+[sub_resource type="Theme" id="Theme_s2int"]
+Button/styles/disabled = SubResource("StyleBoxTexture_vd1bg")
+Button/styles/focus = SubResource("StyleBoxEmpty_irixw")
+Button/styles/hover = SubResource("StyleBoxTexture_cg834")
+Button/styles/hover_pressed = SubResource("StyleBoxTexture_fajtn")
+Button/styles/normal = SubResource("StyleBoxTexture_u0gyj")
+Button/styles/pressed = SubResource("StyleBoxTexture_h04ki")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1p087"]
+texture = ExtResource("7_i6bhi")
+modulate_color = Color(0.501961, 0.501961, 0.501961, 0.501961)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3g1b6"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dubyu"]
+texture = ExtResource("7_i6bhi")
+modulate_color = Color(0.607843, 0.607843, 0.607843, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j0kue"]
+texture = ExtResource("7_i6bhi")
+modulate_color = Color(0.607843, 0.607843, 0.607843, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vg0e8"]
+texture = ExtResource("7_i6bhi")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lnu0w"]
+texture = ExtResource("7_i6bhi")
+modulate_color = Color(0.419608, 0.419608, 0.419608, 1)
+
+[sub_resource type="Theme" id="Theme_ujyfl"]
+Button/styles/disabled = SubResource("StyleBoxTexture_1p087")
+Button/styles/focus = SubResource("StyleBoxEmpty_3g1b6")
+Button/styles/hover = SubResource("StyleBoxTexture_dubyu")
+Button/styles/hover_pressed = SubResource("StyleBoxTexture_j0kue")
+Button/styles/normal = SubResource("StyleBoxTexture_vg0e8")
+Button/styles/pressed = SubResource("StyleBoxTexture_lnu0w")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ljpgy"]
+texture = ExtResource("8_lxia4")
+modulate_color = Color(0.501961, 0.501961, 0.501961, 0.501961)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_41wy7"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nkg72"]
+texture = ExtResource("8_lxia4")
+modulate_color = Color(0.607843, 0.607843, 0.607843, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6rro1"]
+texture = ExtResource("8_lxia4")
+modulate_color = Color(0.607843, 0.607843, 0.607843, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jetbn"]
+texture = ExtResource("8_lxia4")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e6ees"]
+texture = ExtResource("8_lxia4")
+modulate_color = Color(0.419608, 0.419608, 0.419608, 1)
+
+[sub_resource type="Theme" id="Theme_5p0gv"]
+Button/styles/disabled = SubResource("StyleBoxTexture_ljpgy")
+Button/styles/focus = SubResource("StyleBoxEmpty_41wy7")
+Button/styles/hover = SubResource("StyleBoxTexture_nkg72")
+Button/styles/hover_pressed = SubResource("StyleBoxTexture_6rro1")
+Button/styles/normal = SubResource("StyleBoxTexture_jetbn")
+Button/styles/pressed = SubResource("StyleBoxTexture_e6ees")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l6nlq"]
+texture = ExtResource("9_h0cck")
+modulate_color = Color(0.501961, 0.501961, 0.501961, 0.501961)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qnpbu"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xhs3l"]
+texture = ExtResource("9_h0cck")
+modulate_color = Color(0.607843, 0.607843, 0.607843, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qqf5k"]
+texture = ExtResource("9_h0cck")
+modulate_color = Color(0.607843, 0.607843, 0.607843, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cvuij"]
+texture = ExtResource("9_h0cck")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y7yr4"]
+texture = ExtResource("9_h0cck")
+modulate_color = Color(0.419608, 0.419608, 0.419608, 1)
+
+[sub_resource type="Theme" id="Theme_mny3k"]
+Button/styles/disabled = SubResource("StyleBoxTexture_l6nlq")
+Button/styles/focus = SubResource("StyleBoxEmpty_qnpbu")
+Button/styles/hover = SubResource("StyleBoxTexture_xhs3l")
+Button/styles/hover_pressed = SubResource("StyleBoxTexture_qqf5k")
+Button/styles/normal = SubResource("StyleBoxTexture_cvuij")
+Button/styles/pressed = SubResource("StyleBoxTexture_y7yr4")
 
 [node name="CanvasLayer" type="CanvasLayer"]
 offset = Vector2(1420, 0)
@@ -243,7 +359,7 @@ layout_mode = 0
 offset_right = 500.0
 offset_bottom = 100.0
 theme_override_font_sizes/font_size = 50
-text = "Buildings"
+text = "Structures"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -258,48 +374,28 @@ alignment = 1
 [node name="Button1" type="Button" parent="Buildings/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/focus = ExtResource("6_xapaj")
-theme_override_styles/disabled = ExtResource("6_xapaj")
-theme_override_styles/hover_pressed = ExtResource("6_xapaj")
-theme_override_styles/hover = ExtResource("6_xapaj")
-theme_override_styles/pressed = ExtResource("6_xapaj")
-theme_override_styles/normal = ExtResource("6_xapaj")
+theme = SubResource("Theme_s2int")
 disabled = true
 text = "Camp"
 
 [node name="Button2" type="Button" parent="Buildings/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/focus = ExtResource("7_q4wco")
-theme_override_styles/disabled = ExtResource("7_q4wco")
-theme_override_styles/hover_pressed = ExtResource("7_q4wco")
-theme_override_styles/hover = ExtResource("7_q4wco")
-theme_override_styles/pressed = ExtResource("7_q4wco")
-theme_override_styles/normal = ExtResource("7_q4wco")
+theme = SubResource("Theme_ujyfl")
 disabled = true
 text = "Tower"
 
 [node name="Button3" type="Button" parent="Buildings/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/focus = ExtResource("8_cqy0v")
-theme_override_styles/disabled = ExtResource("8_cqy0v")
-theme_override_styles/hover_pressed = ExtResource("8_cqy0v")
-theme_override_styles/hover = ExtResource("8_cqy0v")
-theme_override_styles/pressed = ExtResource("8_cqy0v")
-theme_override_styles/normal = ExtResource("8_cqy0v")
+theme = SubResource("Theme_5p0gv")
 disabled = true
 text = "Farm"
 
 [node name="Button4" type="Button" parent="Buildings/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/focus = ExtResource("9_crh2b")
-theme_override_styles/disabled = ExtResource("9_crh2b")
-theme_override_styles/hover_pressed = ExtResource("9_crh2b")
-theme_override_styles/hover = ExtResource("9_crh2b")
-theme_override_styles/pressed = ExtResource("9_crh2b")
-theme_override_styles/normal = ExtResource("9_crh2b")
+theme = SubResource("Theme_mny3k")
 disabled = true
 text = "Mine"
 
