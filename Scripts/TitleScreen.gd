@@ -31,3 +31,9 @@ func _on_BackButton_pressed() -> void:
 func _on_toggled(toggled_on: bool) -> void:
 	get_node("/root/TitleScreen/CheckButton").button_pressed = toggled_on
 	Config.multiplayerSelected = toggled_on
+
+
+func _on_ImportButton_pressed() -> void:
+	get_node("/root/TitleScreen/Import").visible = not get_node("/root/TitleScreen/Import").visible
+	Config.import = true
+	Config.importData = get_node("/root/TitleScreen/Import/TextEdit").text

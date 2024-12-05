@@ -38,6 +38,14 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	
+	#var mouse_pos = get_viewport().get_mouse_position()
+	#var coordinates = get_global_transform_with_canvas().affine_inverse() * mouse_pos
+	#var pos_clicked = local_to_map(coordinates)
+	#
+	#if pos_clicked in allTiles:
+		#print(pos_clicked)
+	
 	pass
 
 # Handle input events
@@ -50,8 +58,6 @@ func _input(event):
 			
 			# check if clicked tile is on the map
 			if pos_clicked in allTiles:
-				print(pos_clicked)
-				
 				selectedTile = pos_clicked
 				
 				# own tile clicked, show possible options
@@ -60,6 +66,8 @@ func _input(event):
 					hud.set_buttons_visibility(get_placable_structures(pos_clicked))
 					if tilesPerTurn < Config.maxTilesPerTurn:
 						mark_possible_tiles(pos_clicked)
+					set_cell(pos_clicked, get_cell_source_id(pos_clicked), \
+						get_cell_atlas_coords(pos_clicked), 2)
 				else:
 					# surrounding tile clicked
 					if get_cell_alternative_tile(pos_clicked) == 1:

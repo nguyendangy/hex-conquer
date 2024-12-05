@@ -3,6 +3,10 @@ extends Node
 # --- Version ---
 const version: String = "2.0.0"
 
+# --- Import ---
+var import: bool = false
+var importData: String
+
 # --- Game modes ---
 const gameModes: Array = ["Territory Control", "Resource Victory"]
 var gameMode: int = 0
