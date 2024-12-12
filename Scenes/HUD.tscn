@@ -449,11 +449,14 @@ offset_bottom = 1030.0
 theme_override_font_sizes/font_size = 32
 text = "End Turn"
 
-[node name="ExportButton" type="LinkButton" parent="."]
-offset_left = 225.0
+[node name="CenterContainer" type="CenterContainer" parent="."]
+offset_left = 50.0
 offset_top = 1040.0
-offset_right = 276.0
+offset_right = 450.0
 offset_bottom = 1070.0
+
+[node name="ExportButton" type="LinkButton" parent="CenterContainer"]
+layout_mode = 2
 toggle_mode = true
 text = "Export"
 
@@ -462,4 +465,4 @@ text = "Export"
 [connection signal="pressed" from="Buildings/Buttons/Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="Buildings/Buttons/Button4" to="." method="_on_button_4_pressed"]
 [connection signal="pressed" from="EndTurnButton" to="." method="_on_EndTurnButton_pressed"]
-[connection signal="pressed" from="ExportButton" to="." method="_on_exportButton_pressed"]
+[connection signal="pressed" from="CenterContainer/ExportButton" to="." method="_on_exportButton_pressed"]

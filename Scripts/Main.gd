@@ -127,6 +127,10 @@ func export_data() -> void:
 	$TextEdit.text += "}"
 	
 	$TextEdit.visible = not $TextEdit.visible
+	if hud.exportButton.text == "Hide export":
+		hud.exportButton.text = "Export"
+	else:
+		hud.exportButton.text = "Hide export"
 
 
 func import_data() -> void:

@@ -28,7 +28,7 @@ func _on_BackButton_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/TitleScreen.tscn")
 
 
-func _on_toggled(toggled_on: bool) -> void:
+func _on_CheckButton_toggled(toggled_on: bool) -> void:
 	get_node("/root/TitleScreen/CheckButton").button_pressed = toggled_on
 	Config.multiplayerSelected = toggled_on
 
@@ -37,3 +37,9 @@ func _on_ImportButton_pressed() -> void:
 	get_node("/root/TitleScreen/Import").visible = not get_node("/root/TitleScreen/Import").visible
 	Config.import = true
 	Config.importData = get_node("/root/TitleScreen/Import/TextEdit").text
+	
+	var importButton = get_node("/root/TitleScreen/CenterContainer/ImportButton")
+	if importButton.text == "Import Game":
+		importButton.text = "Import"
+	else:
+		importButton.text = "Import Game"

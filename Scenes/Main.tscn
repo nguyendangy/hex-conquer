@@ -37,7 +37,7 @@
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nilwd"]
 texture = ExtResource("4_52ggh")
 texture_region_size = Vector2i(182, 210)
-0:0/next_alternative_id = 6
+0:0/next_alternative_id = 7
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 0

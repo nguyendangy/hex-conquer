@@ -45,6 +45,9 @@ extends CanvasLayer
 # button to end current turn
 @onready var endTurnButton: Node = get_node("EndTurnButton")
 
+# export button
+@onready var exportButton: Node = get_node("CenterContainer/ExportButton")
+
 
 func init_hud() -> void:
 	# update the HUD when the game starts
