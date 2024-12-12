@@ -72,23 +72,8 @@ func _input(event):
 					# surrounding tile clicked
 					if get_cell_alternative_tile(pos_clicked) == 1:
 						clear_all_tiles()
-						
-						var pos_clicked_data = get_cell_tile_data(pos_clicked)
-						if pos_clicked_data.terrain == Config.camp.terrain_id:
-							# destroy camp
-							set_cells_terrain_connect([pos_clicked], 0, 	0)
-						elif pos_clicked_data.terrain_set != main.currentPlayer.terrain_id \
-							and pos_clicked_data.terrain_set != 0:
-								# to conquer an opponnent possessed tile, a camp needs to be next to it
-								if Config.camp.terrain_id in get_surrounding_cells(pos_clicked).map(
-									func(x): return get_cell_tile_data(x).terrain):
-										set_cells_terrain_connect([pos_clicked], main.currentPlayer.terrain_id, \
-											get_cell_tile_data(pos_clicked).terrain)
-						else:
-							set_cells_terrain_connect([pos_clicked], main.currentPlayer.terrain_id, \
-								pos_clicked_data.terrain)
-						
-						tilesPerTurn += 1
+						# conquer the selected tile if possible
+						conquer_tile(pos_clicked)
 						# remove tiles that are not connected anymore
 						remove_disconnected_tiles()
 						# update players resource benefit
@@ -115,6 +100,14 @@ func mark_possible_tiles(pos_clicked: Vector2i) -> void:
 		for cell in get_surrounding_cells(pos_clicked):
 			if cell in allTiles and cell not in ownedTiles \
 				and get_cell_tile_data(cell).terrain in Config.capturable_tiles:
+				# to conquer an opponnent possessed tile, a camp needs to be next to it
+				#if get_cell_tile_data(cell).terrain_set != 0:
+					#if Config.camp.terrain_id in get_surrounding_cells(pos_clicked).map(
+						#func(x): return get_cell_tile_data(x).terrain and \
+						#get_cell_tile_data(x).terrain_set == main.currentPlayer.terrain_id):
+						#pass
+					#else:
+						#continue
 				set_cell(cell, get_cell_source_id(cell), \
 					get_cell_atlas_coords(cell), (get_cell_alternative_tile(cell) + 1) %  2)
 
@@ -158,14 +151,10 @@ func place_structure(structure: Structure.StructureObject) -> void:
 	main.calculate_resources()
 	
 	# increase the price of the structure
-	#structure.lumber *= 2
-	#structure.stone *= 2
-	#structure.grain *= 2
-	#structure.gold *= 2
-	structure.lumber += structure.lumberPerTurn
-	structure.stone += structure.stonePerTurn
-	structure.grain += structure.grainPerTurn
-	structure.gold += structure.goldPerTurn
+	structure.lumber += structure.lumberCostPerTurn
+	structure.stone += structure.stoneCostPerTurn
+	structure.grain += structure.grainCostPerTurn
+	structure.gold += structure.goldCostPerTurn
 	
 	# update hud
 	hud.update_hud()
@@ -176,6 +165,32 @@ func end_turn() -> void:
 	# remove tiles that are not connected anymore
 	remove_disconnected_tiles()
 	tilesPerTurn = 0
+	
+# Conquer tile
+func conquer_tile(pos_clicked: Vector2) -> void:
+	var pos_clicked_data = get_cell_tile_data(pos_clicked)
+	
+	if pos_clicked_data.terrain in Config.capturable_tiles:
+		# destroy camp if captured
+		if pos_clicked_data.terrain == Config.camp.terrain_id:
+			set_cells_terrain_connect([pos_clicked], 0, 	0)
+		# conquer opponnent owned tile
+		#elif pos_clicked_data.terrain_set != main.currentPlayer.terrain_id \
+			#and pos_clicked_data.terrain_set != 0:
+				## to conquer an opponnent possessed tile, a camp needs to be next to it
+				#if Config.camp.terrain_id in get_surrounding_cells(pos_clicked).map(
+					#func(x): return get_cell_tile_data(x).terrain \
+					#and get_cell_tile_data(x).terrain_set == main.currentPlayer.terrain_id):
+						#set_cells_terrain_connect([pos_clicked], main.currentPlayer.terrain_id, \
+							#get_cell_tile_data(pos_clicked).terrain)
+				#else:
+					#return
+		else:
+			set_cells_terrain_connect([pos_clicked], main.currentPlayer.terrain_id, \
+				pos_clicked_data.terrain)
+		
+		tilesPerTurn += 1
+
 
 # Conquer tile for opponent
 func conquer_random_tile(player: Player.PlayerObject) -> void:
@@ -191,10 +206,7 @@ func conquer_random_tile(player: Player.PlayerObject) -> void:
 	if len(possibleTiles) > 0:
 		var choosen = possibleTiles.pick_random()
 
-		if get_cell_tile_data(choosen).terrain == Config.camp.terrain_id:
-			set_cells_terrain_connect([choosen], 0, 	0)
-		else:
-			set_cells_terrain_connect([choosen], player.terrain_id, get_cell_tile_data(choosen).terrain)
+		conquer_tile(choosen)
 
 # Recursively check if the tile is connected to the castle
 func is_connected_to_castle(connected: Array, tile: Vector2i, owned: Array) -> Array:
