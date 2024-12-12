@@ -72,12 +72,23 @@ func _input(event):
 					# surrounding tile clicked
 					if get_cell_alternative_tile(pos_clicked) == 1:
 						clear_all_tiles()
-						tilesPerTurn += 1
-						if get_cell_tile_data(pos_clicked).terrain == Config.camp.terrain_id:
+						
+						var pos_clicked_data = get_cell_tile_data(pos_clicked)
+						if pos_clicked_data.terrain == Config.camp.terrain_id:
+							# destroy camp
 							set_cells_terrain_connect([pos_clicked], 0, 	0)
+						elif pos_clicked_data.terrain_set != main.currentPlayer.terrain_id \
+							and pos_clicked_data.terrain_set != 0:
+								# to conquer an opponnent possessed tile, a camp needs to be next to it
+								if Config.camp.terrain_id in get_surrounding_cells(pos_clicked).map(
+									func(x): return get_cell_tile_data(x).terrain):
+										set_cells_terrain_connect([pos_clicked], main.currentPlayer.terrain_id, \
+											get_cell_tile_data(pos_clicked).terrain)
 						else:
 							set_cells_terrain_connect([pos_clicked], main.currentPlayer.terrain_id, \
-								get_cell_tile_data(pos_clicked).terrain)
+								pos_clicked_data.terrain)
+						
+						tilesPerTurn += 1
 						# remove tiles that are not connected anymore
 						remove_disconnected_tiles()
 						# update players resource benefit
@@ -147,10 +158,14 @@ func place_structure(structure: Structure.StructureObject) -> void:
 	main.calculate_resources()
 	
 	# increase the price of the structure
-	structure.lumber *= 2
-	structure.stone *= 2
-	structure.grain *= 2
-	structure.gold *= 2
+	#structure.lumber *= 2
+	#structure.stone *= 2
+	#structure.grain *= 2
+	#structure.gold *= 2
+	structure.lumber += structure.lumberPerTurn
+	structure.stone += structure.stonePerTurn
+	structure.grain += structure.grainPerTurn
+	structure.gold += structure.goldPerTurn
 	
 	# update hud
 	hud.update_hud()
