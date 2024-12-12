@@ -28,6 +28,11 @@ func _on_BackButton_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/TitleScreen.tscn")
 
 
+func _on_TutorialButton_pressed() -> void:
+	Config.tutorial = true
+	get_tree().change_scene_to_file("res://Scenes/Main.tscn")
+
+
 func _on_CheckButton_toggled(toggled_on: bool) -> void:
 	get_node("/root/TitleScreen/CheckButton").button_pressed = toggled_on
 	Config.multiplayerSelected = toggled_on

@@ -11,6 +11,7 @@ var importData: String
 const gameModes: Array = ["Territory Control", "Resource Victory"]
 var gameMode: int = 0
 var multiplayerSelected: bool = false
+var tutorial: bool = false
 
 # Territory control
 const maxNumberOfTurns: int = 50
@@ -25,7 +26,7 @@ const maxTilesPerTurn: int = 5
 # 1 - forest
 # 2 - mountains
 # 3 - river
-# 4 - castle
+# 4 - capital
 # 5 - camp
 # 6 - tower
 # 7 - village
@@ -38,7 +39,7 @@ const tiles: Array = [[0, 0.47], [1, 0.3], [2, 0.1], [3, 0.1], [7, 0.03]]
 const capturable_tiles: Array = [0, 1, 5, 7, 8, 9]
 
 # --- Structures ---
-var castle: Structure.StructureObject = Structure.StructureObject.new(4, -1, [], 
+var capital: Structure.StructureObject = Structure.StructureObject.new(4, -1, [], 
 	0, 0, 0, # lumber
 	0, 0, 0, # stone
 	0, 0, 0, # grain

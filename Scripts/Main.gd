@@ -2,6 +2,7 @@ extends Node2D
 
 var currentPlayer: Player.PlayerObject = Config.player
 var turnNumber: int = 1
+var tutorialStep: int = 0
 
 var game_over: bool = false
 
@@ -17,6 +18,9 @@ func _ready() -> void:
 		import_data()
 	
 	hud.init_hud()
+	
+	if Config.tutorial:
+		$AcceptDialog.visible = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -106,7 +110,7 @@ func export_data() -> void:
 	player_dict["opponent"] = Config.opponent.get_data_dict()
 	
 	var structure_dict = {}
-	structure_dict["castle"] = Config.castle.get_data_dict()
+	structure_dict["capital"] = Config.capital.get_data_dict()
 	structure_dict["camp"] = Config.camp.get_data_dict()
 	structure_dict["tower"] = Config.tower.get_data_dict()
 	structure_dict["village"] = Config.village.get_data_dict()
@@ -145,7 +149,7 @@ func import_data() -> void:
 		Config.player.set_data_dict(data_received.player.player)
 		Config.opponent.set_data_dict(data_received.player.opponent)
 		# structure data
-		Config.castle.set_data_dict(data_received.structures.castle)
+		Config.capital.set_data_dict(data_received.structures.capital)
 		Config.camp.set_data_dict(data_received.structures.camp)
 		Config.tower.set_data_dict(data_received.structures.tower)
 		Config.village.set_data_dict(data_received.structures.village)
@@ -161,3 +165,42 @@ func import_data() -> void:
 		Config.multiplayerSelected = data_received.meta.multiplayerSelected
 	else:
 		print("JSON Parse Error: ", json.get_error_message(), " at line ", json.get_error_line())
+
+func tutorial() -> void:
+	
+	if tutorialStep == 0:
+		$SubViewportContainer/SubViewport/Camera.zoom = Vector2(4,4)
+		$SubViewportContainer/SubViewport/Camera.offset = Vector2(0,475)
+		$AcceptDialog.dialog_text = "You start at the bottom with the blue capital.\n"
+		$AcceptDialog.dialog_text += "Click on it to see tiles you can conquer!\n"
+		$AcceptDialog.dialog_text += "If you click on a tile that is highlighted green,\nyou can conquer it."
+		$AcceptDialog.position.x = 100
+		$AcceptDialog.position.y = 100
+	elif tutorialStep == 1:
+		$AcceptDialog.dialog_text = "You can conquer 5 tiles per turn.\n"
+		$AcceptDialog.dialog_text += "The progress bar shows the amount of tiles\nyou and your opponent control.\n"
+		$AcceptDialog.dialog_text += "You can also see whos turn it is."
+		$AcceptDialog.position.x = 970
+	elif tutorialStep == 2:
+		$AcceptDialog.dialog_text = "Here you can see your resources.\n"
+		$AcceptDialog.dialog_text += "The green numbers show how many resources\nyou will get with the next turn."
+		$AcceptDialog.position.y = 400
+	elif tutorialStep == 3:
+		$AcceptDialog.dialog_text = "With the buttons on the right\nyou can build different structures.\n"
+		$AcceptDialog.dialog_text += "The costs for the build are displayed below.\n"
+		$AcceptDialog.dialog_text += "You can only click on them i\nyou have enough resources!"
+		$AcceptDialog.position.y = 700
+	elif tutorialStep == 4:
+		$AcceptDialog.dialog_text = "To finish your turn, press this button.\n"
+		$AcceptDialog.dialog_text += "You can export your game with the link below.\n"
+		$AcceptDialog.dialog_text += "Just copy the text and save it somewhere!"
+		$AcceptDialog.position.y = 850
+	elif tutorialStep == 5:
+		$AcceptDialog.dialog_text = "That's it!\n"
+		$AcceptDialog.dialog_text += "Good luck conquering the hex tiles!"
+		$AcceptDialog.position.x = 760
+		$AcceptDialog.position.y = 465
+	elif tutorialStep >= 6:
+		$AcceptDialog.visible = false
+
+	tutorialStep += 1

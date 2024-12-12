@@ -6,7 +6,7 @@ class PlayerObject:
 	# ID of the owned terrain
 	var terrain_id: int
 	
-	# Position of main castle
+	# Position of capital
 	var startingTile: Vector2i
 	
 	# Amount of resources the player has

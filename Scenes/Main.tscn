@@ -515,3 +515,17 @@ offset_right = 1420.0
 offset_bottom = 1080.0
 editable = false
 wrap_mode = 1
+
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+title = "Tutorial"
+position = Vector2i(760, 465)
+size = Vector2i(400, 150)
+exclusive = false
+dialog_text = "Welcome!
+Your goal is to conquer tiles or resources
+depending on the game mode you chose."
+dialog_hide_on_ok = false
+dialog_close_on_escape = false
+dialog_autowrap = true
+
+[connection signal="confirmed" from="AcceptDialog" to="." method="tutorial"]

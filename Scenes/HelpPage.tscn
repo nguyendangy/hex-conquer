@@ -10,7 +10,7 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_71mp4"]
 font_size = 32
-outline_size = 5
+outline_size = 16
 outline_color = Color(0, 0, 0, 1)
 
 [node name="Control" type="Control"]
@@ -31,7 +31,7 @@ texture = ExtResource("1_1qi7a")
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
-color = Color(0.627451, 0.627451, 0.627451, 0.627451)
+color = Color(0.627451, 0.627451, 0.627451, 0.784314)
 
 [node name="HeadlineLabel" type="Label" parent="."]
 layout_mode = 0
@@ -48,19 +48,20 @@ offset_left = 100.0
 offset_top = 200.0
 offset_right = 1820.0
 offset_bottom = 980.0
-text = "General
-- You win by having more tiles or resources depending on the game mode.
+text = "- You win by having more tiles or more gold depending on the game mode.
 - All your tiles have to be connected to your Capital or you lose them.
-- You can conquer 5 tiles each turn, but only gras, forest and villages.
+- You can conquer 5 tiles each turn, but not mountains and rivers.
 
 Resources
 - There are 4 types of resources: Lumber, Stone, Grain and Gold.
+- Forest tiles bring you lumber and villages gold.
 - You can use these resources to build structures.
 
 Structures
-- Structures bring you more resources.
-- The more structures you build, the more costly they get.
-- Mines need to be next to mountains, farms next to water and defense towers cannot be captured.
+- The more structures you build, the more expensive they become.
+- Mines need to be next to mountains to harvest stone.
+- Farms need to be next to water to grow grain.
+- Capitals and towers cannot be captured. Camps will be destroyed if captured.
 
 Tips
 - Use natural borders like mountains and rivers to your advantage."
@@ -69,11 +70,22 @@ label_settings = SubResource("LabelSettings_71mp4")
 [node name="BackButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 1570.0
-offset_top = 50.0
+offset_top = 930.0
 offset_right = 1870.0
-offset_bottom = 150.0
+offset_bottom = 1030.0
 theme_override_font_sizes/font_size = 32
 text = "Back"
 script = ExtResource("1_cg4em")
 
+[node name="TutorialButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1570.0
+offset_top = 780.0
+offset_right = 1870.0
+offset_bottom = 880.0
+theme_override_font_sizes/font_size = 32
+text = "Start Tutorial"
+script = ExtResource("1_cg4em")
+
 [connection signal="pressed" from="BackButton" to="BackButton" method="_on_BackButton_pressed"]
+[connection signal="pressed" from="TutorialButton" to="BackButton" method="_on_TutorialButton_pressed"]

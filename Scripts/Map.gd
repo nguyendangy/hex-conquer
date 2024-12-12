@@ -22,15 +22,15 @@ func _ready() -> void:
 	for tile in allTiles:
 		set_cells_terrain_connect([tile], 0, _get_terrain_type())
 	
-	# set castles
-	set_cells_terrain_connect([Config.player.startingTile], Config.player.terrain_id, Config.castle.terrain_id)
-	set_cells_terrain_connect([Config.opponent.startingTile], Config.opponent.terrain_id, Config.castle.terrain_id)
+	# set capitals
+	set_cells_terrain_connect([Config.player.startingTile], Config.player.terrain_id, Config.capital.terrain_id)
+	set_cells_terrain_connect([Config.opponent.startingTile], Config.opponent.terrain_id, Config.capital.terrain_id)
 
-	# check that not all tiles around castle are uncapturable
-	var castle_surroundings: Array = get_surrounding_cells(Config.player.startingTile)
-	var capturable: int = len(castle_surroundings.filter(func(x): return x in Config.capturable_tiles))
+	# check that not all tiles around capital are uncapturable
+	var capital_surroundings: Array = get_surrounding_cells(Config.player.startingTile)
+	var capturable: int = len(capital_surroundings.filter(func(x): return x in Config.capturable_tiles))
 	while(capturable < 3):
-		for tile in castle_surroundings:
+		for tile in capital_surroundings:
 			set_cells_terrain_connect([tile], 0, _get_terrain_type())
 		capturable = len(get_surrounding_cells(Config.player.startingTile).filter(
 			func(x): return get_cell_tile_data(x).terrain in Config.capturable_tiles))
@@ -63,11 +63,13 @@ func _input(event):
 				# own tile clicked, show possible options
 				if pos_clicked in get_owned_tiles(main.currentPlayer):
 					clear_all_tiles()
-					hud.set_buttons_visibility(get_placable_structures(pos_clicked))
+					var placable_structures: Array = get_placable_structures(pos_clicked)
+					hud.set_buttons_visibility(placable_structures)
 					if tilesPerTurn < Config.maxTilesPerTurn:
 						mark_possible_tiles(pos_clicked)
-					set_cell(pos_clicked, get_cell_source_id(pos_clicked), \
-						get_cell_atlas_coords(pos_clicked), 2)
+					if len(placable_structures) > 0 or tilesPerTurn < Config.maxTilesPerTurn:
+						set_cell(pos_clicked, get_cell_source_id(pos_clicked), \
+							get_cell_atlas_coords(pos_clicked), 2)
 				else:
 					# surrounding tile clicked
 					if get_cell_alternative_tile(pos_clicked) == 1:
@@ -208,22 +210,22 @@ func conquer_random_tile(player: Player.PlayerObject) -> void:
 
 		conquer_tile(choosen)
 
-# Recursively check if the tile is connected to the castle
-func is_connected_to_castle(connected: Array, tile: Vector2i, owned: Array) -> Array:
+# Recursively check if the tile is connected to the capital
+func is_connected_to_capital(connected: Array, tile: Vector2i, owned: Array) -> Array:
 	var neighbors = get_surrounding_cells(tile).filter(func(x): return x in owned)
 	for n in neighbors:
 		if n not in connected:
 			connected.append(n)
-			connected = is_connected_to_castle(connected, n, owned)
+			connected = is_connected_to_capital(connected, n, owned)
 	return connected
 
-# Remove tiles that are no longer connected to the main castle
+# Remove tiles that are no longer connected to the capital
 func remove_disconnected_tiles() -> void:
 	var lost : Array = []
 	
 	# player
 	var ownedTiles : Array = get_owned_tiles(Config.player)
-	var connected : Array = is_connected_to_castle([Config.player.startingTile], Config.player.startingTile, ownedTiles)
+	var connected : Array = is_connected_to_capital([Config.player.startingTile], Config.player.startingTile, ownedTiles)
 	
 	for tile in ownedTiles:
 		if tile not in connected:
@@ -231,7 +233,7 @@ func remove_disconnected_tiles() -> void:
 	
 	# opponent
 	ownedTiles = get_owned_tiles(Config.opponent)
-	connected = is_connected_to_castle([Config.opponent.startingTile], Config.opponent.startingTile, ownedTiles)
+	connected = is_connected_to_capital([Config.opponent.startingTile], Config.opponent.startingTile, ownedTiles)
 
 	for tile in ownedTiles:
 		if tile not in connected:
