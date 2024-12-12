@@ -499,6 +499,8 @@ render_target_update_mode = 4
 [node name="Camera" type="Camera2D" parent="SubViewportContainer/SubViewport"]
 position = Vector2(710, 540)
 script = ExtResource("3_bj4gd")
+can_pan = true
+can_zoom = true
 
 [node name="Map" type="TileMapLayer" parent="SubViewportContainer/SubViewport"]
 position = Vector2(15, 0)
