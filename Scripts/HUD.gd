@@ -31,16 +31,16 @@ extends CanvasLayer
 @onready var resourceIncrease4: Label = get_node("Resources/Increases/Label4")
 
 # buttons to place structures
-@onready var structureButton1: Button = get_node("Buildings/Buttons/Button1")
-@onready var structureButton2: Button = get_node("Buildings/Buttons/Button2")
-@onready var structureButton3: Button = get_node("Buildings/Buttons/Button3")
-@onready var structureButton4: Button = get_node("Buildings/Buttons/Button4")
+@onready var structureButton1: Button = get_node("Structures/Buttons/Button1")
+@onready var structureButton2: Button = get_node("Structures/Buttons/Button2")
+@onready var structureButton3: Button = get_node("Structures/Buttons/Button3")
+@onready var structureButton4: Button = get_node("Structures/Buttons/Button4")
 
 # text displaying the cost of structures
-@onready var structureCost1: Label = get_node("Buildings/Labels/Control1/CenterContainer/HBoxContainer/CostLabel")
-@onready var structureCost2: Label = get_node("Buildings/Labels/Control2/CenterContainer/HBoxContainer/CostLabel")
-@onready var structureCost3: Label = get_node("Buildings/Labels/Control3/CenterContainer/HBoxContainer/CostLabel")
-@onready var structureCost4: Label = get_node("Buildings/Labels/Control4/CenterContainer/HBoxContainer/CostLabel")
+@onready var structureCost1: Label = get_node("Structures/Labels/Control1/CenterContainer/HBoxContainer/CostLabel")
+@onready var structureCost2: Label = get_node("Structures/Labels/Control2/CenterContainer/HBoxContainer/CostLabel")
+@onready var structureCost3: Label = get_node("Structures/Labels/Control3/CenterContainer/HBoxContainer/CostLabel")
+@onready var structureCost4: Label = get_node("Structures/Labels/Control4/CenterContainer/HBoxContainer/CostLabel")
 
 # button to end current turn
 @onready var endTurnButton: Node = get_node("EndTurnButton")
@@ -89,7 +89,7 @@ func update_hud():
 	progressBarPlayer1.value = len(map.get_owned_tiles(Config.player)) * 200 / 397
 	progressBarPlayer2.value = len(map.get_owned_tiles(Config.opponent)) * 200  / 397
 	
-	# hide buildings
+	# hide structures
 	set_buttons_visibility([])
 
 # Set state of buttons
