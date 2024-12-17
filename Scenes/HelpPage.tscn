@@ -10,7 +10,7 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_71mp4"]
 font_size = 32
-outline_size = 16
+outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
 [node name="Control" type="Control"]
@@ -22,16 +22,11 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="BackgroundImage" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.392157)
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("1_1qi7a")
-
-[node name="Background" type="ColorRect" parent="."]
-layout_mode = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
-color = Color(0.627451, 0.627451, 0.627451, 0.784314)
 
 [node name="HeadlineLabel" type="Label" parent="."]
 layout_mode = 0
