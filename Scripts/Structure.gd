@@ -61,6 +61,13 @@ class StructureObject:
 		cost += str(grain) + "\n"
 		cost += str(gold)
 		return cost
+
+	# Resets the structure's variables
+	func reset_structure() -> void:
+		self.lumber = self.lumberCostPerTurn
+		self.stone = self.stoneCostPerTurn
+		self.grain = self.grainCostPerTurn
+		self.gold = self.goldCostPerTurn
 	
 	# Returns the data of the structure as a dictionary
 	func get_data_dict() -> Dictionary:

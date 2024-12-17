@@ -193,19 +193,36 @@ func conquer_tile(pos_clicked: Vector2) -> void:
 
 # Conquer tile for opponent
 func conquer_random_tile(player: Player.PlayerObject) -> void:
-	var possibleTiles : Array = []
-	var ownedTiles = get_owned_tiles(player)
+	var possibleTiles: Array = []
+	var ownedTiles: Array = get_owned_tiles(player)
 
 	for tile in ownedTiles:
-		var surroundingTiles = get_surrounding_cells(tile)
+		var surroundingTiles: Array = get_surrounding_cells(tile)
 		for t in surroundingTiles:
 			if t in allTiles and t not in ownedTiles and get_cell_tile_data(t).terrain in Config.capturable_tiles:
 				possibleTiles.append(t)
 	
 	if len(possibleTiles) > 0:
-		var choosen = possibleTiles.pick_random()
+		var tileOrder: Array = [7,8,9,5,1,0]
+		for t in tileOrder:
+			if t in possibleTiles.map(func(x): return get_cell_tile_data(x).terrain):
+				var bestTiles: Array = possibleTiles.filter(func(x): return get_cell_tile_data(x).terrain == t)
+				conquer_tile(bestTiles.pick_random())
+				return
 
-		conquer_tile(choosen)
+# Place structure for opponent
+func place_random_structure(player: Player.PlayerObject) -> void:
+	var ownedTiles: Array = get_owned_tiles(player)
+	var tileOrder: Array = [0,1]
+	for t in tileOrder:
+		if t in ownedTiles.map(func(x): return get_cell_tile_data(x).terrain):
+			var bestTiles = ownedTiles.filter(func(x): return get_cell_tile_data(x).terrain == t)
+			selectedTile = bestTiles.pick_random()
+			var possibleStructures: Array = get_placable_structures(selectedTile)
+			if len(possibleStructures) > 0:
+				possibleStructures.reverse()
+				place_structure(possibleStructures[0])
+				return
 
 # Recursively check if the tile is connected to the capital
 func is_connected_to_capital(connected: Array, tile: Vector2i, owned: Array) -> Array:

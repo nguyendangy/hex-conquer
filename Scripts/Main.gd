@@ -44,6 +44,10 @@ func end_game() -> void:
 	Config.player.reset_player()
 	Config.opponent.reset_player()
 	
+	# reset structures
+	for s in Config.placable_structures:
+		s.reset_structure()
+	
 	# reset other config data
 	Config.import = false
 	Config.multiplayerSelected = false
@@ -83,10 +87,12 @@ func end_turn() -> void:
 		turnNumber += 1
 	
 	if currentPlayer == Config.opponent:
+		# if singleplayer, execute the bot
 		if not Config.multiplayerSelected:
-			# execute the bot
+			# conquer random tiles
 			for i in range(0, Config.maxTilesPerTurn):
 				map.conquer_random_tile(Config.opponent)
+				map.place_random_structure(Config.opponent)
 			end_turn()
 	
 	# update map

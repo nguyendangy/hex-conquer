@@ -30,7 +30,7 @@ func _ready() -> void:
 			$Text/Label.text = "[center]" + "Player " + str(Config.winner.terrain_id) + " won the battle!"
 		else:
 			if Config.winner == Config.player:
-				$Text/Label.text = "[center]" + "Your faction has emerged victorious from the battle!"
+				$Text/Label.text = "[center]" + "Your faction has emerged victorious\nfrom the battle!"
 			else:
 				$Text/Label.text = "[center]" + "Your faction was defeated in the battle!"
 	else:
