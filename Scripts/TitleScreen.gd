@@ -13,11 +13,11 @@ func _on_ModeButton_pressed() -> void:
 	if text == Config.gameModes[0]:
 		get_node("/root/TitleScreen/ModeButton").text = Config.gameModes[1]
 		get_node("/root/TitleScreen/ModeButton").set_text(Config.gameModes[1])
-		Config.gameMode = 0
+		Config.gameMode = 1
 	else:
 		get_node("/root/TitleScreen/ModeButton").text = Config.gameModes[0]
 		get_node("/root/TitleScreen/ModeButton").set_text(Config.gameModes[0])
-		Config.gameMode = 1
+		Config.gameMode = 0
 
 
 func _on_MultiplayerButton_pressed() -> void:
