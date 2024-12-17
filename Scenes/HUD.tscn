@@ -220,6 +220,13 @@ text = "1 / 5 Tiles"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ResetTurnButton" type="LinkButton" parent="."]
+offset_left = 400.0
+offset_top = 262.0
+offset_right = 450.0
+offset_bottom = 287.0
+text = "Reset"
+
 [node name="Resources" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -479,6 +486,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="Buildings/Labels/Control2"]
+layout_mode = 0
 offset_top = 25.0
 offset_right = 100.0
 offset_bottom = 75.0
@@ -538,6 +546,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="Buildings/Labels/Control3"]
+layout_mode = 0
 offset_top = 25.0
 offset_right = 100.0
 offset_bottom = 75.0
@@ -597,6 +606,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="Buildings/Labels/Control4"]
+layout_mode = 0
 offset_top = 25.0
 offset_right = 100.0
 offset_bottom = 75.0
@@ -659,6 +669,7 @@ layout_mode = 2
 toggle_mode = true
 text = "Export"
 
+[connection signal="pressed" from="ResetTurnButton" to="." method="_on_ResetTurnButton_pressed"]
 [connection signal="pressed" from="Buildings/Buttons/Button1" to="." method="_on_button_1_pressed"]
 [connection signal="pressed" from="Buildings/Buttons/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="Buildings/Buttons/Button3" to="." method="_on_button_3_pressed"]

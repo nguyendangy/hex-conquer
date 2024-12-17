@@ -109,6 +109,12 @@ func set_buttons_visibility(structures: Array) -> void:
 	if Config.mine in structures:
 		structureButton4.disabled = false
 
+# Reset the current turn
+func _on_ResetTurnButton_pressed() -> void:
+	main.import_data(Config.currentState)
+	map.tilesPerTurn = 0
+	update_hud()
+
 # Called when the "End Turn" button is pressed
 func _on_EndTurnButton_pressed() -> void:
 	main.end_turn()
@@ -135,4 +141,10 @@ func _on_button_4_pressed() -> void:
 
 # Export the game state
 func _on_exportButton_pressed() -> void:
-	main.export_data()
+	$TextEdit.text = main.export_data()
+	$TextEdit.visible = not $TextEdit.visible
+	
+	if exportButton.text == "Hide export":
+		exportButton.text = "Export"
+	else:
+		exportButton.text = "Hide export"

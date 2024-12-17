@@ -15,9 +15,10 @@ var game_over: bool = false
 func _ready() -> void:
 	
 	if Config.import:
-		import_data()
+		import_data(Config.importData)
 	
 	hud.init_hud()
+	Config.currentState = export_data()
 	
 	if Config.tutorial:
 		$AcceptDialog.visible = true
@@ -92,6 +93,8 @@ func end_turn() -> void:
 	map.end_turn()
 	# update the HUD
 	hud.update_hud()
+	
+	Config.currentState = export_data()
 
 # Calculate the amount of resources the player gets next turn
 func calculate_resources() -> void:
@@ -101,7 +104,7 @@ func calculate_resources() -> void:
 	currentPlayer.goldPerTurn = map.get_number_of_owned_tiles_by_terrain(Config.village.terrain_id)
 
 # Export the data of the game
-func export_data() -> void:
+func export_data() -> String:
 	var map_list = []
 	for t in map.allTiles:
 		map_list.append({
@@ -129,23 +132,19 @@ func export_data() -> void:
 	meta_dict["gameMode"] = Config.gameMode
 	meta_dict["multiplayerSelected"] = Config.multiplayerSelected
 	
-	$TextEdit.text = "{"
-	$TextEdit.text += "\"map\":" + str(JSON.stringify(map_list)) + ","
-	$TextEdit.text += "\"player\":" + str(JSON.stringify(player_dict)) + ","
-	$TextEdit.text += "\"structures\":" + str(JSON.stringify(structure_dict)) + ","
-	$TextEdit.text += "\"meta\":" + str(JSON.stringify(meta_dict))
-	$TextEdit.text += "}"
+	var export_string = "{"
+	export_string += "\"map\":" + str(JSON.stringify(map_list)) + ","
+	export_string += "\"player\":" + str(JSON.stringify(player_dict)) + ","
+	export_string += "\"structures\":" + str(JSON.stringify(structure_dict)) + ","
+	export_string += "\"meta\":" + str(JSON.stringify(meta_dict))
+	export_string += "}"
 	
-	$TextEdit.visible = not $TextEdit.visible
-	if hud.exportButton.text == "Hide export":
-		hud.exportButton.text = "Export"
-	else:
-		hud.exportButton.text = "Hide export"
+	return export_string
 
 
-func import_data() -> void:
+func import_data(importData: String) -> void:
 	var json = JSON.new()
-	var import_status = json.parse(Config.importData)
+	var import_status = json.parse(importData)
 	if import_status == OK:
 		var data_received = json.data
 		# map data
