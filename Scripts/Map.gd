@@ -38,14 +38,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	
-	#var mouse_pos = get_viewport().get_mouse_position()
-	#var coordinates = get_global_transform_with_canvas().affine_inverse() * mouse_pos
-	#var pos_clicked = local_to_map(coordinates)
-	#
-	#if pos_clicked in allTiles:
-		#print(pos_clicked)
-	
 	pass
 
 # Handle input events
@@ -192,6 +184,11 @@ func conquer_tile(pos_clicked: Vector2) -> void:
 				pos_clicked_data.terrain)
 		
 		tilesPerTurn += 1
+		
+		# story
+		if pos_clicked_data.terrain_set != main.currentPlayer.terrain_id \
+			and pos_clicked_data.terrain_set != 0:
+			main.display_story("You have conquered an opponent possessed tile.\nPrepare for the response!")
 
 
 # Conquer tile for opponent

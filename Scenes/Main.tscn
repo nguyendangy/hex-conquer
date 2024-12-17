@@ -516,7 +516,7 @@ offset_bottom = 1080.0
 editable = false
 wrap_mode = 1
 
-[node name="AcceptDialog" type="AcceptDialog" parent="."]
+[node name="TutorialDialog" type="AcceptDialog" parent="."]
 title = "Tutorial"
 position = Vector2i(760, 465)
 size = Vector2i(400, 150)
@@ -528,4 +528,15 @@ dialog_hide_on_ok = false
 dialog_close_on_escape = false
 dialog_autowrap = true
 
-[connection signal="confirmed" from="AcceptDialog" to="." method="tutorial"]
+[node name="Window" type="Window" parent="."]
+title = "Story"
+position = Vector2i(50, 75)
+size = Vector2i(400, 100)
+visible = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Window"]
+offset_right = 400.0
+offset_bottom = 100.0
+
+[connection signal="confirmed" from="TutorialDialog" to="." method="tutorial"]
+[connection signal="close_requested" from="Window" to="." method="_on_close_requested"]

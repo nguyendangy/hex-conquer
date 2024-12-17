@@ -141,8 +141,8 @@ func _on_button_4_pressed() -> void:
 
 # Export the game state
 func _on_exportButton_pressed() -> void:
-	$TextEdit.text = main.export_data()
-	$TextEdit.visible = not $TextEdit.visible
+	$/root/Main/TextEdit.text = main.export_data()
+	$/root/Main/TextEdit.visible = not $/root/Main/TextEdit.visible
 	
 	if exportButton.text == "Hide export":
 		exportButton.text = "Export"
