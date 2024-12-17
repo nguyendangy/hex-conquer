@@ -51,29 +51,28 @@ script = ExtResource("1_8v2ok")
 [node name="ModeButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 760.0
-offset_top = 640.0
+offset_top = 620.0
 offset_right = 1160.0
-offset_bottom = 740.0
+offset_bottom = 720.0
 theme_override_font_sizes/font_size = 32
 text = "Territory Control"
 script = ExtResource("1_8v2ok")
 
-[node name="CheckButton" type="CheckButton" parent="."]
-layout_mode = 0
+[node name="MultiplayerButton" type="Button" parent="."]
 offset_left = 760.0
 offset_top = 740.0
-offset_right = 910.0
-offset_bottom = 790.0
-scale = Vector2(2.66, 2.66)
-text = "Multiplayer"
+offset_right = 1160.0
+offset_bottom = 840.0
+theme_override_font_sizes/font_size = 32
+text = "Singleplayer"
 script = ExtResource("1_8v2ok")
 
 [node name="HelpButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 760.0
-offset_top = 880.0
+offset_top = 860.0
 offset_right = 1160.0
-offset_bottom = 980.0
+offset_bottom = 960.0
 theme_override_font_sizes/font_size = 32
 text = "How To Play"
 script = ExtResource("1_8v2ok")
@@ -126,7 +125,7 @@ text = "Import Game"
 
 [connection signal="pressed" from="StartButton" to="StartButton" method="_on_StartButton_pressed"]
 [connection signal="pressed" from="ModeButton" to="ModeButton" method="_on_ModeButton_pressed"]
-[connection signal="toggled" from="CheckButton" to="StartButton" method="_on_CheckButton_toggled"]
+[connection signal="pressed" from="MultiplayerButton" to="StartButton" method="_on_MultiplayerButton_pressed"]
 [connection signal="pressed" from="HelpButton" to="HelpButton" method="_on_HelpButton_pressed"]
 [connection signal="ready" from="VersionLabel" to="StartButton" method="_on_VersionLabel_ready"]
 [connection signal="pressed" from="CenterContainer/ImportButton" to="StartButton" method="_on_ImportButton_pressed"]

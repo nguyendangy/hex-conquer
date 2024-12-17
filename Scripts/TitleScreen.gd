@@ -20,6 +20,18 @@ func _on_ModeButton_pressed() -> void:
 		Config.gameMode = 1
 
 
+func _on_MultiplayerButton_pressed() -> void:
+	var text: String = get_node("/root/TitleScreen/MultiplayerButton").text
+	if text == "Singleplayer":
+		text = "Multiplayer"
+		get_node("/root/TitleScreen/MultiplayerButton").set_text("Multiplayer")
+		Config.multiplayerSelected = true
+	else:
+		text = "Singleplayer"
+		get_node("/root/TitleScreen/MultiplayerButton").set_text("Singleplayer")
+		Config.multiplayerSelected = false
+
+
 func _on_HelpButton_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/HelpPage.tscn")
 
@@ -31,11 +43,6 @@ func _on_BackButton_pressed() -> void:
 func _on_TutorialButton_pressed() -> void:
 	Config.tutorial = true
 	get_tree().change_scene_to_file("res://Scenes/Main.tscn")
-
-
-func _on_CheckButton_toggled(toggled_on: bool) -> void:
-	get_node("/root/TitleScreen/CheckButton").button_pressed = toggled_on
-	Config.multiplayerSelected = toggled_on
 
 
 func _on_ImportButton_pressed() -> void:
