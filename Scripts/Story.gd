@@ -2,17 +2,17 @@ extends Panel
 
 # story text
 const startText: Array = [
-	"In a post-apocalyptic world, two factions battle for control.",
-	"The land is vast and resources are limited. Who rules the empire?",
-	"Lead your faction to victory with strategy, courage, and clever tactics!",
-	"Your journey won't be easy, as your opponent will try to stop you at every turn.",
-	"Will you rise as a conqueror or fade into obscurity? The choice is yours."
+	"In a post-apocalyptic world,\ntwo factions battle for control.",
+	"The land is vast and resources are limited.\nWho rules the empire?",
+	"Lead your faction to victory with\nstrategy, courage, and clever tactics!",
+	"Your journey won't be easy,\nthe rival will try to stop you at every turn.",
+	"Will you rise as a conqueror?\nThe choice is yours."
 ]
 const endText: Array = [
 	"",
-	"The land has been claimed, but the scars of war are still visible.",
-	"The future remains uncertain. Will the cycle of conflict start again?",
-	"You have the choice. Farewell, for now, conqueror.",
+	"The land has been claimed, but\nthe scars of war are still visible.",
+	"The future remains uncertain.\nWill the cycle of conflict start again?",
+	"You have the choice.\nFarewell, for now, conqueror.",
 ]
 
 var current_line_index: int = 0

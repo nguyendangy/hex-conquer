@@ -43,6 +43,11 @@ func end_game() -> void:
 	Config.player.reset_player()
 	Config.opponent.reset_player()
 	
+	# reset other config data
+	Config.import = false
+	Config.multiplayerSelected = false
+	Config.tutorial = false
+	
 	# make a restart possible
 	Config.gameOver = true
 	
@@ -57,8 +62,9 @@ func end_turn() -> void:
 	if Config.gameMode == 0:
 		# check if game has ended
 		if turnNumber >= Config.maxNumberOfTurns:
-			end_game()
-			return
+			if Config.multiplayerSelected and currentPlayer == Config.opponent or not Config.multiplayerSelected:
+				end_game()
+				return
 	elif Config.gameMode == 1:
 		if currentPlayer.gold >= Config.maxNumberOfResource:
 			end_game()
