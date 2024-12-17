@@ -56,14 +56,10 @@ class StructureObject:
 	# Returns the cost of the structure as string
 	func cost_string() -> String:
 		var cost: String = ""
-		if lumber > 0:
-			cost += str(lumber) + " lumber\n"
-		if stone > 0:
-			cost += str(stone) + " stone\n"
-		if grain > 0:
-			cost += str(grain) + " grain\n"
-		if gold > 0:
-			cost += str(gold) + " gold\n"
+		cost += str(lumber) + "\n"
+		cost += str(stone) + "\n"
+		cost += str(grain) + "\n"
+		cost += str(gold)
 		return cost
 	
 	# Returns the data of the structure as a dictionary

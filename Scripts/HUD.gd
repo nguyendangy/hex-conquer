@@ -37,10 +37,10 @@ extends CanvasLayer
 @onready var structureButton4: Button = get_node("Buildings/Buttons/Button4")
 
 # text displaying the cost of structures
-@onready var structureCost1: Label = get_node("Buildings/Labels/Label1")
-@onready var structureCost2: Label = get_node("Buildings/Labels/Label2")
-@onready var structureCost3: Label = get_node("Buildings/Labels/Label3")
-@onready var structureCost4: Label = get_node("Buildings/Labels/Label4")
+@onready var structureCost1: Label = get_node("Buildings/Labels/Control1/CenterContainer/HBoxContainer/CostLabel")
+@onready var structureCost2: Label = get_node("Buildings/Labels/Control2/CenterContainer/HBoxContainer/CostLabel")
+@onready var structureCost3: Label = get_node("Buildings/Labels/Control3/CenterContainer/HBoxContainer/CostLabel")
+@onready var structureCost4: Label = get_node("Buildings/Labels/Control4/CenterContainer/HBoxContainer/CostLabel")
 
 # button to end current turn
 @onready var endTurnButton: Node = get_node("EndTurnButton")

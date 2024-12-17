@@ -11,8 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://c574x44d22mrh" path="res://Assets/Terrain/River/red-river.png" id="9_46lmj"]
 [ext_resource type="Texture2D" uid="uid://cqr1eim2nvmet" path="res://Assets/Terrain/Forest/blue-forest.png" id="9_rt2yl"]
 [ext_resource type="PackedScene" uid="uid://bcpwm5nnjml6g" path="res://Scenes/HUD.tscn" id="9_teqyh"]
-[ext_resource type="Texture2D" uid="uid://de1jy058ig7yk" path="res://Assets/Structures/Castle/red-castle.png" id="10_bv7lq"]
 [ext_resource type="Texture2D" uid="uid://snthsu8pipnl" path="res://Assets/Terrain/Gras/blue-gras.png" id="10_f0umm"]
+[ext_resource type="Texture2D" uid="uid://o8u23v4dvppd" path="res://Assets/Structures/Capital/red-capital.png" id="10_l45c5"]
 [ext_resource type="Texture2D" uid="uid://dgv34kjlac2dp" path="res://Assets/Terrain/Mountains/blue-mountains.png" id="11_48smi"]
 [ext_resource type="Texture2D" uid="uid://dehraraugfurr" path="res://Assets/Structures/Camp/red-camp.png" id="11_kpqws"]
 [ext_resource type="Texture2D" uid="uid://cvl1uobkvbilx" path="res://Assets/Structures/Camp/black-camp.png" id="12_ih4d4"]
@@ -32,7 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://bitspouvkvx4l" path="res://Assets/Structures/Mine/blue-mine.png" id="24_ab0yp"]
 [ext_resource type="Texture2D" uid="uid://bnnsynm3mcowm" path="res://Assets/Structures/Mine/red-mine.png" id="25_b5uyr"]
 [ext_resource type="Texture2D" uid="uid://cqrayupqaq105" path="res://Assets/Terrain/River/black-river.png" id="26_mtsym"]
-[ext_resource type="Texture2D" uid="uid://dlkjyuhay3ayq" path="res://Assets/Structures/Castle/blue-castle.png" id="27_uajop"]
+[ext_resource type="Texture2D" uid="uid://csdrlc8x36usu" path="res://Assets/Structures/Capital/blue-capital.png" id="27_mhyl5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nilwd"]
 texture = ExtResource("4_52ggh")
@@ -107,7 +107,7 @@ texture_region_size = Vector2i(182, 210)
 0:0/2/modulate = Color(1, 0.501961, 0, 1)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1fouk"]
-texture = ExtResource("10_bv7lq")
+texture = ExtResource("10_l45c5")
 texture_region_size = Vector2i(182, 210)
 0:0/next_alternative_id = 3
 0:0/0 = 0
@@ -312,7 +312,7 @@ texture_region_size = Vector2i(182, 210)
 0:0/2/modulate = Color(1, 0.501961, 0, 1)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jrgwi"]
-texture = ExtResource("27_uajop")
+texture = ExtResource("27_mhyl5")
 texture_region_size = Vector2i(182, 209)
 0:0/next_alternative_id = 3
 0:0/0 = 0

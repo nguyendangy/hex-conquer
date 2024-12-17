@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Story.gd" id="1_bvkmk"]
 [ext_resource type="Texture2D" uid="uid://cc6ier0ba5de5" path="res://Assets/Images/start-story-background.jpg" id="2_famk1"]
-[ext_resource type="Texture2D" uid="uid://xeuueycjjs3w" path="res://Assets/Images/won-end-story-background.jpg" id="3_nqt3h"]
+[ext_resource type="Texture2D" uid="uid://2btnehksejb6" path="res://Assets/Images/end-story-background.jpg" id="3_ur6op"]
 
 [sub_resource type="Animation" id="Animation_kmxxw"]
 length = 0.001
@@ -115,7 +115,7 @@ modulate = Color(1, 1, 1, 0.470588)
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
-texture = ExtResource("3_nqt3h")
+texture = ExtResource("3_ur6op")
 
 [node name="Text" type="Control" parent="."]
 anchors_preset = 0

@@ -350,9 +350,9 @@ horizontal_alignment = 1
 [node name="Buildings" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_top = 600.0
+offset_top = 560.0
 offset_right = 500.0
-offset_bottom = 900.0
+offset_bottom = 910.0
 
 [node name="Title" type="Label" parent="Buildings"]
 layout_mode = 0
@@ -376,28 +376,24 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = SubResource("Theme_s2int")
 disabled = true
-text = "Camp"
 
 [node name="Button2" type="Button" parent="Buildings/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = SubResource("Theme_ujyfl")
 disabled = true
-text = "Tower"
 
 [node name="Button3" type="Button" parent="Buildings/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = SubResource("Theme_5p0gv")
 disabled = true
-text = "Farm"
 
 [node name="Button4" type="Button" parent="Buildings/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = SubResource("Theme_mny3k")
 disabled = true
-text = "Mine"
 
 [node name="Labels" type="Control" parent="Buildings"]
 layout_mode = 3
@@ -406,40 +402,243 @@ offset_top = 200.0
 offset_right = 500.0
 offset_bottom = 300.0
 
-[node name="Label1" type="Label" parent="Buildings/Labels"]
-layout_mode = 0
+[node name="Control1" type="Control" parent="Buildings/Labels"]
+anchors_preset = 0
 offset_left = 50.0
+offset_top = 10.0
 offset_right = 150.0
-offset_bottom = 100.0
-text = "5 Lumber"
+offset_bottom = 140.0
+
+[node name="NameLabel" type="Label" parent="Buildings/Labels/Control1"]
+layout_mode = 2
+offset_right = 100.0
+offset_bottom = 25.0
+text = "Camp"
+horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="Buildings/Labels"]
+[node name="CenterContainer" type="CenterContainer" parent="Buildings/Labels/Control1"]
 layout_mode = 0
+offset_top = 25.0
+offset_right = 100.0
+offset_bottom = 126.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Buildings/Labels/Control1/CenterContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CostLabel" type="Label" parent="Buildings/Labels/Control1/CenterContainer/HBoxContainer"]
+layout_mode = 2
+text = "0
+0
+0
+0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="Buildings/Labels/Control1/CenterContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Sprite1" type="Sprite2D" parent="Buildings/Labels/Control1/CenterContainer/HBoxContainer/Control"]
+position = Vector2(0, 2)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_jmkj3")
+centered = false
+
+[node name="Sprite2" type="Sprite2D" parent="Buildings/Labels/Control1/CenterContainer/HBoxContainer/Control"]
+position = Vector2(0, 27)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_lx8te")
+centered = false
+
+[node name="Sprite3" type="Sprite2D" parent="Buildings/Labels/Control1/CenterContainer/HBoxContainer/Control"]
+position = Vector2(0, 54)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_6f2n6")
+centered = false
+
+[node name="Sprite4" type="Sprite2D" parent="Buildings/Labels/Control1/CenterContainer/HBoxContainer/Control"]
+position = Vector2(0, 81)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_uacix")
+centered = false
+
+[node name="Control2" type="Control" parent="Buildings/Labels"]
+anchors_preset = 0
 offset_left = 150.0
+offset_top = 10.0
 offset_right = 250.0
-offset_bottom = 100.0
-text = "Cost
-Need"
+offset_bottom = 140.0
+
+[node name="NameLabel" type="Label" parent="Buildings/Labels/Control2"]
+layout_mode = 2
+offset_right = 100.0
+offset_bottom = 25.0
+text = "Tower"
+horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label3" type="Label" parent="Buildings/Labels"]
-layout_mode = 0
+[node name="CenterContainer" type="CenterContainer" parent="Buildings/Labels/Control2"]
+offset_top = 25.0
+offset_right = 100.0
+offset_bottom = 75.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Buildings/Labels/Control2/CenterContainer"]
+layout_mode = 2
+
+[node name="CostLabel" type="Label" parent="Buildings/Labels/Control2/CenterContainer/HBoxContainer"]
+layout_mode = 2
+text = "0
+0
+0
+0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="Buildings/Labels/Control2/CenterContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Sprite1" type="Sprite2D" parent="Buildings/Labels/Control2/CenterContainer/HBoxContainer/Control"]
+position = Vector2(0, 2)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_jmkj3")
+centered = false
+
+[node name="Sprite2" type="Sprite2D" parent="Buildings/Labels/Control2/CenterContainer/HBoxContainer/Control"]
+position = Vector2(0, 27)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_lx8te")
+centered = false
+
+[node name="Sprite3" type="Sprite2D" parent="Buildings/Labels/Control2/CenterContainer/HBoxContainer/Control"]
+position = Vector2(0, 54)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_6f2n6")
+centered = false
+
+[node name="Sprite4" type="Sprite2D" parent="Buildings/Labels/Control2/CenterContainer/HBoxContainer/Control"]
+position = Vector2(0, 81)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_uacix")
+centered = false
+
+[node name="Control3" type="Control" parent="Buildings/Labels"]
+anchors_preset = 0
 offset_left = 250.0
+offset_top = 10.0
 offset_right = 350.0
-offset_bottom = 100.0
-text = "Cost
-Need"
+offset_bottom = 140.0
+
+[node name="NameLabel" type="Label" parent="Buildings/Labels/Control3"]
+layout_mode = 2
+offset_right = 100.0
+offset_bottom = 25.0
+text = "Farm"
+horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label4" type="Label" parent="Buildings/Labels"]
-layout_mode = 0
-offset_left = 350.0
-offset_right = 450.0
-offset_bottom = 100.0
-text = "Cost
-Need"
+[node name="CenterContainer" type="CenterContainer" parent="Buildings/Labels/Control3"]
+offset_top = 25.0
+offset_right = 100.0
+offset_bottom = 75.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Buildings/Labels/Control3/CenterContainer"]
+layout_mode = 2
+
+[node name="CostLabel" type="Label" parent="Buildings/Labels/Control3/CenterContainer/HBoxContainer"]
+layout_mode = 2
+text = "0
+0
+0
+0"
+horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Control" type="Control" parent="Buildings/Labels/Control3/CenterContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Sprite1" type="Sprite2D" parent="Buildings/Labels/Control3/CenterContainer/HBoxContainer/Control"]
+position = Vector2(0, 2)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_jmkj3")
+centered = false
+
+[node name="Sprite2" type="Sprite2D" parent="Buildings/Labels/Control3/CenterContainer/HBoxContainer/Control"]
+position = Vector2(0, 27)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_lx8te")
+centered = false
+
+[node name="Sprite3" type="Sprite2D" parent="Buildings/Labels/Control3/CenterContainer/HBoxContainer/Control"]
+position = Vector2(0, 54)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_6f2n6")
+centered = false
+
+[node name="Sprite4" type="Sprite2D" parent="Buildings/Labels/Control3/CenterContainer/HBoxContainer/Control"]
+position = Vector2(0, 81)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_uacix")
+centered = false
+
+[node name="Control4" type="Control" parent="Buildings/Labels"]
+anchors_preset = 0
+offset_left = 350.0
+offset_top = 10.0
+offset_right = 450.0
+offset_bottom = 140.0
+
+[node name="NameLabel" type="Label" parent="Buildings/Labels/Control4"]
+layout_mode = 2
+offset_right = 100.0
+offset_bottom = 25.0
+text = "Mine"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="Buildings/Labels/Control4"]
+offset_top = 25.0
+offset_right = 100.0
+offset_bottom = 75.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Buildings/Labels/Control4/CenterContainer"]
+layout_mode = 2
+
+[node name="CostLabel" type="Label" parent="Buildings/Labels/Control4/CenterContainer/HBoxContainer"]
+layout_mode = 2
+text = "0
+0
+0
+0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="Buildings/Labels/Control4/CenterContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Sprite1" type="Sprite2D" parent="Buildings/Labels/Control4/CenterContainer/HBoxContainer/Control"]
+position = Vector2(0, 2)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_jmkj3")
+centered = false
+
+[node name="Sprite2" type="Sprite2D" parent="Buildings/Labels/Control4/CenterContainer/HBoxContainer/Control"]
+position = Vector2(0, 27)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_lx8te")
+centered = false
+
+[node name="Sprite3" type="Sprite2D" parent="Buildings/Labels/Control4/CenterContainer/HBoxContainer/Control"]
+position = Vector2(0, 54)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_6f2n6")
+centered = false
+
+[node name="Sprite4" type="Sprite2D" parent="Buildings/Labels/Control4/CenterContainer/HBoxContainer/Control"]
+position = Vector2(0, 81)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_uacix")
+centered = false
 
 [node name="EndTurnButton" type="Button" parent="."]
 offset_left = 50.0
