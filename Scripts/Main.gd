@@ -21,7 +21,7 @@ func _ready() -> void:
 	Config.currentState = export_data()
 	
 	if Config.tutorial:
-		$AcceptDialog.visible = true
+		$TutorialDialog.visible = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
