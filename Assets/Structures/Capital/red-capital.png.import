@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://p6m8ud1pumsv"
-path="res://.godot/imported/black-castle.png-6f908d3702e9c51b175ddec58da9af8f.ctex"
+uid="uid://o8u23v4dvppd"
+path="res://.godot/imported/red-capital.png-4988637e48e2de48dcc203aecc46f1b0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Structures/Castle/black-castle.png"
-dest_files=["res://.godot/imported/black-castle.png-6f908d3702e9c51b175ddec58da9af8f.ctex"]
+source_file="res://Assets/Structures/Capital/red-capital.png"
+dest_files=["res://.godot/imported/red-capital.png-4988637e48e2de48dcc203aecc46f1b0.ctex"]
 
 [params]
 

@@ -31,19 +31,22 @@ extends CanvasLayer
 @onready var resourceIncrease4: Label = get_node("Resources/Increases/Label4")
 
 # buttons to place structures
-@onready var structureButton1: Button = get_node("Buildings/Buttons/Button1")
-@onready var structureButton2: Button = get_node("Buildings/Buttons/Button2")
-@onready var structureButton3: Button = get_node("Buildings/Buttons/Button3")
-@onready var structureButton4: Button = get_node("Buildings/Buttons/Button4")
+@onready var structureButton1: Button = get_node("Structures/Buttons/Button1")
+@onready var structureButton2: Button = get_node("Structures/Buttons/Button2")
+@onready var structureButton3: Button = get_node("Structures/Buttons/Button3")
+@onready var structureButton4: Button = get_node("Structures/Buttons/Button4")
 
 # text displaying the cost of structures
-@onready var structureCost1: Label = get_node("Buildings/Labels/Label1")
-@onready var structureCost2: Label = get_node("Buildings/Labels/Label2")
-@onready var structureCost3: Label = get_node("Buildings/Labels/Label3")
-@onready var structureCost4: Label = get_node("Buildings/Labels/Label4")
+@onready var structureCost1: Label = get_node("Structures/Labels/Control1/CenterContainer/HBoxContainer/CostLabel")
+@onready var structureCost2: Label = get_node("Structures/Labels/Control2/CenterContainer/HBoxContainer/CostLabel")
+@onready var structureCost3: Label = get_node("Structures/Labels/Control3/CenterContainer/HBoxContainer/CostLabel")
+@onready var structureCost4: Label = get_node("Structures/Labels/Control4/CenterContainer/HBoxContainer/CostLabel")
 
 # button to end current turn
 @onready var endTurnButton: Node = get_node("EndTurnButton")
+
+# export button
+@onready var exportButton: Node = get_node("CenterContainer/ExportButton")
 
 
 func init_hud() -> void:
@@ -86,7 +89,7 @@ func update_hud():
 	progressBarPlayer1.value = len(map.get_owned_tiles(Config.player)) * 200 / 397
 	progressBarPlayer2.value = len(map.get_owned_tiles(Config.opponent)) * 200  / 397
 	
-	# hide buildings
+	# hide structures
 	set_buttons_visibility([])
 
 # Set state of buttons
@@ -105,6 +108,12 @@ func set_buttons_visibility(structures: Array) -> void:
 		structureButton3.disabled = false
 	if Config.mine in structures:
 		structureButton4.disabled = false
+
+# Reset the current turn
+func _on_ResetTurnButton_pressed() -> void:
+	main.import_data(Config.currentState)
+	map.tilesPerTurn = 0
+	update_hud()
 
 # Called when the "End Turn" button is pressed
 func _on_EndTurnButton_pressed() -> void:
@@ -129,3 +138,13 @@ func _on_button_3_pressed() -> void:
 func _on_button_4_pressed() -> void:
 	map.place_structure(Config.mine)
 	update_hud()
+
+# Export the game state
+func _on_exportButton_pressed() -> void:
+	$/root/Main/TextEdit.text = main.export_data()
+	$/root/Main/TextEdit.visible = not $/root/Main/TextEdit.visible
+	
+	if exportButton.text == "Hide export":
+		exportButton.text = "Export"
+	else:
+		exportButton.text = "Hide export"

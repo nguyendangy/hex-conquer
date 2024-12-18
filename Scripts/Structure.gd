@@ -56,12 +56,47 @@ class StructureObject:
 	# Returns the cost of the structure as string
 	func cost_string() -> String:
 		var cost: String = ""
-		if lumber > 0:
-			cost += str(lumber) + " lumber\n"
-		if stone > 0:
-			cost += str(stone) + " stone\n"
-		if grain > 0:
-			cost += str(grain) + " grain\n"
-		if gold > 0:
-			cost += str(gold) + " gold\n"
+		cost += str(lumber) + "\n"
+		cost += str(stone) + "\n"
+		cost += str(grain) + "\n"
+		cost += str(gold)
 		return cost
+
+	# Resets the structure's variables
+	func reset_structure() -> void:
+		self.lumber = self.lumberCostPerTurn
+		self.stone = self.stoneCostPerTurn
+		self.grain = self.grainCostPerTurn
+		self.gold = self.goldCostPerTurn
+	
+	# Returns the data of the structure as a dictionary
+	func get_data_dict() -> Dictionary:
+		return {
+			"lumber": self.lumber,
+			"lumberPerTurn": self.lumberPerTurn,
+			"lumberCostPerTurn": self.lumberCostPerTurn,
+			"stone": self.stone,
+			"stonePerTurn": self.stonePerTurn,
+			"stoneCostPerTurn": self.stoneCostPerTurn,
+			"grain": self.grain,
+			"grainPerTurn": self.grainPerTurn,
+			"grainCostPerTurn": self.grainCostPerTurn,
+			"gold": self.gold,
+			"goldPerTurn": self.goldPerTurn,
+			"goldCostPerTurn": self.goldCostPerTurn
+		}
+	
+	# Imports the data of the structure from a dictionary
+	func set_data_dict(dict: Dictionary) -> void:
+		self.lumber = dict.lumber
+		self.lumberPerTurn = dict.lumberPerTurn
+		self.lumberCostPerTurn = dict.lumberCostPerTurn
+		self.stone = dict.stone
+		self.stonePerTurn = dict.stonePerTurn
+		self.stoneCostPerTurn = dict.stoneCostPerTurn
+		self.grain = dict.grain
+		self.grainPerTurn = dict.grainPerTurn
+		self.grainCostPerTurn = dict.grainCostPerTurn
+		self.gold = dict.gold
+		self.goldPerTurn = dict.goldPerTurn
+		self.goldCostPerTurn = dict.goldCostPerTurn

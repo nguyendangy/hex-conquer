@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xeuueycjjs3w"
-path="res://.godot/imported/won-end-story-background.jpg-78482d2f6388d0358c9989a711aa690f.ctex"
+uid="uid://2btnehksejb6"
+path="res://.godot/imported/end-story-background.jpg-ce44d52b29918a278fcc580f9fc1ca84.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/won-end-story-background.jpg"
-dest_files=["res://.godot/imported/won-end-story-background.jpg-78482d2f6388d0358c9989a711aa690f.ctex"]
+source_file="res://Assets/Images/end-story-background.jpg"
+dest_files=["res://.godot/imported/end-story-background.jpg-ce44d52b29918a278fcc580f9fc1ca84.ctex"]
 
 [params]
 

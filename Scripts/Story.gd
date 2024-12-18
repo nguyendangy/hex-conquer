@@ -2,24 +2,22 @@ extends Panel
 
 # story text
 const startText: Array = [
-	"In a post-apocalyptic world, factions vie for control over scarce resources.",
-	"Lead your faction to victory through strategy, courage, and wit!",
-	"The land is vast, yet resources are scarce. You must build, conquer, and outwit your opponent to dominate the land.",
-	"Your journey will not be easy, as the rival faction seek to thwart your progress at every turn.",
-	"Will you rise as a conqueror or fade into obscurity? The choice is yours."
+	"In a post-apocalyptic world,\ntwo factions battle for control.",
+	"The land is vast and resources are limited.\nWho rules the empire?",
+	"Lead your faction to victory with\nstrategy, courage, and clever tactics!",
+	"Your journey won't be easy,\nthe rival will try to stop you at every turn.",
+	"Will you rise as a conqueror?\nThe choice is yours."
 ]
 const endText: Array = [
 	"",
-	"The battle for survival has come to an end.",
-	"The factions have fought valiantly, each striving for control over the scarce remnants of a broken world.",
-	"Amid the chaos, alliances were forged, betrayals unfolded, and victories were hard-won.",
-	"Now, the land bears the scars of conflict, but also a glimmer of hope. The choices made today will shape the future of tomorrow.",
-	"You have risen as a conqueror, but your journey is far from over.",
-	"Will you rebuild this fractured world, or will history repeat itself?",
-	"The decision rests in your hands. Until we meet again, farewell."
+	"The land has been claimed, but\nthe scars of war are still visible.",
+	"The future remains uncertain.\nWill the cycle of conflict start again?",
+	"You have the choice.\nFarewell, for now, conqueror.",
 ]
 
 var current_line_index: int = 0
+
+@onready var animation_intro = $AnimationPlayer
 
 
 func _ready() -> void:
@@ -32,16 +30,22 @@ func _ready() -> void:
 			$Text/Label.text = "[center]" + "Player " + str(Config.winner.terrain_id) + " won the battle!"
 		else:
 			if Config.winner == Config.player:
-				$Text/Label.text = "[center]" + "You won the battle!"
+				$Text/Label.text = "[center]" + "Your faction has emerged victorious\nfrom the battle!"
 			else:
-				$Text/Label.text = "[center]" + "You lost the battle!"
+				$Text/Label.text = "[center]" + "Your faction was defeated in the battle!"
 	else:
 		$Background/StartImage.visible = true
 		$Background/EndImage.visible = false
-		$Text/Label.text = "[center]" + startText[current_line_index] 
+		$Text/Label.text = "[center]" + startText[current_line_index]
+		
+	animation_intro.play("black_in")
+	
 
 
 func _on_NextButton_pressed() -> void:
+	animation_intro.play("black_out")
+	await get_tree().create_timer(0.25).timeout
+	
 	var lines: Array = []
 	if Config.gameOver:
 		lines = endText
@@ -51,6 +55,8 @@ func _on_NextButton_pressed() -> void:
 	if current_line_index < lines.size() - 1:
 		current_line_index += 1
 		$Text/Label.text = "[center]" + lines[current_line_index]
+		
+		animation_intro.play("black_in")
 	else:
 		current_line_index = 0
 		get_tree().change_scene_to_file("res://Scenes/TitleScreen.tscn")
