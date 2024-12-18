@@ -192,14 +192,14 @@ func tutorial() -> void:
 		$SubViewportContainer/SubViewport/Camera.zoom = Vector2(4,4)
 		$SubViewportContainer/SubViewport/Camera.offset = Vector2(0,475)
 		$TutorialDialog.dialog_text = "You start at the bottom with the blue capital.\n"
-		$TutorialDialog.dialog_text += "Click on it to see tiles you can conquer!\n"
-		$TutorialDialog.dialog_text += "If you click on a tile that is highlighted green,\nyou can conquer it."
+		$TutorialDialog.dialog_text += "Click on it to see tiles you can conquer by clicking!\n"
+		$TutorialDialog.dialog_text += "Move the map by right-clicking and dragging.\n"
 		$TutorialDialog.position.x = 100
 		$TutorialDialog.position.y = 100
 	elif tutorialStep == 1:
 		$TutorialDialog.dialog_text = "You can conquer 5 tiles per turn.\n"
-		$TutorialDialog.dialog_text += "The progress bar shows the amount of tiles\nyou and your opponent control.\n"
-		$TutorialDialog.dialog_text += "You can also see whos turn it is."
+		$TutorialDialog.dialog_text += "The progress bars show the amount of tiles\nthat are controlled.\n"
+		$TutorialDialog.dialog_text += "You can also see whos turn it is and reset your turn."
 		$TutorialDialog.position.x = 970
 	elif tutorialStep == 2:
 		$TutorialDialog.dialog_text = "Here you can see your resources.\n"

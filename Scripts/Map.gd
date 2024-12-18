@@ -188,8 +188,7 @@ func conquer_tile(pos_clicked: Vector2) -> void:
 		# story
 		if pos_clicked_data.terrain_set != main.currentPlayer.terrain_id \
 			and pos_clicked_data.terrain_set != 0:
-			main.display_story("You have conquered an opponent possessed tile.\nPrepare for the response!")
-
+			main.display_story("A hostile tile was conquered.\nPrepare for the response!")
 
 # Conquer tile for opponent
 func conquer_random_tile(player: Player.PlayerObject) -> void:
