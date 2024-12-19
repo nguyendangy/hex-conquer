@@ -17,6 +17,8 @@ extends CanvasLayer
 @onready var labelPlayer2: Label = get_node("Progress/LabelPlayer2")
 @onready var progressBarPlayer1: ProgressBar = get_node("Progress/ProgressBarPlayer1")
 @onready var progressBarPlayer2: ProgressBar = get_node("Progress/ProgressBarPlayer2")
+@onready var progressLabelPlayer1: Label = get_node("Progress/ProgressLabelPlayer1")
+@onready var progressLabelPlayer2: Label = get_node("Progress/ProgressLabelPlayer2")
 
 # text displaying the resources
 @onready var resourceAmount1: Label = get_node("Resources/Amounts/Label1")
@@ -88,6 +90,8 @@ func update_hud():
 	# set progress bar
 	progressBarPlayer1.value = len(map.get_owned_tiles(Config.player)) * 200 / 397
 	progressBarPlayer2.value = len(map.get_owned_tiles(Config.opponent)) * 200  / 397
+	progressLabelPlayer1.text = str(len(map.get_owned_tiles(Config.player)))
+	progressLabelPlayer2.text = str(len(map.get_owned_tiles(Config.opponent)))
 	
 	# hide structures
 	set_buttons_visibility([])
