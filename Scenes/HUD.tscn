@@ -147,12 +147,19 @@ offset_bottom = 1080.0
 color = Color(0.164706, 0.215686, 0.254902, 1)
 
 [node name="TitleLabel" type="Label" parent="."]
-offset_right = 500.0
+offset_right = 400.0
 offset_bottom = 100.0
 theme_override_font_sizes/font_size = 50
 text = "HEX Conquer"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="QuitButton" type="Button" parent="."]
+offset_left = 400.0
+offset_top = 25.0
+offset_right = 475.0
+offset_bottom = 75.0
+text = "Quit"
 
 [node name="TurnLabel" type="Label" parent="."]
 offset_top = 100.0
@@ -222,9 +229,9 @@ vertical_alignment = 1
 
 [node name="ResetTurnButton" type="LinkButton" parent="."]
 offset_left = 400.0
-offset_top = 262.0
+offset_top = 262.5
 offset_right = 450.0
-offset_bottom = 287.0
+offset_bottom = 287.5
 text = "Reset"
 
 [node name="Resources" type="Control" parent="."]
@@ -669,6 +676,7 @@ layout_mode = 2
 toggle_mode = true
 text = "Export"
 
+[connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="pressed" from="ResetTurnButton" to="." method="_on_ResetTurnButton_pressed"]
 [connection signal="pressed" from="Structures/Buttons/Button1" to="." method="_on_button_1_pressed"]
 [connection signal="pressed" from="Structures/Buttons/Button2" to="." method="_on_button_2_pressed"]

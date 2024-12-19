@@ -38,7 +38,10 @@ func end_game() -> void:
 		else:
 			Config.winner = Config.player
 	elif Config.gameMode == 1:
-		Config.winner = currentPlayer
+		if Config.player.gold <= Config.opponent.gold:
+			Config.winner = Config.opponent
+		else:
+			Config.winner = Config.player
 	
 	# reset players
 	Config.player.reset_player()

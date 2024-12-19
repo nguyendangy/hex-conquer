@@ -109,6 +109,10 @@ func set_buttons_visibility(structures: Array) -> void:
 	if Config.mine in structures:
 		structureButton4.disabled = false
 
+# Quit the current game
+func _on_QuitButton_pressed() -> void:
+	main.end_game()
+
 # Reset the current turn
 func _on_ResetTurnButton_pressed() -> void:
 	main.import_data(Config.currentState)
