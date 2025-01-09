@@ -115,7 +115,7 @@ func set_buttons_visibility(structures: Array) -> void:
 
 # Quit the current game
 func _on_QuitButton_pressed() -> void:
-	main.end_game()
+	main.end_game(true)
 
 # Reset the current turn
 func _on_ResetTurnButton_pressed() -> void:

@@ -30,7 +30,7 @@ func _process(_delta: float) -> void:
 
 
 # Called when the game is over
-func end_game() -> void:
+func end_game(quit: bool) -> void:
 	# different game modes
 	if Config.gameMode == 0:
 		if len(map.get_owned_tiles(Config.player)) <= len(map.get_owned_tiles(Config.opponent)):
@@ -42,6 +42,9 @@ func end_game() -> void:
 			Config.winner = Config.opponent
 		else:
 			Config.winner = Config.player
+	
+	if quit:
+		Config.winner = Config.opponent
 	
 	# reset players
 	Config.player.reset_player()
@@ -71,11 +74,11 @@ func end_turn() -> void:
 		# check if game has ended
 		if turnNumber >= Config.maxNumberOfTurns:
 			if Config.multiplayerSelected and currentPlayer == Config.opponent or not Config.multiplayerSelected:
-				end_game()
+				end_game(false)
 				return
 	elif Config.gameMode == 1:
 		if currentPlayer.gold >= Config.maxNumberOfResource:
-			end_game()
+			end_game(false)
 			return
 	
 	# update the resources of the player
